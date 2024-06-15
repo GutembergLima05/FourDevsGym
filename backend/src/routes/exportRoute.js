@@ -1,5 +1,5 @@
-import { routesUser } from "./userRoutes/userRouter.js";
+import { routeAdm } from "./admRoutes/admRouter.js";
 
 export const allRoutes = [
-    routesUser
+    routeAdm
 ];
