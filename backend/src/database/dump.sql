@@ -1,0 +1,7 @@
+CREATE TABLE adm(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    cargo VARCHAR(10),
+    academia VARCHAR(20)
+);
