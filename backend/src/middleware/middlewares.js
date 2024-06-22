@@ -1,6 +1,10 @@
 import { msgError } from "../utils/responseJson.js"
 import { msgJson } from "../utils/responseJson.js"
 import { knex } from '../database/connection/dbConnection.js'
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export const validateEntry = (schema, source = 'body') => async (req, res, next) => {
     try {
@@ -13,6 +17,35 @@ export const validateEntry = (schema, source = 'body') => async (req, res, next)
         return msgJson(400, res, msgError[type].replace('$', key), false)
     }
 }
+
+export const validateTokenAndRole = (table, idField = 'id', requiredRole = null) => async (req, res, next) => {
+    const { authorization } = req.headers;
+    if (!authorization) return msgJson(400, res, 'Informe o token.');
+
+    const token = authorization.split(' ')[1];
+    try {
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        const userId = decodedToken[idField];
+        const userRole = decodedToken.cargo;
+
+        const [user] = await knex(table).where({ [idField]: userId });
+
+        if (!user) return msgJson(404, res, 'Usuário não encontrado.');
+        delete user.senha;
+
+        if (requiredRole && userRole !== requiredRole) {
+            throw new Error('invalid_role');
+        }
+
+        req.usuarioLogado = { ...user };
+        next();
+    } catch (error) {
+        const errorMessage = error.message === 'invalid_role' ? 
+            'Acesso negado. Você não tem permissão para realizar esta ação.' : 
+            'Não autorizado.';
+        return msgJson(401, res, errorMessage);
+    }
+};
 
 
 export const uniqueField = (table, fields, path, nameObj = 'dataUnique') => async (req, res, next) => {
