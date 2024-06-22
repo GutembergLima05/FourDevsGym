@@ -176,10 +176,9 @@ CREATE OR REPLACE FUNCTION verificar_expiracao_aviso()
 RETURNS void AS $$
 BEGIN
     -- Excluir avisos com data de expiração menor ou igual ao timestamp atual
-    DELETE FROM aviso WHERE data_expiracao <= CURRENT_TIMESTAMP;
+    DELETE FROM aviso WHERE data_expiracao <= clock_timestamp();
 END;
 $$ LANGUAGE plpgsql;
-
 
 -- Tabela Aluno
 CREATE OR REPLACE FUNCTION update_aluno_timestamp()
