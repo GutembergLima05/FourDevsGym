@@ -75,7 +75,8 @@ CREATE TABLE Aviso
     descricao VARCHAR(255),  
     id_Academia INT,
     data_Criacao DATE DEFAULT CURRENT_DATE,
-    data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+    data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_expiracao TIMESTAMP
 );
 
 CREATE TABLE Academia 
@@ -170,7 +171,7 @@ ALTER TABLE Produto_Venda ADD FOREIGN KEY (id_Produto) REFERENCES Produto (id_Pr
 ALTER TABLE Exercicio_Treino ADD FOREIGN KEY (id_Treino) REFERENCES Treino (id_Treino);
 ALTER TABLE Exercicio_Treino ADD FOREIGN KEY (id_Exercicio) REFERENCES Exercicio (id_Exercicio);
 
-ALTER TABLE Aviso ADD COLUMN data_expiracao TIMESTAMP;
+ALTER TABLE Aviso ADD COLUMN gif_url VARCHAR(255);
 
 CREATE OR REPLACE FUNCTION verificar_expiracao_aviso()
 RETURNS void AS $$
