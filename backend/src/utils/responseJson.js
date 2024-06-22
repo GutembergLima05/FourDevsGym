@@ -16,5 +16,6 @@ export const msgError = {
     'number.positive': `Informe um número positivo no campo '$'.`,
     'number.base': `Informe um número valido no campo '$'.`,
     'object.base': `Informe os campos dentro de chaves '{}'.`,
-    'object.unknown': `O campo '$' não é permitido.`
+    'object.unknown': `O campo '$' não é permitido.`,
+    'string.isoDate': `O campo '$' precisa ser uma data válida no formato YYYY-MM-ddThh:mm:ss.`
 }

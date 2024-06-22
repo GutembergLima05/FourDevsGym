@@ -5,12 +5,11 @@ import * as gym from "../../controller/gym/gymController.js"
 
 export const routeGym = Router();
 
-routeGym.use(validateTokenAndRole('administrador','id_adm', 'dono'))
-
 routeGym.route('/gym').post(
     validateEntry(s_gym, 'body'), 
     uniqueField('academia', ['nome'], 'body'), gym.register)
     .get(gym.getAllGym)
+    .all(validateTokenAndRole('administrador','id_adm', 'dono'))
 
 
 routeGym.route('/gym/:id').all(
@@ -21,3 +20,4 @@ routeGym.route('/gym/:id').all(
         gym.update)
     .get(validateEntry(s_idCheck, 'params'), gym.getGymById)
     .delete(validateEntry(s_idCheck, 'params'), gym.deleteGym)
+    .all(validateTokenAndRole('administrador','id_adm', 'dono'))
