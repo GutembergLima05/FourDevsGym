@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { uniqueField, validateEntry } from "../../middleware/middlewares.js";
+import { uniqueField, validateEntry, validateTokenAndRole } from "../../middleware/middlewares.js";
 import { s_gym, s_idCheck } from "../../schemas/schema.js";
 import * as gym from "../../controller/gym/gymController.js"
 
 export const routeGym = Router();
+
+routeGym.use(validateTokenAndRole('administrador','id_adm', 'dono'))
 
 routeGym.route('/gym').post(
     validateEntry(s_gym, 'body'), 
