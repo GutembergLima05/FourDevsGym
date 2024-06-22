@@ -10,6 +10,8 @@ export const msgError = {
     'string.min': `O campo '$' não possui o mínino de caracteres.`,
     'string.empty': `O campo '$' não poder estar vazio.`,
     'string.base': `O campo '$' precisar ser uma string.`,
+    'string.valid': 'O campo $ possui um valor inválido',
+    'any.only': 'O campo $ precisa conter um dos campos `recepcionista/personal/dono`',
     'number.integer': `Informe um número inteiro no campo '$'.`,
     'number.positive': `Informe um número positivo no campo '$'.`,
     'number.base': `Informe um número valido no campo '$'.`,

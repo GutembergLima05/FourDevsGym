@@ -5,5 +5,18 @@ import * as adm from '../../controller/admin/adminController.js'
 
 export const routeAdm = Router();
 
-routeAdm.route('/adm').post(validateEntry(s_admSchema, 'body'), uniqueField('adm', ['email'], 'body'), adm.register)
-routeAdm.route('/adm/login').post(validateEntry(s_login, 'body'), uniqueField('adm', ['email'], 'body'), adm.login)
+routeAdm.route('/adm').post(
+    validateEntry(s_admSchema, 'body'), 
+    uniqueField('administrador', ['email'], 'body'), adm.register)
+    .get(adm.getAllAdm)
+
+routeAdm.route('/adm/:id')
+.get(adm.getAdmById)
+.put(
+    validateEntry(s_admSchema, 'body'),
+    uniqueField('administrador', ['email'], 'body'),
+    adm.update)
+.delete(adm.deleteAdm)
+
+
+routeAdm.route('/adm/login').post(validateEntry(s_login, 'body'), uniqueField('administrador', ['email'], 'body'), adm.login)
