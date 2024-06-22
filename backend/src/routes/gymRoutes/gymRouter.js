@@ -18,6 +18,6 @@ routeGym.route('/gym/:id').all(
         validateEntry(s_gym, 'body'),
         uniqueField('academia', ['nome'], 'body'),
         gym.update)
-    .get(validateEntry(s_idCheck, 'params'), gym.getGymById)
-    .delete(validateEntry(s_idCheck, 'params'), gym.deleteGym)
+    .get(gym.getGymById)
+    .delete(gym.deleteGym)
     .all(validateTokenAndRole('administrador','id_adm', 'dono'))
