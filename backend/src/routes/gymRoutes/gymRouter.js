@@ -17,5 +17,5 @@ routeGym.route('/gym/:id').all(
         validateEntry(s_gym, 'body'),
         uniqueField('academia', ['nome'], 'body'),
         gym.update)
-    .get(validateEntry(s_idCheck, 'params'), gym.getGym)
+    .get(validateEntry(s_idCheck, 'params'), gym.getGymById)
     .delete(validateEntry(s_idCheck, 'params'), gym.deleteGym)

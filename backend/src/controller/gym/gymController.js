@@ -52,7 +52,7 @@ export const deleteGym = async(req, res) => {
     }
 }
 
-export const getGym = async(req, res) => {
+export const getGymById = async(req, res) => {
     const { params: { id: id_academia }} = req
 
     try {
@@ -69,7 +69,7 @@ export const getGym = async(req, res) => {
 export const getAllGym = async(req, res) => {
     try {
         const gymInfo = await knex('academia').returning('*');
-        
+
         msgJson(201, res, gymInfo, true)
     } catch (error) {
         console.error(error)
