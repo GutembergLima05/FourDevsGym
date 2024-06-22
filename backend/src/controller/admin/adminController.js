@@ -2,6 +2,9 @@ import { msgJson } from "../../utils/responseJson.js"
 import { knex } from "../../database/connection/dbConnection.js"
 import { compare, hash } from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export const register = async (req, res) => {
     const { body: { senha }, body, dataUnique} = req
@@ -85,11 +88,12 @@ export const login = async (req, res) => {
         const { idObj, idObj: { id } } = dataUnique
 
         const senhaValida = await compare(senha, idObj.senha)
+
         if(!senhaValida) return msgJson(401, res, 'Senha incorreta', false)
 
         delete idObj.senha
 
-        const payload = { id }, options = { expiresIn: '7d' }
+        const payload = { ...idObj }, options = { expiresIn: '7d' }
         const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, options)
 
         msgJson(200, res, {usuario: idObj, token}, true)
