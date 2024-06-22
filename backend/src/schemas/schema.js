@@ -9,8 +9,8 @@ const email = Joi.string().email().max(30).required(),
     endereco = Joi.string().max(50).required(),
     data_expiracao = Joi.string().isoDate().required(),
     titulo = Joi.string().max(100).required(),
-    rua = Joi.string(),
-    numero = Joi.string(),
+    tipo = Joi.string().max(100).required(),
+    valor = Joi.number().positive().required(),
     bairro = Joi.string(),
     cidade = Joi.string(),
     estado = Joi.string(),
@@ -28,6 +28,8 @@ export const s_idOpcional = criaObjJoi({ categoria_id: idOpc })
 export const s_notice = criaObjJoi({ titulo, descricao, data_expiracao, id_academia })
 
 export const s_admSchema = criaObjJoi({ nome, email, senha, cargo, id_academia })
+
+export const s_plan = criaObjJoi({ tipo, valor, id_academia})
 
 export const s_exercise = criaObjJoi({ nome, descricao, id_administrador, gif_url })
 

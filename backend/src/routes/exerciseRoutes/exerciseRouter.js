@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { uniqueField, validateEntry, validateTokenAndRole } from "../../middleware/middlewares.js";
-import { s_exercise, s_gym, s_idCheck } from "../../schemas/schema.js";
+import { validateEntry, validateTokenAndRole } from "../../middleware/middlewares.js";
+import { s_exercise, s_idCheck } from "../../schemas/schema.js";
 import * as exercise from "../../controller/exercise/exerciseController.js"
 
 export const routeExercise = Router();
