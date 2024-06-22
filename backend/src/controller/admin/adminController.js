@@ -9,7 +9,7 @@ export const register = async (req, res) => {
         if (idUnique) return msgJson(400, res, `O campo '${field}' com valor '${req[path][field]}' já está em uso.`, false);
 
             body.senha = await hash(senha, 10)
-            const [ adminInfo ] = await knex('adm').insert({...body}).returning(['id', 'email', 'cargo', 'academia'])
+            const [ adminInfo ] = await knex('administrador').insert({...body}).returning(['id', 'email', 'cargo', 'academia'])
 
         msgJson(201, res, adminInfo, true)
     } catch (error) {

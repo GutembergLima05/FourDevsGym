@@ -1,12 +1,12 @@
 CREATE TABLE Aluno 
 ( 
     idAluno SERIAL PRIMARY KEY, 
-    nomeAluno VARCHAR(255) NOT NULL,  
-    emailAluno VARCHAR(255) NOT NULL UNIQUE,  
-    nascimentoAluno DATE NOT NULL,  
-    telefoneAluno VARCHAR(20) NOT NULL,  
-    enderecoAluno VARCHAR(255),  
-    historicoAluno VARCHAR(255),  
+    nome VARCHAR(255) NOT NULL,  
+    email VARCHAR(255) NOT NULL UNIQUE,  
+    nascimento DATE NOT NULL,  
+    telefone VARCHAR(20) NOT NULL,  
+    endereco VARCHAR(255),  
+    historico VARCHAR(255),  
     idAcademia INT,  
     idTreino INT,  
     idPlano INT 
@@ -25,23 +25,23 @@ CREATE TABLE Administrador
 CREATE TABLE Exercicio 
 ( 
     idExercicio SERIAL PRIMARY KEY, 
-    nomeExercicio VARCHAR(255) NOT NULL,  
-    descricaoExercicio VARCHAR(255),  
+    nome VARCHAR(255) NOT NULL,  
+    descricao VARCHAR(255),  
     idAdministrador INT 
 );
 
 CREATE TABLE Treino 
 ( 
     idTreino SERIAL PRIMARY KEY, 
-    nomeTreino VARCHAR(255) NOT NULL,  
-    descricaoTreino VARCHAR(255),  
+    nome VARCHAR(255) NOT NULL,  
+    descricao VARCHAR(255),  
     idAdministrador INT 
 );
 
 CREATE TABLE Venda 
 ( 
     idVenda SERIAL PRIMARY KEY, 
-    nomeCliente VARCHAR(255) NOT NULL,  
+    nome VARCHAR(255) NOT NULL,  
     metodoPagamento VARCHAR(50) NOT NULL,  
     dataVenda DATE NOT NULL
 );
@@ -49,33 +49,33 @@ CREATE TABLE Venda
 CREATE TABLE Produto 
 ( 
     idProduto SERIAL PRIMARY KEY, 
-    nomeProduto VARCHAR(255) NOT NULL,  
-    valorProduto FLOAT NOT NULL,  
-    descricaoProduto VARCHAR(255),  
-    quantidadeProduto INT NOT NULL,  
+    nome VARCHAR(255) NOT NULL,  
+    valor FLOAT NOT NULL,  
+    descricao VARCHAR(255),  
+    quantidade INT NOT NULL,  
     idAcademia INT 
 );
 
 CREATE TABLE Aviso 
 ( 
     idAviso SERIAL PRIMARY KEY, 
-    tituloAviso VARCHAR(255) NOT NULL,  
-    descricaoAviso VARCHAR(255),  
+    titulo VARCHAR(255) NOT NULL,  
+    descricao VARCHAR(255),  
     idAcademia INT 
 );
 
 CREATE TABLE Academia 
 ( 
     idAcademia SERIAL PRIMARY KEY, 
-    nomeAcademia VARCHAR(255) NOT NULL,  
-    enderecoAcademia VARCHAR(255) NOT NULL
+    nome VARCHAR(255) NOT NULL,  
+    endereco VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Plano 
 ( 
     idPlano SERIAL PRIMARY KEY, 
-    tipoPlano VARCHAR(255) NOT NULL,  
-    valorPlano FLOAT NOT NULL,  
+    tipo VARCHAR(255) NOT NULL,  
+    valor FLOAT NOT NULL,  
     idAcademia INT 
 );
 
