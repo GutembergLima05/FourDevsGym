@@ -1,5 +1,5 @@
 import express from 'express'
-import { allRoutes } from './routes/exportRoute.js';
+import { allRoutes } from './src/routes/exportRoute.js';
 import dotenv from 'dotenv'
 import cors from 'cors';
 
