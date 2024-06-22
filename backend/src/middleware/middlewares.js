@@ -2,9 +2,11 @@ import { msgError } from "../utils/responseJson.js"
 import { msgJson } from "../utils/responseJson.js"
 import { knex } from '../database/connection/dbConnection.js'
 
-export const validateEntry = (schema, stringObj) => async (req, res, next) => {
+export const validateEntry = (schema, source = 'body') => async (req, res, next) => {
     try {
-        await schema.validateAsync(req.body)
+        const dataToValidate = source === 'params' ? req.params : 
+                                source === 'query' ? req.query : req.body;
+        await schema.validateAsync(dataToValidate)
         next()
     } catch (error) {
         const { details: [ { type, context: { key } } ] } = error
@@ -13,7 +15,7 @@ export const validateEntry = (schema, stringObj) => async (req, res, next) => {
 }
 
 
-export const uniqueField = (table, fields, path, nameObj = 'idUnique') => async (req, res, next) => {
+export const uniqueField = (table, fields, path, nameObj = 'dataUnique') => async (req, res, next) => {
     try {
         const whereConditions = fields.map(field => ({ [field]: req[path][field] }));
 
@@ -31,7 +33,6 @@ export const uniqueField = (table, fields, path, nameObj = 'idUnique') => async 
                 field: duplicateField
             };
         }
-
         next(); 
     } catch (error) {
         msgJson(500, res, 'Erro interno no servidor ao validar campos únicos', false);
