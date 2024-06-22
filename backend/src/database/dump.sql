@@ -172,6 +172,14 @@ ALTER TABLE Exercicio_Treino ADD FOREIGN KEY (id_Exercicio) REFERENCES Exercicio
 
 ALTER TABLE Aviso ADD COLUMN data_expiracao TIMESTAMP;
 
+CREATE OR REPLACE FUNCTION verificar_expiracao_aviso()
+RETURNS void AS $$
+BEGIN
+    -- Excluir avisos com data de expiração menor ou igual ao timestamp atual
+    DELETE FROM aviso WHERE data_expiracao <= CURRENT_TIMESTAMP;
+END;
+$$ LANGUAGE plpgsql;
+
 
 -- Tabela Aluno
 CREATE OR REPLACE FUNCTION update_aluno_timestamp()
@@ -351,3 +359,5 @@ CREATE TRIGGER update_exercicio_treino_timestamp_trigger
 BEFORE UPDATE ON Exercicio_Treino
 FOR EACH ROW
 EXECUTE FUNCTION update_exercicio_treino_timestamp();
+
+--SELECT verificar_expiracao_aviso();

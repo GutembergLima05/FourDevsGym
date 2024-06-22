@@ -14,6 +14,7 @@ export const validateEntry = (schema, source = 'body') => async (req, res, next)
         next()
     } catch (error) {
         const { details: [ { type, context: { key } } ] } = error
+        console.log(type)
         return msgJson(400, res, msgError[type].replace('$', key), false)
     }
 }
