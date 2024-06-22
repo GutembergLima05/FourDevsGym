@@ -5,7 +5,10 @@ import * as gym from "../../controller/gym/gymController.js"
 
 export const routeGym = Router();
 
-routeGym.route('/gym').post(validateEntry(s_gym, 'body'), uniqueField('academia', ['nome'], 'body'), gym.register)
+routeGym.route('/gym').post(
+    validateEntry(s_gym, 'body'), 
+    uniqueField('academia', ['nome'], 'body'), gym.register)
+    .get(gym.getAllGym)
 
 
 routeGym.route('/gym/:id').all(

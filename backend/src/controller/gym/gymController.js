@@ -7,7 +7,7 @@ export const register = async (req, res) => {
     try {
         if (dataUnique && dataUnique.field) return msgJson(400, res, `O campo '${dataUnique.field}' com valor '${dataUnique.idObj.nome}' já está em uso.`, false);
 
-            const [ gymInfo ] = await knex('academia').insert({...body}).returning(['id_academia', 'nome', 'endereco'])
+            const [ gymInfo ] = await knex('academia').insert({...body}).returning('*')
 
         msgJson(201, res, gymInfo, true)
     } catch (error) {
@@ -65,3 +65,16 @@ export const getGym = async(req, res) => {
         msgJson(500, res, 'Erro interno do servidor ao detalhar academia.', false)
     }
 }
+
+export const getAllGym = async(req, res) => {
+    try {
+        const gymInfo = await knex('academia').returning('*');
+        
+        msgJson(201, res, gymInfo, true)
+    } catch (error) {
+        console.error(error)
+        msgJson(500, res, 'Erro interno do servidor ao detalhar academia.', false)
+    }
+}
+
+
