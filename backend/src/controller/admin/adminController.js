@@ -71,8 +71,10 @@ export const getAdmById = async (req, res) => {
     const { params: { id: id_adm }} = req
 
     try {
-        const admInfo = await knex('administrador').where({ id_adm }).returning('*');
+        const admInfo = await knex('administrador').where({ id_adm }).first().returning('*');
         if (!admInfo || admInfo.length === 0 ) return msgJson(404, res, 'Administrador não encontrado.', false)
+        
+        delete admInfo.senha 
 
         msgJson(201, res, admInfo, true)
     } catch (error) {
