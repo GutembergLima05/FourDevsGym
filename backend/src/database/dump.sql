@@ -14,6 +14,11 @@ CREATE TABLE Aluno
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
+CREATE TABLE Dia (
+    id_dia SERIAL PRIMARY KEY,
+    Nome VARCHAR(10) NOT NULL
+);
+
 CREATE TABLE Administrador 
 ( 
     id_Adm SERIAL PRIMARY KEY, 
@@ -75,7 +80,8 @@ CREATE TABLE Aviso
     descricao VARCHAR(255),  
     id_Academia INT,
     data_Criacao DATE DEFAULT CURRENT_DATE,
-    data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+    data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_expiracao TIMESTAMP
 );
 
 CREATE TABLE Academia 
@@ -136,14 +142,16 @@ CREATE TABLE Produto_Venda
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
-CREATE TABLE Exercicio_Treino 
+CREATE TABLE Exercicio_Dia 
 ( 
-    id_Treino INT,  
+    id_dia INT,  
     id_Exercicio INT,  
-    PRIMARY KEY (id_Treino, id_Exercicio),
+    PRIMARY KEY (id_dia, id_Exercicio),
     data_Criacao DATE DEFAULT CURRENT_DATE,
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
+
+INSERT INTO dia(nome) values ('Dia 1'), ('Dia 2'), ('Dia 3'), ('Dia 4'), ('Dia 5'),('Dia 6'),('Dia 7') 
 
 ALTER TABLE Aluno ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia);
 ALTER TABLE Aluno ADD FOREIGN KEY (id_Treino) REFERENCES Treino (id_Treino);
@@ -167,11 +175,18 @@ ALTER TABLE Avaliacao ADD FOREIGN KEY (id_Aluno) REFERENCES Aluno (id_Aluno);
 ALTER TABLE Produto_Venda ADD FOREIGN KEY (id_Venda) REFERENCES Venda (id_Venda);
 ALTER TABLE Produto_Venda ADD FOREIGN KEY (id_Produto) REFERENCES Produto (id_Produto);
 
-ALTER TABLE Exercicio_Treino ADD FOREIGN KEY (id_Treino) REFERENCES Treino (id_Treino);
-ALTER TABLE Exercicio_Treino ADD FOREIGN KEY (id_Exercicio) REFERENCES Exercicio (id_Exercicio);
+ALTER TABLE Exercicio_Dia ADD FOREIGN KEY (id_Dia) REFERENCES Dia (id_Dia);
+ALTER TABLE Exercicio_Dia ADD FOREIGN KEY (id_Exercicio) REFERENCES Exercicio (id_Exercicio);
 
-ALTER TABLE Aviso ADD COLUMN data_expiracao TIMESTAMP;
+ALTER TABLE Aviso ADD COLUMN gif_url VARCHAR(255);
 
+CREATE OR REPLACE FUNCTION verificar_expiracao_aviso()
+RETURNS void AS $$
+BEGIN
+    -- Excluir avisos com data de expiração menor ou igual ao timestamp atual
+    DELETE FROM aviso WHERE data_expiracao <= clock_timestamp();
+END;
+$$ LANGUAGE plpgsql;
 
 -- Tabela Aluno
 CREATE OR REPLACE FUNCTION update_aluno_timestamp()
@@ -338,8 +353,8 @@ FOR EACH ROW
 EXECUTE FUNCTION update_produto_venda_timestamp();
 
 
--- Tabela Exercicio_Treino
-CREATE OR REPLACE FUNCTION update_exercicio_treino_timestamp()
+-- Tabela Exercicio_Dia
+CREATE OR REPLACE FUNCTION update_exercicio_dia_timestamp()
 RETURNS TRIGGER AS $$
 BEGIN
     NEW.data_atualizacao = CURRENT_TIMESTAMP;
@@ -347,7 +362,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER update_exercicio_treino_timestamp_trigger
-BEFORE UPDATE ON Exercicio_Treino
+CREATE TRIGGER update_exercicio_dia_timestamp_trigger
+BEFORE UPDATE ON Exercicio_Dia
 FOR EACH ROW
-EXECUTE FUNCTION update_exercicio_treino_timestamp();
+EXECUTE FUNCTION update_exercicio_dia_timestamp();
+
+--SELECT verificar_expiracao_aviso();

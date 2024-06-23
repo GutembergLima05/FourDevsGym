@@ -11,10 +11,15 @@ export const msgError = {
     'string.empty': `O campo '$' não poder estar vazio.`,
     'string.base': `O campo '$' precisar ser uma string.`,
     'string.valid': 'O campo $ possui um valor inválido',
-    'any.only': 'O campo $ precisa conter um dos campos `recepcionista/personal/dono`',
+    'any.only': 'O campo $ precisa conter dados permitidos',
     'number.integer': `Informe um número inteiro no campo '$'.`,
     'number.positive': `Informe um número positivo no campo '$'.`,
     'number.base': `Informe um número valido no campo '$'.`,
     'object.base': `Informe os campos dentro de chaves '{}'.`,
-    'object.unknown': `O campo '$' não é permitido.`
+    'object.unknown': `O campo '$' não é permitido.`,
+    'string.isoDate': `O campo '$' precisa ser uma data válida no formato YYYY-MM-ddThh:mm:ss.`,
+    'array.base': 'O campo $ precisa ser um array.',
+    'array.includesRequiredUnknowns': 'O campo $ contém elementos que não são permitidos.',
+    'date.format': 'A data de venda deve estar no formato YYYY-MM-DD.',
+    'date.base': 'A data de venda deve ser uma data válida.'
 }
