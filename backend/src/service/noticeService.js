@@ -8,7 +8,7 @@ export function formatDateInTimeZone(date, timeZone = 'America/Sao_Paulo', forma
 }
 
 // Função para remover horas de uma data
-export function removeHoursFromDate(date, hoursToRemove = 0) {
+export function removeHoursFromDate(date, hoursToRemove = 3) {
     const dateWithoutHours = new Date(date);
     dateWithoutHours.setHours(dateWithoutHours.getHours() - hoursToRemove);
     return dateWithoutHours;
