@@ -33,6 +33,8 @@ export const s_admSchema = criaObjJoi({ nome, email, senha, cargo, id_academia }
 
 export const s_plan = criaObjJoi({ tipo, valor, id_academia})
 
+export const s_training = criaObjJoi({ nome, descricao, id_administrador })
+
 export const s_exercise = criaObjJoi({ nome, descricao, id_administrador, gif_url })
 
 export const s_login = criaObjJoi({ email, senha })
