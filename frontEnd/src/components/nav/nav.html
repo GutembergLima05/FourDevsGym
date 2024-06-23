@@ -13,59 +13,70 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script defer src="../../../public/jsMain/jsMain.js"></script>
     <script defer src="js/nav.js"></script>
+
+ 
 </head>
 
 <body>
-    <nav>
-        <div id="menu">
-            <img id="logo-menu" src="../../../public/assets/images/logoFourDevsGym.png" alt="">
-            <i id="sgv-hambur" class="bi bi-list"></i>
-        </div>
-        <ul>
-            <a href="">
-                <li id="item-menu-dashboard"><i class="fa-solid fa-house"></i>Dashboard</li>
-            </a>
-            <a href="">
-                <li id="item-menu-treinos"><i class="fa-solid fa-house"></i>Dashboard</li>
-            </a>
-            <a href="">
-                <li id="item-menu-dashboard"><i class="fa-solid fa-house"></i>Dashboard</li>
-            </a>
-            <a href="">
-                <li><i class="fa-solid fa-house"></i>Dashboard</li>
-            </a>
-            <a href="">
-                <li><i class="fa-solid fa-house"></i>Dashboard</li>
-            </a>
-            <a href="">
-                <li id="item-menu-produto"><i class="fa-solid fa-house"></i>Dashboard <div
-                        id="produtosNotificationMenu">2</div>
-                </li>
-            </a>
-            <a href="">
-                <li><i class="fa-solid fa-house"></i>Dashboard</li>
-            </a>
-            <a href="">
-                <li><i class="fa-solid fa-house"></i>Dashboard</li>
-            </a>
-            <a href="">
-                <li><i class="fa-solid fa-house"></i>Dashboard</li>
-            </a>
-        </ul>
-        <div id="menu-footer">
-            <i id="user-menu-footer" class="bi bi-person-circle"></i>
-            <h4>Admin1</h4>
-            
-            <div id="buttonTheme" class="contain-footer-menu theme">
-                <i id="theme-escuro" class="fa-solid fa-moon"></i>
-                <i id="theme-claro" class="fa-regular fa-moon "></i>
-            </div>
-            <div class="contain-footer-menu ">
-                <a href=""><i id="config" class="fa-solid fa-gear"></i></a>
-            </div>
+    
 
-        </div>
-    </nav>
 </body>
 
 </html>
+
+
+<nav class="nav-contraida">
+
+    <div id="menu">
+        <img id="logo-menu" src="../../public/assets/images/logoFourDevsGym.png" alt="">
+        <i id="sgv-hambur" class="bi bi-list"></i>
+        <i id="sgv-closed" class="bi bi-x-lg"></i>
+    </div>
+    <ul>
+        <a href="">
+            <li class="item-menu" id="item-menu-dashboard"><i class="fa-solid fa-house"></i><label class="text-menu">Dashboard</label></li>
+        </a>
+        <a href="">
+            <li class="item-menu" id="item-menu-dashboard"><i class="fa-solid fa-dumbbell"></i><label class="text-menu">Treinos</label></li>
+        </a>
+        <a href="">
+            <li class="item-menu" id="item-menu-dashboard"><i class="fa-solid fa-medal"></i><label class="text-menu">Planos</label></li>
+        </a>
+        <a href="">
+            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-cash-coin"></i><label class="text-menu">Finanças</label></li>
+        </a>
+        <a href="">
+            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-person-square"></i><label class="text-menu">Alunos</label></li>
+        </a>
+        <a href="">
+            <li class="item-menu" id="item-menu-produto"><i class="bi bi-boxes"></i><label class="text-menu">Produtos</label> <div
+                    id="produtosNotificationMenu">2</div>
+            </li>
+        </a>
+        <a href="">
+            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-alarm-fill"></i><label class="text-menu">Horários de aula</label></li>
+        </a>
+        <a href="">
+            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-bell-fill"></i><label class="text-menu">Avisos</label></li>
+        </a>
+        <a href="">
+            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-clock-history"></i><label class="text-menu">Históricos de Operações</label></li>
+        </a>
+
+    </ul>
+    <div id="menu-footer" >
+        <div class="contain-footer-menu ">
+        <i id="user-menu-footer" class="bi bi-person-circle"></i>
+    </div>
+        <h4 id="nomeAdm"></h4>
+        
+        <div id="buttonTheme" class="contain-footer-menu theme">
+            <i id="theme-escuro" class="bi bi-moon-stars"></i>
+            <i id="theme-claro" class="bi bi-moon-stars-fill"></i>
+        </div>
+        <div class="contain-footer-menu ">
+            <a href=""><i id="config" class="fa-solid fa-gear"></i></a>
+        </div>
+
+    </div>
+</nav>
