@@ -151,6 +151,8 @@ CREATE TABLE Exercicio_Treino
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
+INSERT INTO dia(nome) values ('Dia 1'), ('Dia 2'), ('Dia 3'), ('Dia 4'), ('Dia 5'),('Dia 6'),('Dia 7') 
+
 ALTER TABLE Aluno ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia);
 ALTER TABLE Aluno ADD FOREIGN KEY (id_Treino) REFERENCES Treino (id_Treino);
 ALTER TABLE Aluno ADD FOREIGN KEY (id_Plano) REFERENCES Plano (id_Plano);
