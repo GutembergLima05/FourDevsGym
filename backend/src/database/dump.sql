@@ -14,6 +14,11 @@ CREATE TABLE Aluno
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
+CREATE TABLE Dia (
+    id_dia SERIAL PRIMARY KEY,
+    Nome VARCHAR(10) NOT NULL
+);
+
 CREATE TABLE Administrador 
 ( 
     id_Adm SERIAL PRIMARY KEY, 
