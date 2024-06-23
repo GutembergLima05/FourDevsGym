@@ -84,12 +84,12 @@ export const getAdmById = async (req, res) => {
 export const login = async (req, res) => {
     const { body: { senha }, dataUnique } = req
     try {
-        if(!dataUnique) return msgJson(404, res, 'Email não cadastrado', false)
+        if(!dataUnique) return msgJson(404, res, 'Email ou senha incorretos!', false)
         const { idObj, idObj: { id } } = dataUnique
 
         const senhaValida = await compare(senha, idObj.senha)
 
-        if(!senhaValida) return msgJson(401, res, 'Senha incorreta', false)
+        if(!senhaValida) return msgJson(401, res, 'Email ou senha incorretos!', false)
 
         delete idObj.senha
 
