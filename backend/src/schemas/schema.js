@@ -13,11 +13,16 @@ const email = Joi.string().email().max(30).required(),
     valor = Joi.number().positive().required(),
     quantidade = Joi.number().integer().positive().required(),
     metodo_pagamento = Joi.string().max(100).required(),
+    nascimento = Joi.date().iso().required(),
     data_venda = Joi.date().iso().required(),
     id_administrador = Joi.number().integer().positive().required(),
+    id_plano = Joi.number().integer().positive().required(),
+    id_treino = Joi.number().integer().positive().required(),
     id = Joi.number().integer().positive().required(),
     idOpc = Joi.number().integer().positive(),
     id_academia = Joi.number().integer().positive().required(),
+    telefone = Joi.string().required(),
+    historico = Joi.string().max(150),
     criaObjJoi = (camposJoiObj) => Joi.object().keys(camposJoiObj).required()
 
     const dias = Joi.array().items(
@@ -37,6 +42,8 @@ const email = Joi.string().email().max(30).required(),
 export const s_idCheck = criaObjJoi({id})
 
 export const s_idOpcional = criaObjJoi({ categoria_id: idOpc })
+
+export const s_student = criaObjJoi({ nome, email, nascimento, telefone, endereco, historico, id_academia, id_treino, id_plano })
 
 export const s_notice = criaObjJoi({ titulo, descricao, data_expiracao, id_academia })
 
