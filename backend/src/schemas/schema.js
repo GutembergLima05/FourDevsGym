@@ -11,7 +11,7 @@ const email = Joi.string().email().max(30).required(),
     titulo = Joi.string().max(100).required(),
     tipo = Joi.string().max(100).required(),
     valor = Joi.number().positive().required(),
-    bairro = Joi.string(),
+    quantidade = Joi.number().integer().positive().required(),
     cidade = Joi.string(),
     estado = Joi.string(),
     id_administrador = Joi.number().integer().positive().required(),
@@ -26,6 +26,8 @@ export const s_idCheck = criaObjJoi({id})
 export const s_idOpcional = criaObjJoi({ categoria_id: idOpc })
 
 export const s_notice = criaObjJoi({ titulo, descricao, data_expiracao, id_academia })
+
+export const s_product = criaObjJoi({ nome, valor, descricao, quantidade, id_academia})
 
 export const s_admSchema = criaObjJoi({ nome, email, senha, cargo, id_academia })
 
