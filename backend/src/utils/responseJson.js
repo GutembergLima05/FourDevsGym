@@ -17,5 +17,7 @@ export const msgError = {
     'number.base': `Informe um número valido no campo '$'.`,
     'object.base': `Informe os campos dentro de chaves '{}'.`,
     'object.unknown': `O campo '$' não é permitido.`,
-    'string.isoDate': `O campo '$' precisa ser uma data válida no formato YYYY-MM-ddThh:mm:ss.`
+    'string.isoDate': `O campo '$' precisa ser uma data válida no formato YYYY-MM-ddThh:mm:ss.`,
+    'array.base': 'O campo $ precisa ser um array.',
+    'array.includesRequiredUnknowns': 'O campo $ contém elementos que não são permitidos.'
 }

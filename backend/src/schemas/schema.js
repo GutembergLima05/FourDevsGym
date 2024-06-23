@@ -12,8 +12,8 @@ const email = Joi.string().email().max(30).required(),
     tipo = Joi.string().max(100).required(),
     valor = Joi.number().positive().required(),
     quantidade = Joi.number().integer().positive().required(),
-    cidade = Joi.string(),
-    estado = Joi.string(),
+    id_dia = Joi.number().integer().positive().required(),
+    id_exercicios = Joi.array().items(Joi.number().integer().positive()).required(),
     id_administrador = Joi.number().integer().positive().required(),
     id = Joi.number().integer().positive().required(),
     idOpc = Joi.number().integer().positive(),
@@ -33,7 +33,7 @@ export const s_admSchema = criaObjJoi({ nome, email, senha, cargo, id_academia }
 
 export const s_plan = criaObjJoi({ tipo, valor, id_academia})
 
-export const s_training = criaObjJoi({ nome, descricao, id_administrador })
+export const s_training = criaObjJoi({ nome, descricao, id_administrador, id_dia, id_exercicios })
 
 export const s_exercise = criaObjJoi({ nome, descricao, id_administrador, gif_url })
 
