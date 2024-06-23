@@ -8,14 +8,16 @@ export const routeAdm = Router();
 
 routeAdm.route('/adm/login').post(validateEntry(s_login, 'body'), uniqueField('administrador', ['email'], 'body'), adm.login)
 
-routeAdm.use(validateTokenAndRole('administrador','id_adm'))
-
-routeAdm.route('/adm').post(
+routeAdm.route('/adm')
+.all(validateTokenAndRole('administrador','id_adm'))
+.post(
     validateEntry(s_admSchema, 'body'), 
     uniqueField('administrador', ['email'], 'body'), adm.register)
     .get(adm.getAllAdm)
+    
 
 routeAdm.route('/adm/:id')
+.all(validateTokenAndRole('administrador','id_adm'))
 .get(adm.getAdmById)
 .put(
     validateEntry(s_admSchema, 'body'),
