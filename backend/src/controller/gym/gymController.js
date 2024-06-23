@@ -23,11 +23,9 @@ export const update = async(req, res) => {
         const dbInfo = await knex('academia').where({ id_academia }).returning('*');
         if (!dbInfo || dbInfo.length === 0 ) return msgJson(404, res, 'Academia não encontrada.')
 
-            console.log(dbInfo)
-
         if (dataUnique && dataUnique.field && dbInfo[0].nome !== dataUnique.idObj.nome) return msgJson(400, res, `O campo '${dataUnique.field}' com valor '${dataUnique.idObj.nome}' já está em uso.`, false);
 
-            const [ gymInfo ] = await knex('academia').update({...body}).where({ id_academia }).returning(['id_academia', 'nome', 'endereco'])
+        const [ gymInfo ] = await knex('academia').update({...body}).where({ id_academia }).returning(['id_academia', 'nome', 'endereco'])
 
         msgJson(201, res, gymInfo, true)
     } catch (error) {
