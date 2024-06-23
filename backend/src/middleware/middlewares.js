@@ -1,5 +1,4 @@
-import { msgError } from "../utils/responseJson.js"
-import { msgJson } from "../utils/responseJson.js"
+import { msgError, msgJson  } from "../utils/responseJson.js"
 import { knex } from '../database/connection/dbConnection.js'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
