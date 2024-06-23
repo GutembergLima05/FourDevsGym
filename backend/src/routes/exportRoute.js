@@ -4,6 +4,7 @@ import { routeGym } from "./gymRoutes/gymRouter.js";
 import { routeNotice } from "./noticeRoutes/noticeRouter.js";
 import { routePlan } from "./planRoutes/planRouter.js";
 import { routeProduct } from "./productRoutes/productRouter.js";
+import { routeStudent } from "./studentRoutes/studentRouter.js";
 import { routeTraining } from "./trainingRoutes/trainingRouter.js";
 
 export const allRoutes = [
@@ -13,5 +14,6 @@ export const allRoutes = [
     routeExercise,
     routePlan,
     routeProduct,
-    routeTraining
+    routeTraining,
+    routeStudent
 ];
