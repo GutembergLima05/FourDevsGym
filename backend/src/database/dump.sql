@@ -7,8 +7,8 @@ CREATE TABLE Aluno
     telefone VARCHAR(20) NOT NULL,  
     endereco VARCHAR(255),  
     historico VARCHAR(255),  
-    id_Academia INT,  
-    id_Treino INT,  
+    id_Academia INT NOT NULL,  
+    id_Treino INT NOT NULL,  
     id_Plano INT,
     data_Criacao DATE DEFAULT CURRENT_DATE,
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
