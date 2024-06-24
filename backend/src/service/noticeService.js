@@ -27,3 +27,13 @@ export function formatDates(dataCriacao, dataAtualizacao, dataExpiracao, hoursTo
 
     return formattedDates;
 }
+
+export function formatDatesStudent(dataCriacao, dataAtualizacao, dataNascimento, hoursToRemoveFromAtualizacao = 0, timeZone = 'America/Sao_Paulo', formatString = 'dd/MM/yyyy HH:mm:ss') {
+    const formattedDates = {
+        nascimento: formatDateInTimeZone(dataNascimento, timeZone, formatString),
+        data_criacao: formatDateInTimeZone(dataCriacao, timeZone, formatString),
+        data_atualizacao: formatDateInTimeZone(removeHoursFromDate(dataAtualizacao, hoursToRemoveFromAtualizacao), timeZone, formatString)
+    };
+
+    return formattedDates;
+}
