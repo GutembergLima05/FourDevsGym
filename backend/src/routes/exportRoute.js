@@ -1,4 +1,5 @@
 import { routeAdm } from "./admRoutes/admRouter.js";
+import { routeEvaluation } from "./evaluationRoutes/evaluationRouter.js";
 import { routeExercise } from "./exerciseRoutes/exerciseRouter.js";
 import { routeGym } from "./gymRoutes/gymRouter.js";
 import { routeNotice } from "./noticeRoutes/noticeRouter.js";
@@ -15,5 +16,6 @@ export const allRoutes = [
     routePlan,
     routeProduct,
     routeTraining,
-    routeStudent
+    routeStudent,
+    routeEvaluation
 ];
