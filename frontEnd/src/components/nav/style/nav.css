@@ -1,3 +1,6 @@
+#nav-contraida{
+   transition: 1s;
+}
 nav {
    background-color: var(--cor-1);
    position: fixed;
@@ -6,15 +9,14 @@ nav {
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-    overflow: overlay; 
-   transition: 0.6s ease-in-out;
-
+   overflow: overlay; 
    -webkit-border-top-right-radius: 10px;
    -webkit-border-bottom-right-radius: 10px;
    -moz-border-radius-topright: 10px;
    -moz-border-radius-bottomright: 10px;
    border-top-right-radius: 10px;
    border-bottom-right-radius: 10px;
+   transition:all 0.6s ease;
 }
 
 #menu {
@@ -153,6 +155,7 @@ nav ul li:hover {
 /* classes que estar sendo usandas no js */
 .nav-contraida {
    left: -0%;
+   transition:all 0.6s ease;
 }
 
 .text-menu-ocultar {
@@ -206,5 +209,6 @@ nav ul li:hover {
       top: 90%;
       left: -10%;
       width: 100%;
+      justify-content: space-evenly;
    }
 }
