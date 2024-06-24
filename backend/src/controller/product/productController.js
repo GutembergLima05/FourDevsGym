@@ -47,7 +47,7 @@ export const deleteProduct = async(req, res) => {
         let productInfo = await knex('produto').where({ id_produto }).first().returning('*');
         if (!productInfo || productInfo.length === 0 ) return msgJson(404, res, 'Produto não encontrado.')
 
-        const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao,3);
+        const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao, null, 3);
         
         productInfo.data_criacao = formattedDates.data_criacao;
         productInfo.data_atualizacao = formattedDates.data_atualizacao;
@@ -84,7 +84,7 @@ export const getAllProduct = async(req, res) => {
     try {
         const productInfo = await knex('produto').returning('*');
         const formattedProductInfo = productInfo.map(product => {
-            const formattedDates = formatDates(product.data_criacao,product.data_atualizacao,3);
+            const formattedDates = formatDates(product.data_criacao,product.data_atualizacao,null,3);
 
             return {
                 ...product,
