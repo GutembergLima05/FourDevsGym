@@ -1,0 +1,114 @@
+nav{
+    background-color: var(--cor-1);
+    position: fixed;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: overlay;
+}
+
+#menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10% 10% 5% 10%;
+}
+#logo-menu{
+    width: 20%;
+    cursor: pointer;
+}
+
+#sgv-hambur{
+    color: var(--cor-3);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+nav ul li i{
+    margin-right: 5%;
+}
+nav ul a{
+    color: var(--cor-3);
+}
+
+nav ul li{
+    padding: 5%;
+    -webkit-border-top-right-radius: 15px;
+    -webkit-border-bottom-right-radius: 15px;
+    -moz-border-radius-topright: 15px;
+    -moz-border-radius-bottomright: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin: 0.5% 0% 0.5% 0%;
+    transition: 0.7s;
+ }
+
+ nav ul li:hover{
+    background-color: var(--cor-2);
+ }
+
+ #item-menu-produto{
+    display: flex;
+    align-items: center;
+ }
+ #produtosNotificationMenu{
+    background-color: var(--cor-5);
+    padding: 1.5%;
+    border-radius: 100px;
+    width: 19px;
+    text-align: center;
+    margin-left: 4%;
+    font-size: 0.9rem;
+ }
+
+ #menu-footer{
+    display: flex;
+    color: var(--cor-3);
+    justify-content:center;
+    align-items: center;
+    padding-bottom: 5%;
+ }
+
+ #menu-footer h4{
+    font-weight: 300;
+    margin-left: 2%;
+    margin-right: 20%;
+ }
+ .contain-footer-menu{
+    padding: 3%;
+    background-color: var(--cor-2);
+    margin: 1%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.7s;
+    font-size: 1.3rem;
+ }
+ #buttonTheme{
+    padding: 4%;
+ }
+ .contain-footer-menu:hover{
+    opacity: 0.5;
+ }
+ #theme-claro{
+    display: none;
+ }
+
+ #user-menu-footer{
+    font-size: 1.8rem;
+ }
+#config{
+    color:var(--cor-3);
+}
+ /* Estilo para o fundo preto */
+.black-background {
+    background-color: var(--cor-9);
+    color: var(--cor-3);
+}
+
+/* Estilo para o fundo vermelho */
+.red-background {
+    background-color:var(--cor-3);
+    color: var(--cor-4);
+}
