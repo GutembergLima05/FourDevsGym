@@ -22,7 +22,7 @@ const email = Joi.string().email().max(30).required(),
     idOpc = Joi.number().integer().positive(),
     id_academia = Joi.number().integer().positive().required(),
     telefone = Joi.string().required(),
-    historico = Joi.string().max(150),
+    historico = Joi.string().max(150).required(),
     criaObjJoi = (camposJoiObj) => Joi.object().keys(camposJoiObj).required()
 
     const dias = Joi.array().items(

@@ -10,7 +10,7 @@ export const register = async (req, res) => {
     const { body: { senha }, body, dataUnique} = req
 
     try {
-        if (dataUnique && dataUnique.field) return msgJson(400, res, `O campo '${dataUnique.field}' com valor '${dataUnique.idObj.email}' já está em uso.`, false);
+        if (dataUnique && dataUnique.field) return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
 
         body.senha = await hash(senha, 10)
         const [ admInfo ] = await knex('administrador').insert({...body}).returning(['id_adm', 'email','nome','cargo','id_academia'])
@@ -27,9 +27,9 @@ export const update = async(req, res) => {
 
     try {
         const dbInfo = await knex('administrador').where({ id_adm }).returning('*');
-        if (!dbInfo || dbInfo.length === 0 ) return msgJson(404, res, 'Administrador não encontrada.')
+        if (!dbInfo || dbInfo.length === 0 ) return msgJson(404, res, 'Administrador não encontrado.')
 
-        if (dataUnique && dataUnique.field && dbInfo[0].email !== dataUnique.idObj.email) return msgJson(400, res, `O campo '${dataUnique.field}' com valor '${dataUnique.idObj.email}' já está em uso.`, false);
+        if (dataUnique && dataUnique.field && dbInfo[0].email !== dataUnique.idObj.email) return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
 
         const [ admInfo ] = await knex('administrador').update({...body}).where({ id_adm }).returning(['id_adm', 'email','nome','cargo','id_academia'])
 
