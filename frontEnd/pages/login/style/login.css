@@ -1,0 +1,237 @@
+#login {
+    display: flex;
+    height: 100vh;
+}
+
+
+#capa {
+    background-image: url('../../../public/assets/images/halteresLogin.gif');
+    background-size: cover;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-3);
+    /* box-shadow: 12px 0px 21px -13px rgb(61, 61, 61); */
+}
+
+#escurecimentoImgLogin {
+    background-color: rgba(194, 194, 194, 0.733);
+    width: 50%;
+    height: 100%;
+    position: absolute;
+}
+
+#capa video {
+    width: 100%;
+}
+
+#logoLogin {
+    width: 5%;
+    animation: aumentarLogo ease-in-out 8s infinite;
+}
+
+#capa h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    margin-top: 1%;
+    z-index: 2;
+    font-size: 1rem;
+}
+
+
+
+#loginDados {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -12px 0px 21px -13px rgb(90, 89, 89);
+    z-index: 3;
+}
+
+#sgv-coroa {
+    color: var(--cor-1);
+    font-size: 4rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+#loginDados h3 {
+    color: var(--cor-6);
+    margin-bottom: 7%;
+}
+
+#InputEmailAdm,
+#InputSenhaAdm {
+    margin: 0.5%;
+    padding: 2% 5% 2% 5%;
+    width: 60%;
+    border: none;
+    border-bottom: 1.7px solid var(--cor-7);
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: 0.1s;
+    color: var(--cor-6);
+}
+
+#loginDados input:focus {
+    border-bottom: 2px solid var(--cor-1);
+}
+
+#loginSenha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#sgv-eye-open,
+#sgv-eye-closed {
+    position: absolute;
+    right: 9%;
+    color: var(--cor-6);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#sgv-eye-open:hover,
+#sgv-eye-closed:hover {
+    opacity: 0.5;
+}
+
+#sgv-eye-closed {
+    display: none;
+}
+
+
+#buttonEntrarAdm {
+    outline: none;
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+    border: 2px solid var(--cor-1);
+    padding: 2% 6% 2% 6%;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-top: 2%;
+    margin-left: 49%;
+}
+
+#buttonEntrarAdm:hover {
+    background-color: var(--cor-2);
+    box-shadow: 0px 0px 35px -3px var(--cor-4);
+    transform: scale(1.05);
+}
+
+#msg-login {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    width: 80%;
+    word-wrap: break-word;
+    text-align: start;
+    margin-top: 3%;
+}
+
+.msg-sucesso {
+    color: var(--cor-8);
+}
+
+.msg-erro {
+    color: var(--cor-5);
+}
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translatey(0)
+    }
+
+    50% {
+        transform: translatey(-10px);
+    }
+}
+
+@keyframes aumentarLogo {
+
+    0%,
+    100% {
+        transform: scale(1)
+    }
+
+    50% {
+        transform: scale(1.2)
+    }
+}
+
+#preloaderLogin{
+    background-image: url('../../../public/assets/images/logoFourDevsGym.png');
+    width: 20px;
+    height: 20px;
+    background-color: var(--cor-1);
+    padding: 0.7%;
+    border-radius: 100px;
+    margin-top: -5.5%;
+    margin-left: 15%;
+    animation: 0.5s ease-in-out pisca infinite;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes pisca {
+
+    0%,
+    100% {
+        transform: scale(1)
+    }
+
+    50% {
+        transform: scale(1.2)
+    }
+}
+
+#preloaderLogin img{
+    width: 90%;
+}
+
+@media screen and (max-width: 800px) {
+    #login {
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #capa {
+        background: none;
+        margin-bottom: 5%;
+    }
+    #capa h2{
+        color: var(--cor-4);
+    }
+
+    #loginDados {
+        width: 100%;
+    }
+
+    #escurecimentoImgLogin {
+        display: none;
+    }
+
+    #InputEmailAdm,
+    #InputSenhaAdm {
+        width: 85%;
+    }
+    #buttonEntrarAdm {
+        margin-left:65% ;
+    }
+    #preloaderLogin{
+        margin-top: -7.1%;
+    }
+}
+
