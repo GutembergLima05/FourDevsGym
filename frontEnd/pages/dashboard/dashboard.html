@@ -2,20 +2,55 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - |nome da academia| FourDevs GymManager</title>
-    <!--font awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="style/login.css">
-    <link rel="stylesheet" href="../../public/styleMain/styleGlobal.css">
-    <script  src="../../public/jsMain/jsMain.js" defer></script>
+    <!--Links globais obrigatório nas páginas-->
+    <script src="../../public/headerMain/js/headerMain.js" defer></script>
+    <script src="../../src/components/nav/js/nav.js" defer></script>
+    <script src="../../public/jsMain/jsMain.js" defer></script>
+    <script src="../../src/components/preloader/js/preloader.js" defer></script>
+    
+    <!--estilo local-->
+    <link rel="stylesheet" href="style/dashboard.css">
 </head>
 
 <body>
-   <p onclick="logout()">sair</p>
-    <script src="js/login.js"></script>
-    <script src="../../src/connectionAPI/login/loginAPI.js"></script>
+    <nav id="nav-contraida"></nav>
+
+    <section id="dashboard" class="contain-main">
+        <div id="contain-dashboard" class="contain-secondary">
+            <h1 class="title-contain-main">Dashboard</h1>
+            <div id="total-alunos" class="contain-info-dashboard">
+                <div id="icon-alunos"><i class="bi bi-people-fill"></i></div>
+                <div class="sub-contain-info">
+                    <h2 id="numero-alunos">30</h2>
+                    <h4>Alunos</h4>
+                </div>
+            </div>
+            <div id="alunos-ausentes" class="contain-info-dashboard">
+                <div id="icon-ausentes"><i class="bi bi-x-octagon"></i></div>
+                <div class="sub-contain-info">
+                    <h2 id="numero-ausente">30</h2>
+                    <h4>Ausentes</h4>
+                </div>
+            </div>
+            <div id="aniversario">
+                <div id="itens-niver">
+                    <i class="bi bi-cake"></i>
+                    <div id="text-niver">
+                        <h2 id="numero-aniversariantes">3</h2>
+                        <h4>Aniversariantes</h4>
+                    </div>
+                </div>
+                <div id="nomes-aniversariantes">
+                    <div id="data-niver">
+                        <i class="bi bi-calendar-event"></i>
+                        <h4>15/06/2024</h4>
+                    </div>
+                    <div id="lista-aniversariantes">Wilkenio Pereira Renan Arthut</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 
 </html>
