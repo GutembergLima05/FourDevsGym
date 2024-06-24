@@ -1,102 +1,131 @@
 import { msgJson } from "../../utils/responseJson.js"
 import { knex } from "../../database/connection/dbConnection.js"
-import { formatDates } from "../../service/noticeService.js";
+import { formatDates, formatDatesStudent } from "../../service/noticeService.js";
 
 export const register = async (req, res) => {
-    const { body } = req
+    const { body, dataUnique } = req
+    const { id_academia, id_treino, id_plano } = body
     try {
-        const [ productInfo ] = await knex('produto').insert({...body}).returning('*')
+        if (dataUnique && dataUnique.field) return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
 
-        const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao,3);
+        const idTreino = await knex('treino').where({ id_treino }).returning('*');
+        if (!idTreino || idTreino.length === 0 ) return msgJson(404, res, 'Treino não encontrado.')
+
+        const idAcademia = await knex('academia').where({ id_academia }).returning('*');
+        if (!idAcademia || idAcademia.length === 0 ) return msgJson(404, res, 'Academia não encontrada.')
+
+        const idPlano = await knex('plano').where({ id_plano }).returning('*');
+        if (!idPlano || idPlano.length === 0 ) return msgJson(404, res, 'Plano não encontrado.')
+
+        const [ studentInfo ] = await knex('aluno').insert({...body}).returning('*')
+
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao,studentInfo.data_atualizacao, studentInfo.nascimento,3);
         
-        productInfo.data_criacao = formattedDates.data_criacao;
-        productInfo.data_atualizacao = formattedDates.data_atualizacao;
+        studentInfo.nascimento = formattedDates.nascimento;
+        studentInfo.data_criacao = formattedDates.data_criacao;
+        studentInfo.data_atualizacao = formattedDates.data_atualizacao;
 
-        msgJson(201, res, productInfo, true)
+        msgJson(201, res, studentInfo, true)
     } catch (error) {
         console.error(error)
-        msgJson(500, res, 'Erro interno do servidor ao cadastrar produto.', false)
+        msgJson(500, res, 'Erro interno do servidor ao cadastrar aluno.', false)
     }
 }
 
 export const update = async(req, res) => {
-    const { params: { id: id_produto }, body} = req
+    const { params: { id: id_aluno }, body, dataUnique} = req
+    const { id_academia, id_treino, id_plano } = body
 
     try {
-        const idInfo = await knex('produto').where({ id_produto }).returning('*');
-        if (!idInfo || idInfo.length === 0 ) return msgJson(404, res, 'Produto não encontrado.')
+        const dbInfo = await knex('aluno').where({ id_aluno }).returning('*');
+        if (!dbInfo || dbInfo.length === 0 ) return msgJson(404, res, 'Aluno não encontrado.')
 
-        const [ productInfo ] = await knex('produto').update({...body}).where({ id_produto }).returning('*')
-
-        const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao,3);
+        if (dataUnique && dataUnique.field && dbInfo[0].email !== dataUnique.idObj.email) return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
         
-        productInfo.data_criacao = formattedDates.data_criacao;
-        productInfo.data_atualizacao = formattedDates.data_atualizacao;
+        const idTreino = await knex('treino').where({ id_treino }).returning('*');
+        if (!idTreino || idTreino.length === 0 ) return msgJson(404, res, 'Treino não encontrado.')
 
-        msgJson(201, res, productInfo, true)
+        const idAcademia = await knex('academia').where({ id_academia }).returning('*');
+        if (!idAcademia || idAcademia.length === 0 ) return msgJson(404, res, 'Academia não encontrada.')
+
+        const idPlano = await knex('plano').where({ id_plano }).returning('*');
+        if (!idPlano || idPlano.length === 0 ) return msgJson(404, res, 'Plano não encontrado.')
+
+        const [ studentInfo ] = await knex('aluno').update({...body}).where({ id_aluno }).returning('*')
+
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao,studentInfo.data_atualizacao, studentInfo.nascimento,3);
+        
+        studentInfo.nascimento = formattedDates.nascimento;
+        studentInfo.data_criacao = formattedDates.data_criacao;
+        studentInfo.data_atualizacao = formattedDates.data_atualizacao;
+
+        msgJson(201, res, studentInfo, true)
     } catch (error) {
         console.error(error)
-        msgJson(500, res, 'Erro interno do servidor ao atualizar produto.', false)
+        msgJson(500, res, 'Erro interno do servidor ao atualizar aluno.', false)
     }
 }
 
 export const deleteStudent = async(req, res) => {
-    const { params: { id: id_produto }} = req
+    const { params: { id: id_aluno }} = req
 
     try {
-        let productInfo = await knex('produto').where({ id_produto }).first().returning('*');
-        if (!productInfo || productInfo.length === 0 ) return msgJson(404, res, 'Produto não encontrado.')
+        let studentInfo = await knex('aluno').where({ id_aluno }).first().returning('*');
+        if (!studentInfo || studentInfo.length === 0 ) return msgJson(404, res, 'Aluno não encontrado.')
 
-        const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao,3);
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao,studentInfo.data_atualizacao, studentInfo.nascimento,3);
         
-        productInfo.data_criacao = formattedDates.data_criacao;
-        productInfo.data_atualizacao = formattedDates.data_atualizacao;
+        studentInfo.nascimento = formattedDates.nascimento;
+        studentInfo.data_criacao = formattedDates.data_criacao;
+        studentInfo.data_atualizacao = formattedDates.data_atualizacao;
 
-        await knex('produto').where({ id_produto }).first().del().returning('*');
+        await knex('aluno').where({ id_aluno }).first().del().returning('*');
 
-        msgJson(201, res, productInfo, true)
+        msgJson(201, res, studentInfo, true)
     } catch (error) {
         console.error(error)
-        msgJson(500, res, 'Erro interno do servidor ao deletar produto.', false)
+        msgJson(500, res, 'Erro interno do servidor ao deletar aluno.', false)
     }
 }
 
 export const getStudentById = async(req, res) => {
-    const { params: { id: id_produto }} = req
+    const { params: { id: id_aluno }} = req
 
     try {
-        const productInfo = await knex('produto').where({ id_produto }).first().returning('*');
-        if (!productInfo || productInfo.length === 0 ) return msgJson(404, res, 'Produto não encontrado.')
+        const studentInfo = await knex('aluno').where({ id_aluno }).first().returning('*');
+        if (!studentInfo || studentInfo.length === 0 ) return msgJson(404, res, 'Aluno não encontrado.')
 
-        const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao,3);
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao,studentInfo.data_atualizacao, studentInfo.nascimento,3);
         
-        productInfo.data_criacao = formattedDates.data_criacao;
-        productInfo.data_atualizacao = formattedDates.data_atualizacao;
+        studentInfo.nascimento = formattedDates.nascimento;
+        studentInfo.data_criacao = formattedDates.data_criacao;
+        studentInfo.data_atualizacao = formattedDates.data_atualizacao;
 
-        msgJson(201, res, productInfo, true)
+        msgJson(201, res, studentInfo, true)
     } catch (error) {
         console.error(error)
-        msgJson(500, res, 'Erro interno do servidor ao detalhar Produto.', false)
+        msgJson(500, res, 'Erro interno do servidor ao detalhar Aluno.', false)
     }
 }
 
 export const getAllStudent = async(req, res) => {
     try {
-        const productInfo = await knex('produto').returning('*');
-        const formattedProductInfo = productInfo.map(product => {
-            const formattedDates = formatDates(product.data_criacao,product.data_atualizacao,3);
+        const studentInfo = await knex('aluno').returning('*');
+        const formattedAlunoInfo = studentInfo.map(student => {
+            const formattedDates = formatDatesStudent(student.data_criacao,student.data_atualizacao, student.nascimento,3);
 
             return {
-                ...product,
+                ...student,
+                nascimento: formattedDates.nascimento,
                 data_criacao: formattedDates.data_criacao,
                 data_atualizacao: formattedDates.data_atualizacao,
             };
         });
 
-        msgJson(201, res, formattedProductInfo, true)
+        msgJson(201, res, formattedAlunoInfo, true)
     } catch (error) {
         console.error(error)
-        msgJson(500, res, 'Erro interno do servidor ao detalhar produtos.', false)
+        msgJson(500, res, 'Erro interno do servidor ao detalhar alunos.', false)
     }
 }
 
