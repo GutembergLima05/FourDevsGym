@@ -1,4 +1,3 @@
-
 //Obtém o caminho da URL da página atual
 const pathname = window.location.pathname;
 // Obtém o nome da página (última parte do caminho)
@@ -18,11 +17,6 @@ function isLoginDone() {
 }
 
 if (!isLoginDone()) {
-    // Código para quando o login não foi feito
-    console.log('Usuário não está logado.');
-
-
-
     // Verifica o nome da página atual
     if (pageName !== 'login.html') {
         window.location.href = '../../pages/login/login.html';
@@ -32,15 +26,15 @@ if (!isLoginDone()) {
         window.location.href = '../../pages/dashboard/dashboard.html';
     }
 }
-
+//executa a função a cada 1s
 setInterval(isLoginDone, 1000);
-
 
 function logout() {
     // Remove os itens do localStorage
     localStorage.removeItem('tokenAdm');
     localStorage.removeItem('nomeAdm');
     localStorage.removeItem('id_Adm');
+    localStorage.removeItem('nome_academia');
 
     console.log('Logout realizado com sucesso.');
 

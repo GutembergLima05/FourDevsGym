@@ -1,0 +1,142 @@
+/* menu */
+#item-menu-dashboard{
+    background-color: var(--cor-2);
+}
+
+
+#contain-dashboard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contain-info-dashboard{
+    margin: 8% 0% 0% 5%;
+    padding: 4% 10% 4% 7%;
+    width: 20%;
+    color: var(--cor-3);
+    border-radius: 15px;
+    display: flex;
+    box-shadow: 0px 5px 32px -10px rgb(0, 0, 0);
+    transition: 1s;
+}
+.contain-info-dashboard:hover{
+    transform: scale(1.02);
+}
+#total-alunos{
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(255,147,83,1) 0%, rgba(255,107,20,1) 39%, rgba(255,107,20,1) 100%, rgba(255,107,20,1) 100%);
+}
+
+#alunos-ausentes{
+    background: rgb(255,82,82);
+    background: radial-gradient(circle, rgba(255,82,82,1) 0%, rgba(200,7,7,1) 39%, rgba(200,7,7,1) 100%, rgba(200,7,7,1) 100%);
+}
+#icon-alunos, #icon-ausentes{
+    font-size: 5rem;
+}
+.sub-contain-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20%;
+}
+
+.sub-contain-info h2{
+    font-size: 4rem;
+    font-weight: 500;
+}
+.sub-contain-info h4{
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin-top: -10%;
+}
+#total-alunos{
+    background-color: red;
+}
+
+#alunos-ausentes{
+    background-color: blue;
+}
+
+
+#aniversario{
+    background-color: var(--cor-3);
+    color: var(--cor-4);
+    padding: 4% 10% 4% 7%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 62%;
+    margin-left: 5%;
+    margin-top: 5%;
+    box-shadow: 0px 5px 32px -10px rgb(146, 60, 2);
+}
+
+#itens-niver i{
+    font-size: 4rem;
+    margin-top: 7%;
+    margin-right: 10%;
+    color: var(--cor-1);
+}
+
+#text-niver h4{
+    font-weight: 500;
+    font-size: 0.8rem;
+    margin-top: -7%;
+}
+#numero-aniversariantes{
+    font-size: 4rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+#itens-niver{
+    display: flex;
+}
+
+#nomes-aniversariantes{
+    margin-left: 40%;
+}
+#data-niver{
+    display: flex;
+}
+
+#data-niver i{
+    color: var(--cor-1);
+}
+
+#data-niver h4{
+    margin-left: 3%;
+}
+#lista-aniversariantes{
+    margin-top: 5%;
+}
+
+@media screen and (max-width: 800px) {
+
+    #contain-dashboard{
+        margin-top: 20%;
+    }
+    .contain-info-dashboard{
+        width: 100%;
+    }
+    #aniversario{
+        width: 75%;
+        flex-direction: column;
+    }
+    #nomes-aniversariantes{
+        margin-left: 0;
+        margin-top: 10%;
+    }
+    #numero-aniversariantes{
+        margin-top: 25%;
+    }
+    #itens-niver{
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+    }
+}
