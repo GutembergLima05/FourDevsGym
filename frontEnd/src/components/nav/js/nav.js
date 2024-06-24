@@ -1,15 +1,17 @@
-
-document.addEventListener('DOMContentLoaded', function() {
+function loadNav() {
     fetch('../../src/components/nav/nav.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('nav-container').innerHTML = data;
-            initializeNav(); // Chama a função de inicialização após inserir o conteúdo
+            document.getElementById('nav-contraida').innerHTML += data;
+            initializeNav()
         })
-        .catch(error => console.error('Error loading nav:', error));
-});
+        .catch(error => console.error('Erro ao carregar o cabeçalho:', error));
+}
 
-console.log("oiiii")
+// Chame a função para carregar o cabeçalho
+document.addEventListener("DOMContentLoaded", function() {
+    loadNav();
+  });
 
 function initializeNav() {
     // Declarando variáveis
@@ -24,7 +26,7 @@ function initializeNav() {
     var produtosNotificationMenu = document.getElementById('produtosNotificationMenu');
     var TextMenus = document.querySelectorAll('.text-menu'); // Modificado para adicionar o ponto antes do nome da classe
     var nav = document.querySelector('nav');
-    var navUl = document.querySelector('nav ul');
+    var containSecondary = document.querySelector('.contain-secondary');
     var navContraida = document.querySelector('.nav-contraida');
     var navUlLis = document.querySelectorAll('nav ul li'); // Modificado para querySelectorAll
 
@@ -107,6 +109,7 @@ function initializeNav() {
                         navUlLi.style.flexDirection = "row-reverse";
                     });
                     nomeAdm.classList.add('nome-adm-ocultar');
+                    containSecondary.style.width="88%"
                     situacaoMenu = "fechado";
                 }, 300);
             } else {
@@ -128,10 +131,12 @@ function initializeNav() {
                     navUlLi.style.flexDirection = "row";
                 });
                 nomeAdm.classList.remove('nome-adm-ocultar');
+                containSecondary.style.width="74%"
                 situacaoMenu = "aberto";
 
             }
         } else {
+            //menu mobile
             if (situacaoMenuMobile === "fechado") {
                 nav.style.height="100vh"
                 situacaoMenuMobile="aberto"

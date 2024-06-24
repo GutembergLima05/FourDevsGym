@@ -1,31 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style/nav.css">
-    <link rel="stylesheet" href="../../../public/styleMain/styleGlobal.css">
-    <!--font awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <!--icon-bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script defer src="../../../public/jsMain/jsMain.js"></script>
-    <script defer src="js/nav.js"></script>
-
- 
-</head>
-
-<body>
-    
-
-</body>
-
-</html>
-
-
-<nav class="nav-contraida">
 
     <div id="menu">
         <img id="logo-menu" src="../../public/assets/images/logoFourDevsGym.png" alt="">
@@ -33,50 +5,54 @@
         <i id="sgv-closed" class="bi bi-x-lg"></i>
     </div>
     <ul>
-        <a href="">
+        <a href="../dashboard/dashboard.html">
             <li class="item-menu" id="item-menu-dashboard"><i class="fa-solid fa-house"></i><label class="text-menu">Dashboard</label></li>
         </a>
         <a href="">
-            <li class="item-menu" id="item-menu-dashboard"><i class="fa-solid fa-dumbbell"></i><label class="text-menu">Treinos</label></li>
+            <li class="item-menu" id="item-menu-treinos"><i class="fa-solid fa-dumbbell"></i><label class="text-menu">Treinos</label></li>
         </a>
         <a href="">
-            <li class="item-menu" id="item-menu-dashboard"><i class="fa-solid fa-medal"></i><label class="text-menu">Planos</label></li>
+            <li class="item-menu" id="item-menu-planos"><i class="fa-solid fa-medal"></i><label class="text-menu">Planos</label></li>
         </a>
         <a href="">
-            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-cash-coin"></i><label class="text-menu">Finanças</label></li>
+            <li class="item-menu" id="item-menu-finanças"><i class="bi bi-cash-coin"></i><label class="text-menu">Finanças</label></li>
         </a>
         <a href="">
-            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-person-square"></i><label class="text-menu">Alunos</label></li>
+            <li class="item-menu" id="item-menu-alunos"><i class="bi bi-person-square"></i><label class="text-menu">Alunos</label></li>
         </a>
         <a href="">
-            <li class="item-menu" id="item-menu-produto"><i class="bi bi-boxes"></i><label class="text-menu">Produtos</label> <div
+            <li class="item-menu" id="item-menu-prrodutos"><i class="bi bi-boxes"></i><label class="text-menu">Produtos</label> <div
                     id="produtosNotificationMenu">2</div>
             </li>
         </a>
         <a href="">
-            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-alarm-fill"></i><label class="text-menu">Horários de aula</label></li>
+            <li class="item-menu" id="item-menu-horarios-aula"><i class="bi bi-alarm-fill"></i><label class="text-menu">Horários de aula</label></li>
         </a>
         <a href="">
-            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-bell-fill"></i><label class="text-menu">Avisos</label></li>
+            <li class="item-menu" id="item-menu-avisos"><i class="bi bi-bell-fill"></i><label class="text-menu">Avisos</label></li>
         </a>
         <a href="">
-            <li class="item-menu" id="item-menu-dashboard"><i class="bi bi-clock-history"></i><label class="text-menu">Históricos de Operações</label></li>
+            <li class="item-menu" id="item-menu-his-op"><i class="bi bi-clock-history"></i><label class="text-menu">Históricos de Operações</label></li>
+        </a>
+        <!--botão sair TESTE-->
+        <a onclick="logout()">
+            <li class="item-menu" id="item-menu-sair"><i class="fa-solid fa-right-from-bracket"></i><label class="text-menu">Sair(Botão  Provisório)</label></li>
         </a>
 
     </ul>
     <div id="menu-footer" >
-        <div class="contain-footer-menu ">
-        <i id="user-menu-footer" class="bi bi-person-circle"></i>
+        <div class="contain-footer-menu">
+        <i id="user-menu-footer" class="bi bi-person-circle"></i> 
     </div>
         <h4 id="nomeAdm"></h4>
         
-        <div id="buttonTheme" class="contain-footer-menu theme">
+        <div  id="buttonTheme" class="contain-footer-menu theme">
             <i id="theme-escuro" class="bi bi-moon-stars"></i>
             <i id="theme-claro" class="bi bi-moon-stars-fill"></i>
         </div>
         <div class="contain-footer-menu ">
             <a href=""><i id="config" class="fa-solid fa-gear"></i></a>
         </div>
-
     </div>
-</nav>
+
+    
