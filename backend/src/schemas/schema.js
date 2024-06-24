@@ -1,4 +1,7 @@
 import Joi from 'joi'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const email = Joi.string().email().max(30).required(),
     senha = Joi.string().min(8).max(72).required(),
@@ -40,6 +43,7 @@ const email = Joi.string().email().max(30).required(),
     coxa_direita = Joi.number().positive(),
     antebraco_direito = Joi.number().positive(),
     antebraco_esquerdo = Joi.number().positive(),
+    key = Joi.string().valid(`${process.env.KEYAPI}`).required(),
     panturrilha_direita = Joi.number().positive(),
     panturrilha_esquerda = Joi.number().positive(),
     id_aluno = Joi.number().integer().positive().required(),
@@ -79,7 +83,7 @@ export const s_training = criaObjJoi({ nome, descricao, id_administrador, dias }
 
 export const s_exercise = criaObjJoi({ nome, descricao, id_administrador, gif_url })
 
-export const s_login = criaObjJoi({ email, senha })
+export const s_login = criaObjJoi({ email, senha, key })
 
 export const s_gym = criaObjJoi({ nome, endereco })
 
