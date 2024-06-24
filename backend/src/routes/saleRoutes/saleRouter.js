@@ -5,7 +5,7 @@ import * as sale from "../../controller/sale/saleController.js"
 
 export const routeSale = Router();
 
-routeSale.route('/training')
+routeSale.route('/sale')
 .all(validateTokenAndRole('administrador','id_adm'))
 .post(validateEntry(s_sale, 'body'), sale.register)
 .get(sale.getAllSale)

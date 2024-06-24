@@ -23,6 +23,26 @@ const email = Joi.string().email().max(30).required(),
     id_academia = Joi.number().integer().positive().required(),
     telefone = Joi.string().required(),
     historico = Joi.string().max(150).required(),
+    braco_direito_contraido = Joi.number().positive(),
+    braco_esquerdo_contraido = Joi.number().positive(),
+    braco_direito_relaxado = Joi.number().positive(),
+    braco_esquerdo_relaxado = Joi.number().positive(),
+    agua_corporal = Joi.number().positive(),
+    torax = Joi.number().positive(),
+    altura = Joi.number().positive(),
+    peso = Joi.number().positive(),
+    gordura_visceral = Joi.number().positive(),
+    massa_ossea = Joi.number().positive(),
+    cintura = Joi.number().positive(),
+    abdomen = Joi.number().positive(),
+    quadril = Joi.number().positive(),
+    coxa_esquerda = Joi.number().positive(),
+    coxa_direita = Joi.number().positive(),
+    antebraco_direito = Joi.number().positive(),
+    antebraco_esquerdo = Joi.number().positive(),
+    panturrilha_direita = Joi.number().positive(),
+    panturrilha_esquerda = Joi.number().positive(),
+    id_aluno = Joi.number().integer().positive().required(),
     criaObjJoi = (camposJoiObj) => Joi.object().keys(camposJoiObj).required()
 
     const dias = Joi.array().items(
@@ -62,3 +82,27 @@ export const s_exercise = criaObjJoi({ nome, descricao, id_administrador, gif_ur
 export const s_login = criaObjJoi({ email, senha })
 
 export const s_gym = criaObjJoi({ nome, endereco })
+
+export const s_evaluation = criaObjJoi({
+  braco_direito_contraido,
+  braco_direito_relaxado,
+  braco_esquerdo_contraido,
+  braco_esquerdo_relaxado,
+  agua_corporal,
+  torax,
+  altura,
+  peso,
+  gordura_visceral,
+  massa_ossea,
+  cintura,
+  abdomen,
+  quadril,
+  coxa_direita,
+  coxa_esquerda,
+  antebraco_direito,
+  panturrilha_direita,
+  panturrilha_esquerda,
+  antebraco_esquerdo,
+  id_administrador,
+  id_aluno
+})
