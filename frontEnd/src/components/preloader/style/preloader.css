@@ -8,6 +8,8 @@
     align-items: center;
     animation: 1s ease-in-out pisca infinite;
     z-index: 9;
+    top:0 ;
+    transition: 0.3s;
 }
 
 #contain-preLoader img{
@@ -24,5 +26,12 @@
 
     50% {
         transform: scale(1.2)
+    }
+}
+
+
+@media screen and (max-width: 800px) {
+    #contain-preLoader img{
+        width: 15%;
     }
 }
