@@ -122,10 +122,12 @@
     }
     .contain-info-dashboard{
         width: 100%;
+        margin: 2% 0 0 0;
     }
     #aniversario{
-        width: 75%;
+        width: 81%;
         flex-direction: column;
+        margin-left: 0;
     }
     #nomes-aniversariantes{
         margin-left: 0;
