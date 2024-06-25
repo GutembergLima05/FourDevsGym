@@ -139,10 +139,12 @@ function initializeNav() {
             //menu mobile
             if (situacaoMenuMobile === "fechado") {
                 nav.style.height="100vh"
+                 nav.style.overflow="overlay"
                 situacaoMenuMobile="aberto"
             }else{
                  nav.style.height="19vw"
                    situacaoMenuMobile="fechado"
+                   nav.style.overflow="hidden"
             }
         
         }
