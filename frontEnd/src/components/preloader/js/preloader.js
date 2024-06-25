@@ -18,13 +18,14 @@ function hidePreloader() {
     }
 }
 
-    loadPreloader();
+
 
     document.addEventListener("DOMContentLoaded", function() {
+        loadPreloader();
         // Simula o carregamento da página
         setTimeout(function() {
             var preloader = document.getElementById('contain-preLoader');
             preloader.style.display = 'none';
 
-        }, 1000); // 1 segundos de simulação de carregamento
+        }, 2000); // 1 segundos de simulação de carregamento
     });
