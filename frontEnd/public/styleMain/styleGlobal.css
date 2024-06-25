@@ -54,4 +54,8 @@ a{
         justify-content: stretch;
         width: 100%;
     }
+
+    .title-contain-main{
+        margin-bottom: 5%;
+    }
 }
