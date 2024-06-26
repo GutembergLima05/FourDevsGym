@@ -121,6 +121,10 @@ nav ul li:hover {
    display: none;
 }
 
+#theme-escuro {
+   display: none;
+}
+
 #user-menu-footer {
    padding-right: 2%;
 }
