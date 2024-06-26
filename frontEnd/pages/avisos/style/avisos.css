@@ -17,11 +17,7 @@
 }
 
 #div-avisos-button a:hover {
-    width: 100px;
-    padding: 0.6rem;
     background-color: var(--cor-5);
-    color: var(--cor-3);
-    border-radius: 5px;
     transition: 0.5s;
 }
 
