@@ -1,19 +1,26 @@
+document.addEventListener("DOMContentLoaded", function() {
+    loadPreloader();
+});
 
 function loadPreloader() {
     fetch('../../src/components/preloader/preloader.html')
         .then(response => response.text())
         .then(data => {
-            document.body.innerHTML += data;
+            const preloaderContainer = document.createElement('div');
+            preloaderContainer.innerHTML = data;
+            document.body.appendChild(preloaderContainer);
 
-            initializeNav();
             hidePreloader(); // Chama a função para esconder o preloader após carregar
         })
-        .catch(error => console.error('Erro ao carregar o preloader:',  hidePreloader(), error));
+        .catch(error => {
+            console.error('Erro ao carregar o preloader:', error);
+            hidePreloader();
+        });
 }
 
 function hidePreloader() {
-    setTimeout(function() {
-        var preloader = document.getElementById('contain-preLoader');
+    setTimeout(function () {
+        let preloader = document.getElementById('contain-preLoader');
         if (preloader) {
             preloader.style.display = 'none';
         } else {
@@ -21,8 +28,3 @@ function hidePreloader() {
         }
     }, 1000); // 1 segundo de simulação de carregamento
 }
-
-
-    document.addEventListener("DOMContentLoaded", function() {
-        loadPreloader();
-    });
