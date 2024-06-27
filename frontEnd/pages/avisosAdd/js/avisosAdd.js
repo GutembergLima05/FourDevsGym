@@ -7,7 +7,7 @@ document.getElementById("form-add-aviso").addEventListener("submit", (event) => 
   event.preventDefault();
   console.log(document.getElementById("texto").value)
   console.log(document.getElementById("descricao").value)
-
+  window.location.href = "../avisos/avisos.html";
 })
 
 let imgEle = document.querySelector("#img-form");
