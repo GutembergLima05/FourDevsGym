@@ -1,0 +1,85 @@
+#adicionar{
+    cursor: pointer;
+}
+
+#div-avisos-button {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#div-avisos-button a {
+    width: 100px;
+    padding: 0.6rem;
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+#div-avisos-button a:hover {
+    background-color: var(--cor-5);
+    transition: 0.5s;
+}
+
+#avisos-lista {
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.avisos-div {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.avisos-div:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.img-icos {
+    width: 300px;
+    position: relative;
+}
+
+.img-icos img {
+    width: 200px;
+}
+
+.img-icos i {
+    position: absolute;
+}
+
+.fa-trash-can {
+    right: 50px;
+    padding: 0.5rem;
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+}
+
+.fa-cloud-arrow-up {
+    left: 0px;
+}
+
+.text-edit {
+    display: flex;
+    column-gap: 10px;
+    width: 300px;
+    align-items: center;
+}
+
+.text-edit p {
+    width: 200px;
+    word-break: break-word;
+}
+
+.fa-pen-to-square{
+    cursor: pointer;
+}
