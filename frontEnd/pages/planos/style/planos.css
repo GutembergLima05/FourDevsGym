@@ -1,0 +1,148 @@
+i, a {
+    cursor: pointer;
+}
+
+#div-planos-button {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#div-planos-button a {
+    width: 105px;
+    padding: 0.6rem;
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+#div-planos-button a:hover {
+    background-color: var(--cor-5);
+    transition: 0.5s;
+}
+
+#planos-lista {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+}
+
+.plano-formato {
+    padding: 15px 20px 20px 20px;
+    height: 120px;
+    border-radius: 10px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 147, 83, 1) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);
+    color: white;
+}
+
+.plano-edit-remove {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.plano-edit-remove h4 {
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.div-edit-remove {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.div-edit-remove div {
+    background-color: white;
+    padding: 1px 4px 1px 4px;
+    border-radius: 2px;
+}
+
+.plano-valor-quantidade {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div-valor-plano h1 {
+    margin-left: 10px;
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.div-plano-ativo {
+    margin-right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div-plano-ativo h1 {
+    font-size: 50px;
+    font-weight: 500;
+}
+
+.div-plano-ativo h3 {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+/* FORMATAÇÃO DO FORM */
+
+input {
+    background-color: #F2F2F2;
+    border: 1px solid #A1A1A1;
+    border-radius: 7px;
+}
+
+textarea {
+    background-color: #F2F2F2;
+    border-radius: 7px;
+    width: 100%;
+    height: 40px;
+}
+
+#tipo-plano {
+    height: 30px;
+    width: 100%;
+}
+
+#div-form-plano {
+    color: #404040;
+    padding: 30px;
+}
+
+#div-form-plano form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+#label-valor-dias {
+    display: flex;
+    column-gap: 40px;
+}
+
+.div-input-number {
+    display: flex;
+    column-gap: 5px;
+    padding: 10px 20px 10px 10px;
+    background-color: #F2F2F2;
+    border: 1px solid #A1A1A1;
+    width: 60px;
+    border-radius: 7px;
+}
+
+.div-input-number input {
+    width: 30px;
+    appearance: textfield;
+    border: none;
+    background-color: #F2F2F2;
+}
