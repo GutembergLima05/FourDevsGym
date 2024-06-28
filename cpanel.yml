@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOY_PATH=/home/fourdevs/gym.fourdevs.com.br
+    - /bin/cp -R * $DEPLOY_PATH
