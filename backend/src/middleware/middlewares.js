@@ -1,23 +1,23 @@
-import { msgError, msgJson  } from "../utils/responseJson.js"
-import { knex } from '../database/connection/dbConnection.js'
-import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
+const { msgError, msgJson } = require("../utils/responseJson.js");
+const { knex } = require('../database/connection/dbConnection.js');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 
-dotenv.config()
+dotenv.config();
 
-export const validateEntry = (schema, source = 'body') => async (req, res, next) => {
+const validateEntry = (schema, source = 'body') => async (req, res, next) => {
     try {
-        const dataToValidate = source === 'params' ? req.params : 
+        const dataToValidate = source === 'params' ? req.params :
                                 source === 'query' ? req.query : req.body;
-        await schema.validateAsync(dataToValidate)
-        next()
+        await schema.validateAsync(dataToValidate);
+        next();
     } catch (error) {
-        const { details: [ { type, context: { key } } ] } = error
-        return msgJson(400, res, msgError[type].replace('$', key), false)
+        const { details: [{ type, context: { key } }] } = error;
+        return msgJson(400, res, msgError[type].replace('$', key), false);
     }
-}
+};
 
-export const validateTokenAndRole = (table, idField = 'id', requiredRole = null) => async (req, res, next) => {
+const validateTokenAndRole = (table, idField = 'id', requiredRole = null) => async (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization) return msgJson(400, res, 'Informe o token.');
 
@@ -39,15 +39,14 @@ export const validateTokenAndRole = (table, idField = 'id', requiredRole = null)
         req.usuarioLogado = { ...user };
         next();
     } catch (error) {
-        const errorMessage = error.message === 'invalid_role' ? 
-            'Acesso negado. Você não tem permissão para realizar esta ação.' : 
+        const errorMessage = error.message === 'invalid_role' ?
+            'Acesso negado. Você não tem permissão para realizar esta ação.' :
             'Não autorizado.';
         return msgJson(401, res, errorMessage);
     }
 };
 
-
-export const uniqueField = (table, fields, path, nameObj = 'dataUnique') => async (req, res, next) => {
+const uniqueField = (table, fields, path, nameObj = 'dataUnique') => async (req, res, next) => {
     try {
         const whereConditions = fields.map(field => ({ [field]: req[path][field] }));
 
@@ -65,8 +64,14 @@ export const uniqueField = (table, fields, path, nameObj = 'dataUnique') => asyn
                 field: duplicateField
             };
         }
-        next(); 
+        next();
     } catch (error) {
         msgJson(500, res, 'Erro interno no servidor ao validar campos únicos', false);
     }
+};
+
+module.exports = {
+    validateEntry,
+    validateTokenAndRole,
+    uniqueField
 };

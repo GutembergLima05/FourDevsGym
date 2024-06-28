@@ -1,9 +1,9 @@
-import { Router } from "express";
-import { validateEntry, validateTokenAndRole } from "../../middleware/middlewares.js";
-import { s_idCheck, s_sale } from "../../schemas/schema.js";
-import * as sale from "../../controller/sale/saleController.js"
+const { Router } = require("express")
+const { validateEntry, validateTokenAndRole } = require("../../middleware/middlewares.js")
+const { s_idCheck, s_sale } = require("../../schemas/schema.js")
+const sale = require("../../controller/sale/saleController.js");
 
-export const routeSale = Router();
+const routeSale = Router();
 
 routeSale.route('/sale')
 .all(validateTokenAndRole('administrador','id_adm'))
@@ -15,3 +15,7 @@ routeSale.route('/sale/:id')
 .put(validateEntry(s_sale, 'body'), sale.update)
 .get(sale.getSaleById)
 .delete(sale.deleteSale)
+
+module.exports = {
+    routeSale
+}

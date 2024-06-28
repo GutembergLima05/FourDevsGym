@@ -1,7 +1,7 @@
-import { msgJson } from "../../utils/responseJson.js"
-import { knex } from "../../database/connection/dbConnection.js"
+const { msgJson } = require("../../utils/responseJson.js")
+const { knex } = require("../../database/connection/dbConnection.js")
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     const { body, dataUnique} = req
 
     try {
@@ -16,7 +16,7 @@ export const register = async (req, res) => {
     }
 }
 
-export const update = async(req, res) => {
+const update = async(req, res) => {
     const { params: { id: id_academia }, body, dataUnique} = req
 
     try {
@@ -34,7 +34,7 @@ export const update = async(req, res) => {
     }
 }
 
-export const deleteGym = async(req, res) => {
+const deleteGym = async(req, res) => {
     const { params: { id: id_academia }} = req
 
     try {
@@ -50,7 +50,7 @@ export const deleteGym = async(req, res) => {
     }
 }
 
-export const getGymById = async(req, res) => {
+const getGymById = async(req, res) => {
     const { params: { id: id_academia }} = req
 
     try {
@@ -64,7 +64,7 @@ export const getGymById = async(req, res) => {
     }
 }
 
-export const getAllGym = async(req, res) => {
+const getAllGym = async(req, res) => {
     try {
         const gymInfo = await knex('academia').returning('*');
 
@@ -75,4 +75,11 @@ export const getAllGym = async(req, res) => {
     }
 }
 
+module.exports = {
+    register,
+    update,
+    getAllGym,
+    getGymById,
+    deleteGym
+}
 
