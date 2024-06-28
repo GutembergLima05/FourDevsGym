@@ -1,8 +1,8 @@
-import { msgJson } from "../../utils/responseJson.js"
-import { knex } from "../../database/connection/dbConnection.js";
-import { formatDates } from "../../service/noticeService.js";
+const { msgJson } = require("../../utils/responseJson.js")
+const { knex } = require("../../database/connection/dbConnection.js")
+const { formatDates } = require("../../service/noticeService.js")
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     const { body } = req
     const dataExpiracao = new Date(body.data_expiracao);
     try {
@@ -20,7 +20,7 @@ export const register = async (req, res) => {
     }
 }
 
-export const update = async (req, res) => {
+const update = async (req, res) => {
     const { params: { id: id_aviso }, body} = req
 
     try {
@@ -42,7 +42,7 @@ export const update = async (req, res) => {
     }
 }
 
-export const deleteNotice = async(req, res) => {
+const deleteNotice = async(req, res) => {
     const { params: { id: id_aviso }} = req
 
     try {
@@ -65,7 +65,7 @@ export const deleteNotice = async(req, res) => {
 }
 
 
-export const getNoticeById = async(req, res) => {
+const getNoticeById = async(req, res) => {
     const { params: { id: id_aviso }} = req
 
     try {
@@ -85,7 +85,7 @@ export const getNoticeById = async(req, res) => {
     }
 }
 
-export const getAllNotice = async(req, res) => {
+const getAllNotice = async(req, res) => {
     try {
         const noticeInfo = await knex('aviso').select('*');
         const formattedNoticeInfo = noticeInfo.map(notice => {
@@ -104,4 +104,12 @@ export const getAllNotice = async(req, res) => {
         console.error(error)
         msgJson(500, res, 'Erro interno do servidor ao detalhar avisos.', false)
     }
+}
+
+module.exports = {
+    register,
+    update,
+    getAllNotice,
+    getNoticeById,
+    deleteNotice
 }

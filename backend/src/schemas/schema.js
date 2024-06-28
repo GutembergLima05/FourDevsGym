@@ -1,5 +1,5 @@
-import Joi from 'joi'
-import dotenv from 'dotenv'
+const Joi = require('joi');
+const dotenv = require('dotenv');
 
 dotenv.config()
 
@@ -63,50 +63,40 @@ const email = Joi.string().email().max(30).required(),
       )
 
 
-export const s_idCheck = criaObjJoi({id})
-
-export const s_idOpcional = criaObjJoi({ categoria_id: idOpc })
-
-export const s_student = criaObjJoi({ nome, email, nascimento, telefone, endereco, historico, id_academia, id_treino, id_plano })
-
-export const s_notice = criaObjJoi({ titulo, descricao, data_expiracao, id_academia })
-
-export const s_product = criaObjJoi({ nome, valor, descricao, quantidade, id_academia})
-
-export const s_admSchema = criaObjJoi({ nome, email, senha, cargo, id_academia })
-
-export const s_plan = criaObjJoi({ tipo, valor, id_academia})
-
-export const s_sale = criaObjJoi({ nome, metodo_pagamento, data_venda })
-
-export const s_training = criaObjJoi({ nome, descricao, id_administrador, dias })
-
-export const s_exercise = criaObjJoi({ nome, descricao, id_administrador, gif_url })
-
-export const s_login = criaObjJoi({ email, senha, key })
-
-export const s_gym = criaObjJoi({ nome, endereco })
-
-export const s_evaluation = criaObjJoi({
-  braco_direito_contraido,
-  braco_direito_relaxado,
-  braco_esquerdo_contraido,
-  braco_esquerdo_relaxado,
-  agua_corporal,
-  torax,
-  altura,
-  peso,
-  gordura_visceral,
-  massa_ossea,
-  cintura,
-  abdomen,
-  quadril,
-  coxa_direita,
-  coxa_esquerda,
-  antebraco_direito,
-  panturrilha_direita,
-  panturrilha_esquerda,
-  antebraco_esquerdo,
-  id_administrador,
-  id_aluno
-})
+      module.exports = {
+        s_idCheck: criaObjJoi({ id }),
+        s_idOpcional: criaObjJoi({ categoria_id: idOpc }),
+        s_student: criaObjJoi({ nome, email, nascimento, telefone, endereco, historico, id_academia, id_treino, id_plano }),
+        s_notice: criaObjJoi({ titulo, descricao, data_expiracao, id_academia }),
+        s_product: criaObjJoi({ nome, valor, descricao, quantidade, id_academia }),
+        s_admSchema: criaObjJoi({ nome, email, senha, cargo, id_academia }),
+        s_plan: criaObjJoi({ tipo, valor, id_academia }),
+        s_sale: criaObjJoi({ nome, metodo_pagamento, data_venda }),
+        s_training: criaObjJoi({ nome, descricao, id_administrador, dias }),
+        s_exercise: criaObjJoi({ nome, descricao, id_administrador, gif_url }),
+        s_login: criaObjJoi({ email, senha, key }),
+        s_gym: criaObjJoi({ nome, endereco }),
+        s_evaluation: criaObjJoi({
+            braco_direito_contraido,
+            braco_direito_relaxado,
+            braco_esquerdo_contraido,
+            braco_esquerdo_relaxado,
+            agua_corporal,
+            torax,
+            altura,
+            peso,
+            gordura_visceral,
+            massa_ossea,
+            cintura,
+            abdomen,
+            quadril,
+            coxa_direita,
+            coxa_esquerda,
+            antebraco_direito,
+            panturrilha_direita,
+            panturrilha_esquerda,
+            antebraco_esquerdo,
+            id_administrador,
+            id_aluno
+        })
+    };
