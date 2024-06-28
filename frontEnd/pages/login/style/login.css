@@ -178,7 +178,7 @@
     margin-top: -5.5%;
     margin-left: 15%;
     animation: 0.5s ease-in-out pisca infinite;
-    display: none;
+ display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -248,7 +248,7 @@
         padding: 3% 30% 3% 30%;
     }
     #preloaderLogin{
-        margin-top: -7.1%;
+        margin: 5% 0 0 0;
     }
 }
 
