@@ -63,8 +63,9 @@
 @media screen and (max-width: 800px) {
     #menu-treino{
         margin-top:15% ;
+        width: 97%;
     }
     #menu-treino div{
-        width: 100%;
+        width: 95%;
     }
 }
