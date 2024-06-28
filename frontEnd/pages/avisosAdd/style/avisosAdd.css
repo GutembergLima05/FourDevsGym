@@ -1,54 +1,69 @@
 #div-info-aviso form {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 #div-info-aviso form input:not(:first-child) {
-    height: 25px;
+  height: 25px;
 }
 
 #div-info-aviso form input {
-    border: 1px solid hsl(0, 0%, 36%);
-    border-radius: 5px;
+  border: 1px solid hsl(0, 0%, 36%);
+  border-radius: 5px;
 }
 
-/* Esconder o input file padrão */
 .file-upload input[type="file"] {
-    display: none;
-  }
-  
-  /* Estilo para o botão customizado */
-  .custom-file-upload {
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    background-color: var(--cor-1);
-    color: var(--cor-3);
-    border-radius: 4px;
-    border: none;
-  }
-  
-  .custom-file-upload:hover {
-    background-color: var(--cor-5);
-  }
-  
-  /* Estilo para o nome do arquivo */
-  #file-name {
-    margin-left: 10px;
-  }
-  
+  display: none;
+}
+
+.file-upload{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.custom-file-upload {
+  width: 170px;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: var(--cor-1);
+  color: var(--cor-3);
+  border-radius: 4px;
+  border: none;
+}
+
+.custom-file-upload:hover {
+  background-color: var(--cor-5);
+}
+
+/* Estilo para o nome do arquivo */
+#file-name {
+  margin-left: 10px;
+}
+
 
 #button-add-aviso {
-    border: none;
-    width: 150px;
-    padding: 0.6rem;
-    background-color: var(--cor-1);
-    color: var(--cor-3);
-    border-radius: 5px;
-    transition: 0.5s;
+  border: none;
+  width: 150px;
+  padding: 0.6rem;
+  background-color: var(--cor-1);
+  color: var(--cor-3);
+  border-radius: 5px;
+  transition: 0.5s;
 }
 
 #button-add-aviso:hover {
-    background-color: var(--cor-5);
+  background-color: var(--cor-5);
+}
+
+#img-form {
+  width: 200px;
+}
+
+#div-avisoAdd-return {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
 }
