@@ -1,3 +1,49 @@
 #item-menu-treinos {
     background-color: var(--cor-2);
 }
+
+#treinos {
+    overflow: hidden;
+    transition: 1s ease-in-out;
+    padding: 1%;
+}
+
+.treino-card {
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 147, 83, 1) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    border-radius: 7px;
+    color: var(--cor-3);
+    cursor: pointer;
+    margin-top: 5%;
+}
+
+.nome-treino {
+    width: 90%;
+}
+
+.nome-treino i {
+    margin: 1%;
+}
+
+.icon-op-treino {
+    width: 15%;
+    display: flex;
+}
+
+.icon-op-treino i {
+    margin: 10%;
+}
+
+.detalhe-treino {
+    background-color: rgb(83, 55, 55);
+}
+
+@media screen and (max-width: 800px) {
+
+    #treinos {
+        height: 2.5rem;
+    }
+}

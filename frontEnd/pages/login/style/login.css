@@ -178,7 +178,7 @@
     margin-top: -5.5%;
     margin-left: 15%;
     animation: 0.5s ease-in-out pisca infinite;
-    display: none;
+ display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -206,10 +206,17 @@
         justify-content: center;
         align-items: center;
     }
+    #logoLogin{
+        width: 10%;
+        margin-bottom: 2%;
+    }
+    #logindados{
+        box-shadow: none;
+    }
 
     #capa {
         background: none;
-        margin-bottom: 5%;
+        margin-bottom: 10%;
     }
     #capa h2{
         color: var(--cor-4);
@@ -226,12 +233,22 @@
     #InputEmailAdm,
     #InputSenhaAdm {
         width: 85%;
+        margin: 2%;
+        border: 1px solid var(--cor-10);
+        border-radius: 5px;
+        padding: 4%;
+    }
+    
+    #InputEmailAdm:focus,
+    #InputSenhaAdm:focus {
+        border: 1px solid var(--cor-1);
     }
     #buttonEntrarAdm {
-        margin-left:65% ;
+        margin: 10% 0 0 0;
+        padding: 3% 30% 3% 30%;
     }
     #preloaderLogin{
-        margin-top: -7.1%;
+        margin: 5% 0 0 0;
     }
 }
 
