@@ -1,9 +1,9 @@
-import { Router } from "express";
-import { uniqueField, validateEntry, validateTokenAndRole } from "../../middleware/middlewares.js";
-import { s_gym, s_idCheck } from "../../schemas/schema.js";
-import * as gym from "../../controller/gym/gymController.js"
+const { Router } = require( "express")
+const { uniqueField, validateEntry, validateTokenAndRole } = require( "../../middleware/middlewares.js")
+const { s_gym, s_idCheck } = require( "../../schemas/schema.js")
+const gym = require( "../../controller/gym/gymController.js")
 
-export const routeGym = Router();
+const routeGym = Router();
 
 routeGym.route('/gym')
 .all(validateTokenAndRole('administrador','id_adm', 'dono'))
@@ -22,3 +22,7 @@ routeGym.route('/gym/:id')
         gym.update)
     .get(gym.getGymById)
     .delete(gym.deleteGym)
+
+module.exports = {
+    routeGym
+}

@@ -1,9 +1,9 @@
-import { Router } from "express";
-import { validateEntry, validateTokenAndRole } from "../../middleware/middlewares.js";
-import { s_idCheck, s_product } from "../../schemas/schema.js";
-import * as product from "../../controller/product/productController.js"
+const { Router } = require( "express")
+const { validateEntry, validateTokenAndRole } = require( "../../middleware/middlewares.js")
+const { s_idCheck, s_product } = require( "../../schemas/schema.js")
+const product = require( "../../controller/product/productController.js")
 
-export const routeProduct = Router();
+const routeProduct = Router();
 
 routeProduct.route('/product')
 .all(validateTokenAndRole('administrador','id_adm'))
@@ -15,3 +15,7 @@ routeProduct.route('/product/:id')
 .put(validateEntry(s_product, 'body'), product.update)
 .get(product.getProductById)
 .delete(product.deleteProduct)
+
+module.exports = {
+    routeProduct
+}

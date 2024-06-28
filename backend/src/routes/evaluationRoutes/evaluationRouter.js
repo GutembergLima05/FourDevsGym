@@ -1,9 +1,9 @@
-import { Router } from "express";
-import { validateEntry, validateTokenAndRole } from "../../middleware/middlewares.js";
-import { s_idCheck, s_evaluation } from "../../schemas/schema.js";
-import * as evaluation from "../../controller/evaluation/evaluationController.js"
+const { Router } = require( "express")
+const { validateEntry, validateTokenAndRole } = require( "../../middleware/middlewares.js")
+const { s_idCheck, s_evaluation } = require( "../../schemas/schema.js")
+const evaluation = require("../../controller/evaluation/evaluationController.js");
 
-export const routeEvaluation = Router();
+const routeEvaluation = Router();
 
 routeEvaluation.route('/evaluation')
 .all(validateTokenAndRole('administrador','id_adm'))
@@ -15,3 +15,7 @@ routeEvaluation.route('/evaluation/:id')
 .put(validateEntry(s_evaluation, 'body'), evaluation.update)
 .get(evaluation.getEvaluationById)
 .delete(evaluation.deleteEvaluation)
+
+module.exports = {
+    routeEvaluation
+}
