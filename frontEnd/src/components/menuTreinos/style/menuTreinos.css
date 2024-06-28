@@ -59,3 +59,13 @@
     transition: 0.5s;
     cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+    #menu-treino{
+        margin-top:15% ;
+        width: 97%;
+    }
+    #menu-treino div{
+        width: 95%;
+    }
+}
