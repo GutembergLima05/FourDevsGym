@@ -10,7 +10,7 @@ async function checkLogin() {
     var password = inputPasswordLoginAdm.value;
     
 
-    const url = 'https://apigym.fourdevs.com.br/adm/login';
+    const url = 'https://apigym-fourdevs.vercel.app/adm/login';
     const dadosParaEnviar = {
         email: email,
         senha: password,
