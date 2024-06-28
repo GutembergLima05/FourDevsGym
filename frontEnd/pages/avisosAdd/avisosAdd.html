@@ -20,15 +20,21 @@
 
     <section id="treinosView" class="contain-main">
         <div id="contain-dashboard" class="contain-secondary">
-            <h1 class="title-contain-main">Adicionar aviso</h1>
+            <div id="div-avisoAdd-return">
+                <a href="../avisos/avisos.html"><i class="fa-solid fa-arrow-left"></i></a>
+                <h1 class="title-contain-main">Adicionar aviso</h1>
+            </div>
             <div id="div-info-aviso">
                 <form id="form-add-aviso" action="">
                     <div class="file-upload">
                         <label for="file-input" class="custom-file-upload">
                             Selecione um arquivo
                         </label>
-                        <span id="file-name"></span>
-                        <input id="file-input" type="file" />
+                        <div id="div-img-input">
+                            <!-- <span id="file-name"></span> -->
+                            <input id="file-input" type="file" accept="image/*"/>
+                            <img id="img-form" src="" alt="">
+                        </div>
                     </div>
                     <input type="text" id="texto" name="texto">
                     <input type="text" id="descricao" name="descricao">

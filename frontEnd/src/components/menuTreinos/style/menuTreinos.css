@@ -1,22 +1,14 @@
-#menu-treino {
-    margin-top: 20px;
-    background-color: var(--cor-1);
-    padding: 20px;
-    width: 70%;
-    border-radius: 10px;
-}
-
 #menu-treino div {
     display: flex;
-    column-gap: 1rem;
-    width: 100%;
+    width: 70%;
     padding: 0px;
-    justify-content: space-evenly;
+    flex-grow: 1;
 }
 
 #menu-treino a {
     display: flex;
     border: none;
+    padding: 15px;
     color: var(--cor-3);
     background-color: var(--cor-1);
     font-size: 18px;
@@ -25,13 +17,33 @@
     align-items: center;
     justify-content: center;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 #menu-treino a:hover {
+    background-color: var(--cor-5);
+    transition: 0.5s;
+}
+
+#menu-treino a:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#menu-treino a:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#menu-treino a p:hover {
     transition: 0.5s;
     -xpedu-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
-    transition: 0.5s ease-in-out;
+    transition: 0.5s;
+}
+
+#menu-treino a p {
+    transition: 0.5s;
     cursor: pointer;
 }
