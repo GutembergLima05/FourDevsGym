@@ -79,3 +79,36 @@ async function postNotice(data) {
         console.error("Error:", error);
     }
 }
+
+async function updateNotice(id, data) {
+    try {
+        const response = await fetch(`${URLNotice}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer" + ` ${token}`,
+            },
+            body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        console.log("Aviso atualizado (RESULT): ", await result)
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+async function readNotice(id){
+    try {
+        const response = await fetch(`${URLNotice}/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer" + ` ${token}`,
+            },
+        });
+        const result = await response.json();
+        return result.conteudoJson;
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
