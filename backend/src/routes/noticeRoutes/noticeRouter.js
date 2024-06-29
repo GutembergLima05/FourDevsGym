@@ -1,9 +1,10 @@
-import { Router } from "express";
-import { validateEntry, validateTokenAndRole } from "../../middleware/middlewares.js";
-import { s_notice, s_idCheck  } from "../../schemas/schema.js";
-import * as notice from "../../controller/notice/noticeController.js"
+const { Router } = require( "express")
+const { validateEntry, validateTokenAndRole } = require( "../../middleware/middlewares.js")
+const { s_notice, s_idCheck  } = require( "../../schemas/schema.js")
+const notice = require( "../../controller/notice/noticeController.js");
+const { route } = require("../admRoutes/admRouter");
 
-export const routeNotice = Router();
+const routeNotice = Router();
 
 routeNotice.route('/notice')
 .all(validateTokenAndRole('administrador','id_adm'))
@@ -16,3 +17,7 @@ routeNotice.route('/notice/:id')
 .get(notice.getNoticeById)
 .put(validateEntry(s_notice, 'body'), notice.update)
 .delete(notice.deleteNotice)
+
+module.exports = {
+    routeNotice
+}

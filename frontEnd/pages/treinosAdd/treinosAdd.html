@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Links globais obrigatório nas páginas-->
+    <script src="../../public/headerMain/js/headerMain.js" defer></script>
+    <script src="../../src/components/nav/js/nav.js" defer></script>
+    <script src="../../src/components/preloader/js/preloader.js" defer></script>
+    <script src="../../public/jsMain/jsMain.js" defer></script>
+
+    <script src="../../src/components/menuTreinos/js/menuTreinos.js"  defer></script>
+    <link rel="stylesheet" href="../../src/components/menuTreinos/style/menuTreinos.css">
+
+    <!--estilo local-->
+    <link rel="stylesheet" href="style/treinosAdd.css">
+    <script defer src="../../src/connectionAPI/treinosAdd/treinosAddAPI.js"></script>
+    <script defer src="js/treinosAdd.js"></script>
+</head>
+
+<body>
+    <nav id="nav-contraida"></nav>
+
+    <section id="treinosView" class="contain-main">
+        <div id="contain-dashboard" class="contain-secondary">
+            <div id="menu-treino"></div>
+
+            <div id="nomeDescricao">
+                <input type="text" id="InputNomeTreino" placeholder="Nome do Treino">
+                <textarea  id="TextareaDescricaoTreino" placeholder="Descrição"></textarea>
+            </div>
+
+<div id="diaDivisoes">
+    <div class="containersDivisoes">Dia 1</div>
+    <div class="containersDivisoes" id="addDivisoes">+</div>
+</div>
+
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,8 +1,8 @@
-import { msgJson } from "../../utils/responseJson.js"
-import { knex } from "../../database/connection/dbConnection.js"
-import { formatDates } from "../../service/noticeService.js";
+const { msgJson } = require("../../utils/responseJson.js")
+const { knex } = require("../../database/connection/dbConnection.js")
+const { formatDates } = require("../../service/noticeService.js")
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     const { body } = req
     try {
         const [ planInfo ] = await knex('plano').insert({...body}).returning('*')
@@ -19,7 +19,7 @@ export const register = async (req, res) => {
     }
 }
 
-export const update = async(req, res) => {
+const update = async(req, res) => {
     const { params: { id: id_plano }, body} = req
 
     try {
@@ -40,7 +40,7 @@ export const update = async(req, res) => {
     }
 }
 
-export const deletePlan = async(req, res) => {
+const deletePlan = async(req, res) => {
     const { params: { id: id_plano }} = req
 
     try {
@@ -61,7 +61,7 @@ export const deletePlan = async(req, res) => {
     }
 }
 
-export const getPlanById = async(req, res) => {
+const getPlanById = async(req, res) => {
     const { params: { id: id_plano }} = req
 
     try {
@@ -80,7 +80,7 @@ export const getPlanById = async(req, res) => {
     }
 }
 
-export const getAllPlan = async(req, res) => {
+const getAllPlan = async(req, res) => {
     try {
         const planInfo = await knex('plano').returning('*');
         const formattedPlanInfo = planInfo.map(plan => {
@@ -100,4 +100,12 @@ export const getAllPlan = async(req, res) => {
     }
 }
 
+
+module.exports = {
+    register,
+    update,
+    getAllPlan,
+    getPlanById,
+    deletePlan
+}
 

@@ -1,9 +1,9 @@
-import Knex from 'knex'
-import dotenv from 'dotenv'
+const Knex = require('knex');
+const dotenv = require('dotenv');
 
-dotenv.config()
+dotenv.config();
 
-export const knex = Knex({
+const knex = Knex({
     client: 'pg',
     connection: {
         host: process.env.DB_HOST,
@@ -12,4 +12,8 @@ export const knex = Knex({
         password: process.env.DB_PASS,
         database: process.env.DB_NAME,
     }
-})
+});
+
+module.exports = {
+    knex
+};
