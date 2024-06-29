@@ -62,3 +62,20 @@ async function deleteNotice(id) {
         console.error("Erro:", error);
     }
 }
+
+async function postNotice(data) {
+    try {
+        const response = await fetch(`${URLNotice}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer" + ` ${token}`,
+            },
+            body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        console.log("Aviso enviado (RESULT): ", await result)
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
