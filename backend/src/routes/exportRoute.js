@@ -1,21 +1,23 @@
-import { routeAdm } from "./admRoutes/admRouter.js";
-import { routeEvaluation } from "./evaluationRoutes/evaluationRouter.js";
-import { routeExercise } from "./exerciseRoutes/exerciseRouter.js";
-import { routeGym } from "./gymRoutes/gymRouter.js";
-import { routeNotice } from "./noticeRoutes/noticeRouter.js";
-import { routePlan } from "./planRoutes/planRouter.js";
-import { routeProduct } from "./productRoutes/productRouter.js";
-import { routeStudent } from "./studentRoutes/studentRouter.js";
-import { routeTraining } from "./trainingRoutes/trainingRouter.js";
+const routeAdm = require("./admRoutes/admRouter.js").routeAdm;
+const routeEvaluation = require("./evaluationRoutes/evaluationRouter.js").routeEvaluation;
+const routeExercise = require("./exerciseRoutes/exerciseRouter.js").routeExercise;
+const routeGym = require("./gymRoutes/gymRouter.js").routeGym;
+const routeNotice = require("./noticeRoutes/noticeRouter.js").routeNotice;
+const routePlan = require("./planRoutes/planRouter.js").routePlan;
+const routeProduct = require("./productRoutes/productRouter.js").routeProduct;
+const routeStudent = require("./studentRoutes/studentRouter.js").routeStudent;
+const routeTraining = require("./trainingRoutes/trainingRouter.js").routeTraining;
 
-export const allRoutes = [
+const allRoutes = [
     routeAdm,
+    routeEvaluation,
+    routeExercise,
     routeGym,
     routeNotice,
-    routeExercise,
     routePlan,
     routeProduct,
-    routeTraining,
     routeStudent,
-    routeEvaluation
+    routeTraining
 ];
+
+module.exports = { allRoutes };
