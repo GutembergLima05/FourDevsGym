@@ -67,3 +67,18 @@
   column-gap: 20px;
   align-items: center;
 }
+
+.div-input-number {
+  display: flex;
+  column-gap: 5px;
+  width: 60px;
+  border-radius: 7px;
+  align-items: center;
+}
+
+#days {
+  border: none;
+  margin-top: 2px;
+  width: 35px;
+  appearance: textfield;
+}
