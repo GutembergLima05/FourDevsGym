@@ -41,8 +41,10 @@ async function checkLogin() {
             localStorage.setItem('nome_academia',nome_academia)
             // Aqui você pode fazer o que for necessário com os dados recebidos
             window.location.href = '../../pages/dashboard/dashboard.html';
+        }else{
+            resultDiv.innerText = dadosResposta.conteudoJson.message;
         }
-        resultDiv.innerText = dadosResposta.conteudoJson.message;
+    
 
     } catch (error) {
         console.error('Erro ao fazer requisição:', error);

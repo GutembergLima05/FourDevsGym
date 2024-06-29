@@ -1,0 +1,84 @@
+/* FORMATAÇÃO DO FORM */
+
+input {
+    background-color: #F2F2F2;
+    border: 1px solid #A1A1A1;
+    border-radius: 7px;
+}
+
+textarea {
+    background-color: #F2F2F2;
+    border-radius: 7px;
+    width: 90%;
+    height: 80px;
+    padding: 3px 0px 3px 10px;
+}
+
+#div-planosEdicao-button {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+  }
+
+#div-button{
+    width: 91%;
+    display: flex;
+    justify-content: end;
+}
+
+form button {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+    width: 100px;
+    padding: 10px;
+    transition: 0.5s ease-in-out;
+}
+
+form button:hover {
+    background-color: var(--cor-5);
+    transition: 0.5s ease-in-out;
+}
+
+#tipo-plano {
+    height: 30px;
+    width: 90%;
+    padding: 3px 0px 3px 10px;
+}
+
+#div-form-plano {
+    color: #404040;
+    margin-top: 40px;
+}
+
+#div-form-plano form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+#label-valor-dias {
+    display: flex;
+    column-gap: 40px;
+}
+
+.div-input-number {
+    display: flex;
+    column-gap: 5px;
+    padding: 10px 20px 10px 15px;
+    background-color: #F2F2F2;
+    border: 1px solid #A1A1A1;
+    width: 60px;
+    border-radius: 7px;
+    align-items: center;
+}
+
+.div-input-number input {
+    margin-top: 2px;
+    width: 35px;
+    appearance: textfield;
+    border: none;
+    background-color: #F2F2F2;
+}
