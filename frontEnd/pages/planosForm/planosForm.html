@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--Links globais obrigatório nas páginas-->
+    <script src="../../public/headerMain/js/headerMain.js" defer></script>
+    <script src="../../src/components/nav/js/nav.js" defer></script>
+    <script src="../../src/components/preloader/js/preloader.js" defer></script>
+    <script src="../../public/jsMain/jsMain.js" defer></script>
+
+    <link rel="stylesheet" href="style/planosForm.css">
+</head>
+
+<body>
+    <nav id="nav-contraida"></nav>
+
+    <section id="treinosView" class="contain-main">
+        <div id="contain-dashboard" class="contain-secondary">
+
+            <div id="div-planosEdicao-button">
+                <a href="../planos/planos.html"><i class="fa-solid fa-arrow-left"></i></a>
+                <h1 class="title-contain-main">Planos</h1>
+            </div>
+
+            <div id="div-form-plano">
+                <form>
+                    <label>
+                        <input id="tipo-plano" type="text" placeholder="Tipo de plano">
+                    </label>
+                    <label id="label-valor-dias">
+                        <div class="div-input-number">
+                            <span>R$</span>
+                            <input type="number" value="70">
+                        </div>
+                        <div class="div-input-number">
+                            <span>Dias:</span>
+                            <input type="number" step="30" value="30">
+                        </div>
+                    </label>
+                    <label>
+                        <textarea placeholder="Intuito do plano"></textarea>
+                    </label>
+                    <div id="div-button">
+
+                        <button type="submit">Confirmar <i class="fa-solid fa-check" style="color: #ffffff;"></i></button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</body>
+
+</html>
