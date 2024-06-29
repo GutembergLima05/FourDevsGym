@@ -1,8 +1,8 @@
-import { msgJson } from "../../utils/responseJson.js"
-import { knex } from "../../database/connection/dbConnection.js"
-import { formatDates, formatDatesStudent } from "../../service/noticeService.js";
+const { msgJson } = require( "../../utils/responseJson.js")
+const { knex } = require( "../../database/connection/dbConnection.js")
+const { formatDates, formatDatesStudent } = require( "../../service/noticeService.js")
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     const { body, dataUnique } = req
     const { id_academia, id_treino, id_plano } = body
     try {
@@ -32,7 +32,7 @@ export const register = async (req, res) => {
     }
 }
 
-export const update = async(req, res) => {
+const update = async(req, res) => {
     const { params: { id: id_aluno }, body, dataUnique} = req
     const { id_academia, id_treino, id_plano } = body
 
@@ -66,7 +66,7 @@ export const update = async(req, res) => {
     }
 }
 
-export const deleteStudent = async(req, res) => {
+const deleteStudent = async(req, res) => {
     const { params: { id: id_aluno }} = req
 
     try {
@@ -88,7 +88,7 @@ export const deleteStudent = async(req, res) => {
     }
 }
 
-export const getStudentById = async(req, res) => {
+const getStudentById = async(req, res) => {
     const { params: { id: id_aluno }} = req
 
     try {
@@ -108,7 +108,7 @@ export const getStudentById = async(req, res) => {
     }
 }
 
-export const getAllStudent = async(req, res) => {
+const getAllStudent = async(req, res) => {
     try {
         const studentInfo = await knex('aluno').returning('*');
         const formattedAlunoInfo = studentInfo.map(student => {
@@ -129,4 +129,12 @@ export const getAllStudent = async(req, res) => {
     }
 }
 
+
+module.exports = {
+    register,
+    update,
+    getAllStudent,
+    getStudentById,
+    deleteStudent
+}
 

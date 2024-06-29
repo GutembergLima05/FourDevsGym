@@ -1,9 +1,9 @@
-import { Router } from "express";
-import { validateEntry, validateTokenAndRole, uniqueField } from "../../middleware/middlewares.js";
-import { s_idCheck, s_student } from "../../schemas/schema.js";
-import * as student from "../../controller/student/studentController.js"
+const { Router } = require("express")
+const { validateEntry, validateTokenAndRole, uniqueField } = require("../../middleware/middlewares.js")
+const { s_idCheck, s_student } = require("../../schemas/schema.js")
+const student = require("../../controller/student/studentController.js")
 
-export const routeStudent = Router();
+const routeStudent = Router();
 
 routeStudent.route('/student')
 .all(validateTokenAndRole('administrador','id_adm'))
@@ -15,3 +15,7 @@ routeStudent.route('/student/:id')
 .put(validateEntry(s_student, 'body'),uniqueField('aluno', ['email'], 'body'), student.update)
 .get(student.getStudentById)
 .delete(student.deleteStudent)
+
+module.exports = {
+    routeStudent
+}
