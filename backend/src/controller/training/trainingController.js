@@ -1,8 +1,8 @@
-import { msgJson } from "../../utils/responseJson.js"
-import { knex } from "../../database/connection/dbConnection.js"
-import { formatDates } from "../../service/noticeService.js";
+const { msgJson } = require("../../utils/responseJson.js")
+const { knex } = require("../../database/connection/dbConnection.js")
+const { formatDates } = require("../../service/noticeService.js")
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     const { body } = req;
     const { nome, descricao, id_administrador, dias } = body;
   
@@ -57,7 +57,7 @@ if (exercicios.some(exercicio => !exercicio)) {
     }
 };
 
-export const update = async(req, res) => {
+const update = async(req, res) => {
     const { params: { id: id_treino }, body } = req;
     const { nome, descricao, id_administrador, dias } = body;
 
@@ -132,7 +132,7 @@ if (exercicios.some(exercicio => !exercicio)) {
     }
 };
 
-export const deleteTraining = async(req, res) => {
+const deleteTraining = async(req, res) => {
     const { params: { id: id_treino }} = req
 
     try {
@@ -155,7 +155,7 @@ export const deleteTraining = async(req, res) => {
     }
 }
 
-export const getTrainingById = async (req, res) => {
+const getTrainingById = async (req, res) => {
     const { params: { id: id_treino } } = req;
 
     try {
@@ -197,7 +197,7 @@ export const getTrainingById = async (req, res) => {
     }
 };
 
-export const getAllTraining = async(req, res) => {
+const getAllTraining = async(req, res) => {
     try {
         const trainingInfo = await knex('treino').returning('*');
         const formattedTrainingInfo = trainingInfo.map(training => {
@@ -218,3 +218,10 @@ export const getAllTraining = async(req, res) => {
 }
 
 
+module.exports = {
+    register,
+    update,
+    getAllTraining,
+    getTrainingById,
+    deleteTraining
+}

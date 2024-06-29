@@ -1,8 +1,8 @@
-import { msgJson } from "../../utils/responseJson.js"
-import { knex } from "../../database/connection/dbConnection.js"
-import { formatDates } from "../../service/noticeService.js";
+const { msgJson } = require( "../../utils/responseJson.js")
+const { knex } = require( "../../database/connection/dbConnection.js")
+const { formatDates } = require( "../../service/noticeService.js")
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     const { body } = req
     try {
         const [ productInfo ] = await knex('produto').insert({...body}).returning('*')
@@ -19,7 +19,7 @@ export const register = async (req, res) => {
     }
 }
 
-export const update = async(req, res) => {
+const update = async(req, res) => {
     const { params: { id: id_produto }, body} = req
 
     try {
@@ -40,7 +40,7 @@ export const update = async(req, res) => {
     }
 }
 
-export const deleteProduct = async(req, res) => {
+const deleteProduct = async(req, res) => {
     const { params: { id: id_produto }} = req
 
     try {
@@ -61,7 +61,7 @@ export const deleteProduct = async(req, res) => {
     }
 }
 
-export const getProductById = async(req, res) => {
+const getProductById = async(req, res) => {
     const { params: { id: id_produto }} = req
 
     try {
@@ -80,7 +80,7 @@ export const getProductById = async(req, res) => {
     }
 }
 
-export const getAllProduct = async(req, res) => {
+const getAllProduct = async(req, res) => {
     try {
         const productInfo = await knex('produto').returning('*');
         const formattedProductInfo = productInfo.map(product => {
@@ -100,4 +100,11 @@ export const getAllProduct = async(req, res) => {
     }
 }
 
+module.exports = {
+    register,
+    update,
+    getAllProduct,
+    getProductById,
+    deleteProduct
+}
 
