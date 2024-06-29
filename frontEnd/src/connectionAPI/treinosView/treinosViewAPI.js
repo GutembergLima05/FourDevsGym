@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            console.log('Resposta da API:', data);
+           // console.log('Resposta da API:', data);
             if (data.success && data.conteudoJson) {
                 const treinos = data.conteudoJson;
                 const accordionContainer = document.querySelector('.accordion');
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 })
                                 .then(details => {
                                     preloaderTreino.style.display = "none";
-                                    console.log('Detalhes do treino:', details);
+                                    //console.log('Detalhes do treino:', details);
 
                                     // Verificar se details e details.conteudoJson estão definidos
                                     if (details && details.conteudoJson && Array.isArray(details.conteudoJson.dias)) {
