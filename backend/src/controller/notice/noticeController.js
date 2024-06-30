@@ -46,8 +46,10 @@ const updatePatch = async (req, res) => {
     const { params: { id: id_aviso }, body } = req;
 
     try {
+        if (Object.keys(body).length === 0) return msgJson(400, res, 'O corpo da requisição está vazio.', false);
+        
         const idInfo = await knex('aviso').where({ id_aviso }).returning('*');
-        if (!idInfo || idInfo.length === 0) return msgJson(404, res, 'Aviso não encontrado.');
+        if (!idInfo || idInfo.length === 0) return msgJson(404, res, 'Aviso não encontrado.', false);
 
         const [ noticeInfo ] = await knex('aviso').update(body).where({ id_aviso }).returning('*');
 
@@ -69,7 +71,7 @@ const deleteNotice = async(req, res) => {
 
     try {
         let noticeInfo = await knex('aviso').where({ id_aviso }).first().returning('*');
-        if (!noticeInfo || noticeInfo.length === 0 ) return msgJson(404, res, 'Aviso não encontrado.')
+        if (!noticeInfo || noticeInfo.length === 0 ) return msgJson(404, res, 'Aviso não encontrado.', false)
 
         const formattedDates = formatDates(noticeInfo.data_criacao,noticeInfo.data_atualizacao,noticeInfo.data_expiracao,3);
         
@@ -92,7 +94,7 @@ const getNoticeById = async(req, res) => {
 
     try {
         const noticeInfo = await knex('aviso').where({ id_aviso }).first().returning('*');
-        if (!noticeInfo || noticeInfo.length === 0 ) return msgJson(404, res, 'Aviso não encontrado.')
+        if (!noticeInfo || noticeInfo.length === 0 ) return msgJson(404, res, 'Aviso não encontrado.', false)
 
         const formattedDates = formatDates(noticeInfo.data_criacao,noticeInfo.data_atualizacao,noticeInfo.data_expiracao,3);
         
