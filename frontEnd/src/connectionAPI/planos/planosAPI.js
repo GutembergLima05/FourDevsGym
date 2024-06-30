@@ -24,11 +24,11 @@ async function showPlans() {
     let plano_element;
     noticesArray.forEach(element => {
         plano_element = `
-                <div class="plano-formato">
+                <div class="plano-formato" id_plano="${element.id_plano}">
                     <div class="plano-edit-remove">
                         <h4>Plano ${element.tipo}</h4>
                         <div class="div-edit-remove">
-                            <a href="../planosForm/planosForm.html"><i class="fa-solid fa-pen-to-square"
+                            <a class="edit-button" href="../planosForm/planosForm.html"><i class="fa-solid fa-pen-to-square"
                                     style="color: #ffffff;"></i></a>
                             <div><i class="fa-solid fa-x" style="color: var(--cor-1);"></i></div>
                         </div>
@@ -48,7 +48,7 @@ async function showPlans() {
     });
 }
 
-async function deleteNotice(id) {
+async function deletePlan(id) {
     try {
         const response = await fetch(`${URLPlans}/${id}`, {
             method: "DELETE",
@@ -58,13 +58,13 @@ async function deleteNotice(id) {
             },
         });
         const result = await response.json();
-        console.log("Noticia apagada (RESULT): ", await result)
+        console.log("Plano apagado (RESULT): ", await result)
     } catch (error) {
         console.error("Erro:", error);
     }
 }
 
-async function postNotice(data) {
+async function postPlan(data) {
     try {
         const response = await fetch(`${URLPlans}`, {
             method: "POST",
@@ -75,13 +75,13 @@ async function postNotice(data) {
             body: JSON.stringify(data),
         });
         const result = await response.json();
-        console.log("Aviso enviado (RESULT): ", await result)
+        console.log("Plano enviado (RESULT): ", await result)
     } catch (error) {
         console.error("Error:", error);
     }
 }
 
-async function updateNotice(id, data) {
+async function updatePlan(id, data) {
     try {
         const response = await fetch(`${URLPlans}/${id}`, {
             method: "PUT",
@@ -92,13 +92,13 @@ async function updateNotice(id, data) {
             body: JSON.stringify(data),
         });
         const result = await response.json();
-        console.log("Aviso atualizado (RESULT): ", await result)
+        console.log("Plano atualizado (RESULT): ", await result)
     } catch (error) {
         console.error("Error:", error);
     }
 }
 
-async function readNotice(id){
+async function readPlan(id){
     try {
         const response = await fetch(`${URLPlans}/${id}`, {
             method: "GET",
