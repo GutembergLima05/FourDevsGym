@@ -12,6 +12,9 @@ const email = Joi.string().email().max(30).required(),
     endereco = Joi.string().max(50).required(),
     data_expiracao = Joi.string().isoDate().required(),
     titulo = Joi.string().max(100).required(),
+    tituloPatch = Joi.string().max(100).optional(),
+    descricaoPatch = Joi.string().max(100).optional(),
+    data_expiracaoPatch = Joi.string().isoDate().optional(),
     tipo = Joi.string().max(100).required(),
     valor = Joi.number().positive().required(),
     quantidade = Joi.number().integer().positive().required(),
@@ -62,12 +65,20 @@ const email = Joi.string().email().max(30).required(),
         })
       )
 
+      const s_noticePatch = criaObjJoi({
+        titulo: Joi.string().max(100).optional(),
+        descricao: Joi.string().max(100).optional(),
+        data_expiracao: Joi.string().isoDate().optional(),
+        id_academia: Joi.number().integer().positive().optional(),
+    });
+
 
       module.exports = {
         s_idCheck: criaObjJoi({ id }),
         s_idOpcional: criaObjJoi({ categoria_id: idOpc }),
         s_student: criaObjJoi({ nome, email, nascimento, telefone, endereco, historico, id_academia, id_treino, id_plano }),
         s_notice: criaObjJoi({ titulo, descricao, data_expiracao, id_academia }),
+        s_noticePatch,
         s_product: criaObjJoi({ nome, valor, descricao, quantidade, id_academia }),
         s_admSchema: criaObjJoi({ nome, email, senha, cargo, id_academia }),
         s_plan: criaObjJoi({ tipo, valor, id_academia }),
