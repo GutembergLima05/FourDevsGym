@@ -173,14 +173,14 @@ const getTrainingById = async (req, res) => {
             .join('dia', 'treino_dia_exercicio.id_dia', 'dia.id_dia')
             .join('exercicio', 'treino_dia_exercicio.id_exercicio', 'exercicio.id_exercicio')
             .where('treino_dia_exercicio.id_treino', id_treino)
-            .select('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
+            .select('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'exercicio.gif_url', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
 
         // Agrupa os exercícios por dia
-        const diasMap = diasExercicios.reduce((acc, { id_dia, dia_nome, id_exercicio, exercicio_nome, repeticoes, series }) => {
+        const diasMap = diasExercicios.reduce((acc, { id_dia, dia_nome, id_exercicio, exercicio_nome, gif_url, repeticoes, series }) => {
             if (!acc[id_dia]) {
                 acc[id_dia] = { id_dia, dia_nome, exercicios: [] };
             }
-            acc[id_dia].exercicios.push({ id_exercicio, exercicio_nome, repeticoes, series });
+            acc[id_dia].exercicios.push({ id_exercicio, exercicio_nome, gif_url, repeticoes, series });
             return acc;
         }, {});
 
