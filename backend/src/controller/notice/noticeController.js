@@ -42,6 +42,28 @@ const update = async (req, res) => {
     }
 }
 
+const updatePatch = async (req, res) => {
+    const { params: { id: id_aviso }, body } = req;
+
+    try {
+        const idInfo = await knex('aviso').where({ id_aviso }).returning('*');
+        if (!idInfo || idInfo.length === 0) return msgJson(404, res, 'Aviso não encontrado.');
+
+        const [ noticeInfo ] = await knex('aviso').update(body).where({ id_aviso }).returning('*');
+
+        const formattedDates = formatDates(noticeInfo.data_criacao, noticeInfo.data_atualizacao, noticeInfo.data_expiracao, 3);
+        
+        noticeInfo.data_criacao = formattedDates.data_criacao;
+        noticeInfo.data_atualizacao = formattedDates.data_atualizacao;
+        noticeInfo.data_expiracao = formattedDates.data_expiracao;
+
+        msgJson(200, res, noticeInfo, true);
+    } catch (error) {
+        console.error(error);
+        msgJson(500, res, 'Erro interno do servidor ao atualizar o aviso.', false);
+    }
+}
+
 const deleteNotice = async(req, res) => {
     const { params: { id: id_aviso }} = req
 
@@ -111,5 +133,6 @@ module.exports = {
     update,
     getAllNotice,
     getNoticeById,
-    deleteNotice
+    deleteNotice,
+    updatePatch
 }
