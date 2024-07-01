@@ -7,7 +7,7 @@ const register = async (req, res) => {
     try {
         const [ exerciseInfo ] = await knex('exercicio').insert({...body}).returning('*')
 
-        const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,3);
+        const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,null, 3);
         
         exerciseInfo.data_criacao = formattedDates.data_criacao;
         exerciseInfo.data_atualizacao = formattedDates.data_atualizacao;
@@ -28,7 +28,7 @@ const update = async(req, res) => {
 
         const [ exerciseInfo ] = await knex('exercicio').update({...body}).where({ id_exercicio }).returning('*')
 
-        const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,3);
+        const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,null, 3);
         
         exerciseInfo.data_criacao = formattedDates.data_criacao;
         exerciseInfo.data_atualizacao = formattedDates.data_atualizacao;
@@ -47,7 +47,7 @@ const deleteExercise = async(req, res) => {
         let exerciseInfo = await knex('exercicio').where({ id_exercicio }).first().returning('*');
         if (!exerciseInfo || exerciseInfo.length === 0 ) return msgJson(404, res, 'Exercicio não encontrado.')
 
-        const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,3);
+        const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,null, 3);
         
         exerciseInfo.data_criacao = formattedDates.data_criacao;
         exerciseInfo.data_atualizacao = formattedDates.data_atualizacao;
@@ -68,7 +68,7 @@ const getExerciseById = async(req, res) => {
         const exerciseInfo = await knex('exercicio').where({ id_exercicio }).first().returning('*');
         if (!exerciseInfo || exerciseInfo.length === 0 ) return msgJson(404, res, 'Exercício não encontrado.')
 
-        const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,3);
+        const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,null, 3);
         
         exerciseInfo.data_criacao = formattedDates.data_criacao;
         exerciseInfo.data_atualizacao = formattedDates.data_atualizacao;
@@ -84,7 +84,7 @@ const getAllExercise = async(req, res) => {
     try {
         const exerciseInfo = await knex('exercicio').returning('*');
         const formattedExerciseInfo = exerciseInfo.map(exercise => {
-            const formattedDates = formatDates(exercise.data_criacao,exercise.data_atualizacao,3);
+            const formattedDates = formatDates(exercise.data_criacao,exercise.data_atualizacao,null, 3);
 
             return {
                 ...exercise,
