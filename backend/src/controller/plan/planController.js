@@ -7,7 +7,7 @@ const register = async (req, res) => {
     try {
         const [ planInfo ] = await knex('plano').insert({...body}).returning('*')
 
-        const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao,3);
+        const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao, null, 3);
         
         planInfo.data_criacao = formattedDates.data_criacao;
         planInfo.data_atualizacao = formattedDates.data_atualizacao;
@@ -28,7 +28,7 @@ const update = async(req, res) => {
 
         const [ planInfo ] = await knex('plano').update({...body}).where({ id_plano }).returning('*')
 
-        const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao,3);
+        const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao, null, 3);
         
         planInfo.data_criacao = formattedDates.data_criacao;
         planInfo.data_atualizacao = formattedDates.data_atualizacao;
@@ -47,7 +47,7 @@ const deletePlan = async(req, res) => {
         let planInfo = await knex('plano').where({ id_plano }).first().returning('*');
         if (!planInfo || planInfo.length === 0 ) return msgJson(404, res, 'Plano não encontrado.')
 
-        const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao,3);
+        const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao, null, 3);
         
         planInfo.data_criacao = formattedDates.data_criacao;
         planInfo.data_atualizacao = formattedDates.data_atualizacao;
@@ -68,7 +68,7 @@ const getPlanById = async(req, res) => {
         const planInfo = await knex('plano').where({ id_plano }).first().returning('*');
         if (!planInfo || planInfo.length === 0 ) return msgJson(404, res, 'Plano não encontrado.')
 
-        const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao,3);
+        const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao, null, 3);
         
         planInfo.data_criacao = formattedDates.data_criacao;
         planInfo.data_atualizacao = formattedDates.data_atualizacao;
@@ -84,7 +84,7 @@ const getAllPlan = async(req, res) => {
     try {
         const planInfo = await knex('plano').returning('*');
         const formattedPlanInfo = planInfo.map(plan => {
-            const formattedDates = formatDates(plan.data_criacao,plan.data_atualizacao,3);
+            const formattedDates = formatDates(plan.data_criacao,plan.data_atualizacao, null, 3);
 
             return {
                 ...plan,
