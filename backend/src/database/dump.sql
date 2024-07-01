@@ -79,6 +79,7 @@ CREATE TABLE Aviso
     titulo VARCHAR(255) NOT NULL,  
     descricao VARCHAR(255),  
     id_Academia INT,
+    gif_url VARCHAR(255),
     data_Criacao DATE DEFAULT CURRENT_DATE,
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_expiracao TIMESTAMP
@@ -99,6 +100,7 @@ CREATE TABLE Plano
     tipo VARCHAR(255) NOT NULL,  
     valor FLOAT NOT NULL,  
     id_Academia INT,
+    dias_validade INT NOT NULL,
     data_Criacao DATE DEFAULT CURRENT_DATE,
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
@@ -142,43 +144,41 @@ CREATE TABLE Produto_Venda
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
-CREATE TABLE Exercicio_Dia 
-( 
-    id_dia INT,  
-    id_Exercicio INT,  
-    PRIMARY KEY (id_dia, id_Exercicio),
-    data_Criacao DATE DEFAULT CURRENT_DATE,
-    data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+CREATE TABLE treino_dia_exercicio (
+    id_treino INT NOT NULL,
+    id_dia INT NOT NULL,
+    id_exercicio INT NOT NULL,
+    repeticoes INT NULL,
+    series INT NULL
 );
 
 INSERT INTO dia(nome) values ('Dia 1'), ('Dia 2'), ('Dia 3'), ('Dia 4'), ('Dia 5'),('Dia 6'),('Dia 7') 
 
-ALTER TABLE Aluno ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia);
-ALTER TABLE Aluno ADD FOREIGN KEY (id_Treino) REFERENCES Treino (id_Treino);
-ALTER TABLE Aluno ADD FOREIGN KEY (id_Plano) REFERENCES Plano (id_Plano);
+ALTER TABLE Aluno ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia) ON DELETE SET NULL;
+ALTER TABLE Aluno ADD FOREIGN KEY (id_Treino) REFERENCES Treino (id_Treino) ON DELETE SET NULL;
+ALTER TABLE Aluno ADD FOREIGN KEY (id_Plano) REFERENCES Plano (id_Plano) ON DELETE SET NULL;
 
-ALTER TABLE Administrador ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia);
+ALTER TABLE Administrador ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia) ON DELETE SET NULL;
 
-ALTER TABLE Exercicio ADD FOREIGN KEY (id_Administrador) REFERENCES Administrador (id_Adm);
+ALTER TABLE Exercicio ADD FOREIGN KEY (id_Administrador) REFERENCES Administrador (id_Adm) ON DELETE SET NULL;
 
-ALTER TABLE Treino ADD FOREIGN KEY (id_Administrador) REFERENCES Administrador (id_Adm);
+ALTER TABLE Treino ADD FOREIGN KEY (id_Administrador) REFERENCES Administrador (id_Adm) ON DELETE SET NULL;
 
-ALTER TABLE Produto ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia);
+ALTER TABLE Produto ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia) ON DELETE SET NULL;
 
-ALTER TABLE Aviso ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia);
+ALTER TABLE Aviso ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia) ON DELETE SET NULL;
 
-ALTER TABLE Plano ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia);
+ALTER TABLE Plano ADD FOREIGN KEY (id_Academia) REFERENCES Academia (id_Academia) ON DELETE SET NULL;
 
-ALTER TABLE Avaliacao ADD FOREIGN KEY (id_Administrador) REFERENCES Administrador (id_Adm);
-ALTER TABLE Avaliacao ADD FOREIGN KEY (id_Aluno) REFERENCES Aluno (id_Aluno);
+ALTER TABLE Avaliacao ADD FOREIGN KEY (id_Administrador) REFERENCES Administrador (id_Adm) ON DELETE SET NULL;
+ALTER TABLE Avaliacao ADD FOREIGN KEY (id_Aluno) REFERENCES Aluno (id_Aluno) ON DELETE SET NULL;
 
-ALTER TABLE Produto_Venda ADD FOREIGN KEY (id_Venda) REFERENCES Venda (id_Venda);
-ALTER TABLE Produto_Venda ADD FOREIGN KEY (id_Produto) REFERENCES Produto (id_Produto);
+ALTER TABLE Produto_Venda ADD FOREIGN KEY (id_Venda) REFERENCES Venda (id_Venda) ON DELETE SET NULL;
+ALTER TABLE Produto_Venda ADD FOREIGN KEY (id_Produto) REFERENCES Produto (id_Produto) ON DELETE SET NULL;
 
-ALTER TABLE Exercicio_Dia ADD FOREIGN KEY (id_Dia) REFERENCES Dia (id_Dia);
-ALTER TABLE Exercicio_Dia ADD FOREIGN KEY (id_Exercicio) REFERENCES Exercicio (id_Exercicio);
-
-ALTER TABLE Aviso ADD COLUMN gif_url VARCHAR(255);
+ALTER TABLE treino_dia_exercicio ADD FOREIGN KEY (id_Dia) REFERENCES Dia (id_Dia) ON DELETE SET NULL;
+ALTER TABLE treino_dia_exercicio ADD FOREIGN KEY (id_Exercicio) REFERENCES Exercicio (id_Exercicio) ON DELETE SET NULL;
+ALTER TABLE treino_dia_exercicio ADD FOREIGN KEY (id_treino) REFERENCES Treino (id_treino) ON DELETE SET NULL;
 
 CREATE OR REPLACE FUNCTION verificar_expiracao_aviso()
 RETURNS void AS $$
@@ -336,35 +336,3 @@ CREATE TRIGGER update_avaliacao_timestamp_trigger
 BEFORE UPDATE ON Avaliacao
 FOR EACH ROW
 EXECUTE FUNCTION update_avaliacao_timestamp();
-
-
--- Tabela Produto_Venda
-CREATE OR REPLACE FUNCTION update_produto_venda_timestamp()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.data_atualizacao = CURRENT_TIMESTAMP;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER update_produto_venda_timestamp_trigger
-BEFORE UPDATE ON Produto_Venda
-FOR EACH ROW
-EXECUTE FUNCTION update_produto_venda_timestamp();
-
-
--- Tabela Exercicio_Dia
-CREATE OR REPLACE FUNCTION update_exercicio_dia_timestamp()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.data_atualizacao = CURRENT_TIMESTAMP;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER update_exercicio_dia_timestamp_trigger
-BEFORE UPDATE ON Exercicio_Dia
-FOR EACH ROW
-EXECUTE FUNCTION update_exercicio_dia_timestamp();
-
---SELECT verificar_expiracao_aviso();
