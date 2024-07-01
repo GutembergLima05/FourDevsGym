@@ -37,6 +37,7 @@ CREATE TABLE Exercicio
     nome VARCHAR(255) NOT NULL,  
     descricao VARCHAR(255),  
     id_Administrador INT,
+    gif_url VARCHAR(255),
     data_Criacao DATE DEFAULT CURRENT_DATE,
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
