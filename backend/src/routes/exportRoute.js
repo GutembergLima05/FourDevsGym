@@ -1,3 +1,4 @@
+const routeDashboard = require("./dashboardRoutes/dashboardRouter.js").routeDashboard;
 const routeAdm = require("./admRoutes/admRouter.js").routeAdm;
 const routeEvaluation = require("./evaluationRoutes/evaluationRouter.js").routeEvaluation;
 const routeExercise = require("./exerciseRoutes/exerciseRouter.js").routeExercise;
@@ -17,7 +18,8 @@ const allRoutes = [
     routePlan,
     routeProduct,
     routeStudent,
-    routeTraining
+    routeTraining,
+    routeDashboard
 ];
 
 module.exports = { allRoutes };
