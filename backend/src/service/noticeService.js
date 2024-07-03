@@ -28,8 +28,9 @@ function formatDates(dataCriacao, dataAtualizacao, dataExpiracao, hoursToRemoveF
     return formattedDates;
 }
 
-function formatDatesStudent(dataCriacao, dataAtualizacao, dataNascimento, hoursToRemoveFromAtualizacao = 0, timeZone = 'America/Sao_Paulo', formatString = 'dd/MM/yyyy HH:mm:ss') {
+function formatDatesStudent(dataCriacao, dataAtualizacao, dataNascimento, dataInicioPlano, hoursToRemoveFromAtualizacao = 0, timeZone = 'America/Sao_Paulo', formatString = 'dd/MM/yyyy HH:mm:ss') {
     const formattedDates = {
+        data_inicio_plano: formatDateInTimeZone(dataInicioPlano, timeZone, formatString),
         nascimento: formatDateInTimeZone(dataNascimento, timeZone, formatString),
         data_criacao: formatDateInTimeZone(dataCriacao, timeZone, formatString),
         data_atualizacao: formatDateInTimeZone(removeHoursFromDate(dataAtualizacao, hoursToRemoveFromAtualizacao), timeZone, formatString)
