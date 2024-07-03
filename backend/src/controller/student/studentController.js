@@ -1,6 +1,6 @@
-const { msgJson } = require( "../../utils/responseJson.js")
-const { knex } = require( "../../database/connection/dbConnection.js")
-const { formatDates, formatDatesStudent } = require( "../../service/noticeService.js")
+const { msgJson } = require("../../utils/responseJson.js")
+const { knex } = require("../../database/connection/dbConnection.js")
+const { formatDates, formatDatesStudent } = require("../../service/noticeService.js")
 
 const register = async (req, res) => {
     const { body, dataUnique } = req
@@ -9,21 +9,26 @@ const register = async (req, res) => {
         if (dataUnique && dataUnique.field) return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
 
         const idTreino = await knex('treino').where({ id_treino }).returning('*');
-        if (!idTreino || idTreino.length === 0 ) return msgJson(404, res, 'Treino não encontrado.')
+        if (!idTreino || idTreino.length === 0) return msgJson(404, res, 'Treino não encontrado.')
 
         const idAcademia = await knex('academia').where({ id_academia }).returning('*');
-        if (!idAcademia || idAcademia.length === 0 ) return msgJson(404, res, 'Academia não encontrada.')
+        if (!idAcademia || idAcademia.length === 0) return msgJson(404, res, 'Academia não encontrada.')
 
         const idPlano = await knex('plano').where({ id_plano }).returning('*');
-        if (!idPlano || idPlano.length === 0 ) return msgJson(404, res, 'Plano não encontrado.')
+        if (!idPlano || idPlano.length === 0) return msgJson(404, res, 'Plano não encontrado.')
 
-        const [ studentInfo ] = await knex('aluno').insert({...body}).returning('*')
+        const currentDate = new Date().toISOString().split('T')[0];
+        body.data_inicio_plano = currentDate;
+        body.plano_ativo = true;
 
-        const formattedDates = formatDatesStudent(studentInfo.data_criacao,studentInfo.data_atualizacao, studentInfo.nascimento,3);
-        
+        const [studentInfo] = await knex('aluno').insert({ ...body }).returning('*')
+
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento, studentInfo.data_inicio_plano, 3);
+
         studentInfo.nascimento = formattedDates.nascimento;
         studentInfo.data_criacao = formattedDates.data_criacao;
         studentInfo.data_atualizacao = formattedDates.data_atualizacao;
+        studentInfo.data_inicio_plano = formattedDates.data_inicio_plano
 
         msgJson(201, res, studentInfo, true)
     } catch (error) {
@@ -32,32 +37,40 @@ const register = async (req, res) => {
     }
 }
 
-const update = async(req, res) => {
-    const { params: { id: id_aluno }, body, dataUnique} = req
+const update = async (req, res) => {
+    const { params: { id: id_aluno }, body, dataUnique } = req
     const { id_academia, id_treino, id_plano } = body
 
     try {
         const dbInfo = await knex('aluno').where({ id_aluno }).returning('*');
-        if (!dbInfo || dbInfo.length === 0 ) return msgJson(404, res, 'Aluno não encontrado.')
+        if (!dbInfo || dbInfo.length === 0) return msgJson(404, res, 'Aluno não encontrado.')
 
         if (dataUnique && dataUnique.field && dbInfo[0].email !== dataUnique.idObj.email) return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
-        
+
         const idTreino = await knex('treino').where({ id_treino }).returning('*');
-        if (!idTreino || idTreino.length === 0 ) return msgJson(404, res, 'Treino não encontrado.')
+        if (!idTreino || idTreino.length === 0) return msgJson(404, res, 'Treino não encontrado.')
 
         const idAcademia = await knex('academia').where({ id_academia }).returning('*');
-        if (!idAcademia || idAcademia.length === 0 ) return msgJson(404, res, 'Academia não encontrada.')
+        if (!idAcademia || idAcademia.length === 0) return msgJson(404, res, 'Academia não encontrada.')
 
         const idPlano = await knex('plano').where({ id_plano }).returning('*');
-        if (!idPlano || idPlano.length === 0 ) return msgJson(404, res, 'Plano não encontrado.')
+        if (!idPlano || idPlano.length === 0) return msgJson(404, res, 'Plano não encontrado.')
 
-        const [ studentInfo ] = await knex('aluno').update({...body}).where({ id_aluno }).returning('*')
+        const currentPlano = dbInfo[0].id_plano;
+        if (currentPlano !== id_plano) {
+            // Plano alterado, atualizar data_inicio_plano e plano_ativo
+            body.data_inicio_plano = new Date().toISOString().split('T')[0];
+            body.plano_ativo = true;
+        }
 
-        const formattedDates = formatDatesStudent(studentInfo.data_criacao,studentInfo.data_atualizacao, studentInfo.nascimento,3);
-        
+        const [studentInfo] = await knex('aluno').update({ ...body }).where({ id_aluno }).returning('*')
+
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento,studentInfo.data_inicio_plano, 3);
+
         studentInfo.nascimento = formattedDates.nascimento;
         studentInfo.data_criacao = formattedDates.data_criacao;
         studentInfo.data_atualizacao = formattedDates.data_atualizacao;
+        studentInfo.data_inicio_plano = formattedDates.data_inicio_plano;
 
         msgJson(201, res, studentInfo, true)
     } catch (error) {
@@ -66,18 +79,19 @@ const update = async(req, res) => {
     }
 }
 
-const deleteStudent = async(req, res) => {
-    const { params: { id: id_aluno }} = req
+const deleteStudent = async (req, res) => {
+    const { params: { id: id_aluno } } = req
 
     try {
         let studentInfo = await knex('aluno').where({ id_aluno }).first().returning('*');
-        if (!studentInfo || studentInfo.length === 0 ) return msgJson(404, res, 'Aluno não encontrado.')
+        if (!studentInfo || studentInfo.length === 0) return msgJson(404, res, 'Aluno não encontrado.')
 
-        const formattedDates = formatDatesStudent(studentInfo.data_criacao,studentInfo.data_atualizacao, studentInfo.nascimento,3);
-        
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento,studentInfo.data_inicio_plano, 3);
+
         studentInfo.nascimento = formattedDates.nascimento;
         studentInfo.data_criacao = formattedDates.data_criacao;
         studentInfo.data_atualizacao = formattedDates.data_atualizacao;
+        studentInfo.data_inicio_plano = formattedDates.data_inicio_plano;
 
         await knex('aluno').where({ id_aluno }).first().del().returning('*');
 
@@ -88,18 +102,19 @@ const deleteStudent = async(req, res) => {
     }
 }
 
-const getStudentById = async(req, res) => {
-    const { params: { id: id_aluno }} = req
+const getStudentById = async (req, res) => {
+    const { params: { id: id_aluno } } = req
 
     try {
         const studentInfo = await knex('aluno').where({ id_aluno }).first().returning('*');
-        if (!studentInfo || studentInfo.length === 0 ) return msgJson(404, res, 'Aluno não encontrado.')
+        if (!studentInfo || studentInfo.length === 0) return msgJson(404, res, 'Aluno não encontrado.')
 
-        const formattedDates = formatDatesStudent(studentInfo.data_criacao,studentInfo.data_atualizacao, studentInfo.nascimento,3);
-        
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento, studentInfo.data_inicio_plano, 3);
+
         studentInfo.nascimento = formattedDates.nascimento;
         studentInfo.data_criacao = formattedDates.data_criacao;
         studentInfo.data_atualizacao = formattedDates.data_atualizacao;
+        studentInfo.data_inicio_plano = formattedDates.data_inicio_plano
 
         msgJson(201, res, studentInfo, true)
     } catch (error) {
@@ -108,17 +123,18 @@ const getStudentById = async(req, res) => {
     }
 }
 
-const getAllStudent = async(req, res) => {
+const getAllStudent = async (req, res) => {
     try {
         const studentInfo = await knex('aluno').returning('*');
         const formattedAlunoInfo = studentInfo.map(student => {
-            const formattedDates = formatDatesStudent(student.data_criacao,student.data_atualizacao, student.nascimento,3);
+            const formattedDates = formatDatesStudent(student.data_criacao, student.data_atualizacao, student.nascimento, student.data_inicio_plano, 3);
 
             return {
                 ...student,
                 nascimento: formattedDates.nascimento,
                 data_criacao: formattedDates.data_criacao,
                 data_atualizacao: formattedDates.data_atualizacao,
+                data_inicio_plano: formattedDates.data_inicio_plano
             };
         });
 
