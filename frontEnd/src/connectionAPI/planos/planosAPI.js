@@ -1,4 +1,4 @@
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hZG0iOjEwLCJlbWFpbCI6InJlY2VwY2lvbmlzdGFAZ21haWwuY29tIiwibm9tZSI6Ikplc3NpY2EiLCJjYXJnbyI6InBlcnNvbmFsIiwiaWRfYWNhZGVtaWEiOjEsImRhdGFfY3JpYWNhbyI6IjI3LzA2LzIwMjQgMjE6MDA6MDAiLCJkYXRhX2F0dWFsaXphY2FvIjoiMjgvMDYvMjAyNCAwOTozNToyNSIsIm5vbWVfYWNhZGVtaWEiOiJTb2FyZXMgRml0IiwiaWF0IjoxNzE5NjE3MDk2LCJleHAiOjE3MjAyMjE4OTZ9.QxljkMD7VUIci6GQgvbbHaZkkbF4T-BaKBh2L73rTwA";
+const token = localStorage.getItem('tokenAdm');
 const lista_planos = document.getElementById("planos-lista");
 const URLPlans = "https://apigym-fourdevs.vercel.app/plan";
 
