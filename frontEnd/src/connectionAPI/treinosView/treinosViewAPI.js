@@ -58,9 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     editIcon.addEventListener('click', (event) => {
                         event.stopPropagation(); // Evita que o evento de clique no acordeão seja acionado
                         const treinoId = accordionHeader.dataset.id;
-                        openPopup(`Precisando fazer a lógica para editar | Id do treino:${treinoId}`, function () {
-
-                        });
+                        window.location.href = `../treinosEdit/treinosEdit.html?TreinoEditId=${treinoId}`;
                     });
 
                     deleteIcon.addEventListener('click', (event) => {
