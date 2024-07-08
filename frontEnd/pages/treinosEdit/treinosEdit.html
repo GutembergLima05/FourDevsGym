@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Links globais obrigatório nas páginas-->
+    <script src="../../public/headerMain/js/headerMain.js" defer></script>
+    <script src="../../src/components/nav/js/nav.js" defer></script>
+    <script src="../../src/components/preloader/js/preloader.js" defer></script>
+    <script src="../../public/jsMain/jsMain.js" defer></script>
+
+    <link rel="stylesheet" href="../../src/components/menuTreinos/style/menuTreinos.css">
+
+    <!--estilo local-->
+    <link rel="stylesheet" href="style/treinosEdit.css">
+    <script defer src="../../src/connectionAPI/treinosEdit/treinosEditAPI.js"></script>
+
+
+    <script defer src="js/treinosEdit.js"></script>
+</head>
+
+<body>
+    <nav id="nav-contraida"style="display:none;"></nav>
+
+    <section id="treinosView" class="contain-main"style="display:none;">
+        <div id="contain-dashboard" class="contain-secondary">
+            <h1  class="title-contain-main">Treinos - Edição</h1>
+           
+            <div id="nomeDescricao">
+                <input type="text" id="InputNomeTreino" placeholder="Nome do Treino" required>
+                <textarea id="TextareaDescricaoTreino" placeholder="Descrição" required></textarea>
+            </div>
+
+            <div id="diaDivisoes">
+                <!-- <div class="containersDivisoes">Dia 1</div> -->
+                <div id="addDivisoes">+ Dia</div>
+            </div>
+            <div id="exercicioTreino">
+                <div id="buscarExercicio">
+                    <input type="text" id="inputBuscarExercicio" placeholder="Pesquise o exercicio">
+                    <div id="resultadosExercicios">
+                        <!-- <div class="exercicio">
+                            <img src="../../public/assets/images/halteresLogin.gif" alt="">
+                            <div class="nome-exercicio">Supino Inclinado</div>
+                            <div class="serie-exercicio">3</div>
+                            <div>X</div>
+                            <div class="rep-exercicio">12</div>
+                            <div class="addExercicio">Add</div>
+                        </div> -->
+                        <div id="preloaderExercicios">
+                            <img src="../../public/assets/images/logoFourDevsGym.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="diasCorrespondentes">
+                    <!-- <div class="dia" data-set="conteudo-dia1">
+                        <div class="nome_dia">Dia 1</div>
+                        <div class="exercicio">
+                            <img src="../../public/assets/images/halteresLogin.gif" alt="">
+                            <div class="nome-exercicio">Supino Inclinado</div>
+                            <div class="serie-exercicio">3</div>
+                            <div>X</div>
+                            <div class="rep-exercicio">12</div>
+                        </div>
+                        <div class="exercicio">
+                            <img src="../../public/assets/images/halteresLogin.gif" alt="">
+                            <div class="nome-exercicio">Supino Inclinado</div>
+                            <div class="serie-exercicio">3</div>
+                            <div>X</div>
+                            <div class="rep-exercicio">12</div>
+                        </div> -->
+                    <div class="dia" data-set="1">
+                        <div class="nome_dia">Dia 1 <i class="bi bi-trash-fill"></i></div>
+                    </div>
+
+                    <div class="dia" data-set="2">
+                        <div class="nome_dia">Dia 2 <i class="bi bi-trash-fill"></i></div>
+                    </div>
+                    <div class="dia" data-set="3">
+                        <div class="nome_dia">Dia 3 <i class="bi bi-trash-fill"></i></div>
+                    </div>
+                    <div class="dia" data-set="4">
+                        <div class="nome_dia">Dia 4 <i class="bi bi-trash-fill"></i></div>
+                    </div>
+                    <div class="dia" data-set="5">
+                        <div class="nome_dia">Dia 5 <i class="bi bi-trash-fill"></i></div>
+                    </div>
+                    <div class="dia" data-set="6">
+                        <div class="nome_dia">Dia 6 <i class="bi bi-trash-fill"></i></div>
+                    </div>
+                    <div class="dia" data-set="7">
+                        <div class="nome_dia">Dia 7 <i class="bi bi-trash-fill"></i></div>
+                    </div>
+        
+                </div>
+            </div>
+            <button id="enviarTreino">Adicionar<i class="bi bi-check"></i></button>
+        </div>
+       
+        </div>
+    </section>
+</body>
+
+</html>
