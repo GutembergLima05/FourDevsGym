@@ -222,3 +222,8 @@
         transform: scale(2);
     }
 }
+@media screen and (max-width: 800px) {
+    #enviarTreino{
+        margin-left: 80%;
+    }
+}
