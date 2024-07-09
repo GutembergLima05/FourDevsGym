@@ -26,7 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data.success && data.conteudoJson) {
                 const treinos = data.conteudoJson;
+                if(treinos.length <1){
+                   // Cria o elemento h4
+let aviso = document.createElement('p');
 
+// Define o texto do elemento h4
+aviso.innerText = "Nenhum Treino Encontrado!😞";
+
+// Obtém o contêiner onde o elemento será inserido
+let containSecondary = document.querySelector('.contain-secondary');
+
+// Adiciona o elemento h4 dentro do contêiner
+if (containSecondary) {
+    containSecondary.appendChild(aviso);
+}
+                }
                 treinos.forEach(treino => {
                     if (!treino.id_treino || !treino.nome) {
                         console.error('Dados do treino inválidos:', treino);
