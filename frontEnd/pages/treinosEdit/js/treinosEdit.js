@@ -1,166 +1,294 @@
 document.addEventListener('DOMContentLoaded', function () {
     const tokenAdm = localStorage.getItem('tokenAdm'); // Obtém o token do localStorage
-    const urlParams = new URLSearchParams(window.location.search);
-    const idTreino = urlParams.get('TreinoEditId'); // Obtém o ID do treino da query string
 
-       // Função para preencher os dados do treino nos campos de edição
-       function preencherDadosTreino(treino) {
-        // Verificar se treino existe e se possui a estrutura esperada
-        if (treino && Array.isArray(treino.dias)) {
-            // Preencher os campos de nome e descrição do treino
-            document.getElementById('InputNomeTreino').value = treino.treino.nome;
-            document.getElementById('TextareaDescricaoTreino').value = treino.treino.descricao;
+    // Obtém o valor do parâmetro TreinoEditId da URL e converte para número
+    const treinoEditId = parseInt(new URLSearchParams(window.location.search).get('TreinoEditId'));
 
-            // Limpar dias existentes
-            const diaDivisoes = document.getElementById('diaDivisoes');
-            diaDivisoes.innerHTML = '';
+    // Verifica se o valor foi obtido corretamente e é um número válido
+    if (!isNaN(treinoEditId)) {
+        //console.log('Valor do parâmetro TreinoEditId:', treinoEditId);
 
-            // Adicionar cada dia do treino aos dias correspondentes
-            treino.dias.forEach(dia => {
-                const newDiv = document.createElement('div');
-                newDiv.classList.add('dia');
-                newDiv.dataset.set = `conteudo-dia${dia.id_dia}`;
+        const apiUrl = `https://apigym-fourdevs.vercel.app/training/${treinoEditId}`;
 
-                // Adicionar nome do dia
-                const nomeDia = document.createElement('div');
-                nomeDia.classList.add('nome_dia');
-                nomeDia.textContent = `Dia ${dia.id_dia}`;
-                newDiv.appendChild(nomeDia);
+        // Fazer a requisição GET para a API
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenAdm}`
+            }
+        })
+            .then(response => response.json())
+            .then(responseData => {
+   
+                // console.log('Success:', responseData);
+                const dias = responseData.conteudoJson.dias;
+                dias.forEach(dia => {
+                    addNewDay(dia); // Adiciona cada dia retornado pela API ao menu
+                });
+               
+                document.getElementById('InputNomeTreino').value=responseData.conteudoJson.treino.nome
+                document.getElementById('TextareaDescricaoTreino').value=responseData.conteudoJson.treino.descricao
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    } 
 
-                // Adicionar exercícios do dia
-                if (dia.exercicios && Array.isArray(dia.exercicios)) {
-                    dia.exercicios.forEach(exercicio => {
-                        const divExercicio = document.createElement('div');
-                        divExercicio.classList.add('exercicio');
+    var diasAdicionados = []; // Array para armazenar os dias adicionados
+    // Função para adicionar um novo dia
+    function addNewDay(newDia) {
+        // Verifica se já atingiu o limite máximo de 7 dias
+        if (diasAdicionados.length >= 7) {
+            alert('Você atingiu o limite máximo de 7 dias.');
+            return;
+        }
 
-                        // Adicionar imagem (substitua pelo seu caminho de imagem real)
-                        const imgExercicio = document.createElement('img');
-                        imgExercicio.src = '../../public/assets/images/halteresLogin.gif';
-                        imgExercicio.alt = '';
+        if (!newDia.isTrusted) {
+            // Cria o elemento div com o número do dia
+            const newDiv = createDayElement(newDia);
+            const dia = newDia.id_dia
 
-                        // Adicionar nome do exercício
-                        const nomeExercicio = document.createElement('div');
-                        nomeExercicio.classList.add('nome-exercicio');
-                        nomeExercicio.textContent = exercicio.nome_exercicio;
 
-                        // Adicionar série e repetições
-                        const serieExercicio = document.createElement('div');
-                        serieExercicio.classList.add('serie-exercicio');
-                        serieExercicio.textContent = exercicio.series;
+            // Verifica se newDia possui a propriedade exercicio e é um array
+            if (newDia.exercicios && Array.isArray(newDia.exercicios)) {
+                newDia.exercicios.forEach(exercicio => {
+                    exibirExercicioAPI(exercicio, newDia.id_dia); // Passa exercicio e id_dia para a função
+                });
+            } else {
+                console.warn('newDia.exercicio não é um array ou é indefinido:', newDia.exercicio);
+            }
+            // Adiciona o novo div dentro de #diaDivisoes, mantendo a ordem correta
+            insertDayInOrder(newDiv);
 
-                        const divX = document.createElement('div');
-                        divX.textContent = 'X';
+            // Adiciona o dia ao array de dias adicionados
+            diasAdicionados.push(newDia);
 
-                        const repExercicio = document.createElement('div');
-                        repExercicio.classList.add('rep-exercicio');
-                        repExercicio.textContent = exercicio.repeticoes;
 
-                        // Adicionar elementos de exercício à div de exercício
-                        divExercicio.appendChild(imgExercicio);
-                        divExercicio.appendChild(nomeExercicio);
-                        divExercicio.appendChild(serieExercicio);
-                        divExercicio.appendChild(divX);
-                        divExercicio.appendChild(repExercicio);
+        } else {
+            function encontrarOuAdicionarProximoIdDia(diasArray) {
+                // Ordena o array pelos id_dia para facilitar a busca
+                diasArray.sort((a, b) => a.id_dia - b.id_dia);
 
-                        // Adicionar div de exercício ao dia
-                        newDiv.appendChild(divExercicio);
-                    });
+                let proximoId = 1;
+
+                // Percorre o array para encontrar o próximo id_dia faltando
+                for (let i = 0; i < diasArray.length; i++) {
+                    if (diasArray[i].id_dia !== proximoId) {
+                        // Se encontrou um id_dia faltando, retorna ele
+                        return proximoId;
+                    }
+                    proximoId++;
                 }
 
-                // Adicionar o novo dia ao DOM
-                diaDivisoes.appendChild(newDiv);
-            });
-        } else {
-            console.error('Erro: Não foram encontrados dados válidos para o treino:', treino);
-            // Exibir mensagem de erro ou tratar conforme necessário
+                // Se todos os números estiverem presentes até o último, adiciona o próximo número
+                return proximoId;
+            }
+
+            // Chama a função para encontrar ou adicionar o próximo id_dia
+            const proximoIdDia = encontrarOuAdicionarProximoIdDia(diasAdicionados);
+
+
+            // Exibe o próximo id_dia encontrado ou adicionado
+            //console.log("Próximo id_dia:", proximoIdDia);
+
+            // Adiciona o próximo id_dia ao array
+            const diaDeTreinoManual = { id_dia: proximoIdDia, dia_nome: 'Dia ' + proximoIdDia, exercicios: [0] };
+            diasAdicionados.push(diaDeTreinoManual);
+            var newDiv = createDayElement(diaDeTreinoManual);
+
+            // Adiciona o novo div dentro de #diaDivisoes, mantendo a ordem correta
+            insertDayInOrder(newDiv);
+
+
+            // Exibe o array atualizado
+            //console.log("Array atualizado:", diasAdicionados);
+            //console.log("manual")
+        }
+        // Remove o evento de clique para impedir múltiplas adições consecutivas após o sétimo dia
+        if (diasAdicionados.length >= 7) {
+            document.getElementById('addDivisoes').removeEventListener('click', addNewDay);
+            document.getElementById('addDivisoes').style.display = "none";
         }
     }
 
-    // Fazer requisição GET para obter os dados do treino específico
-    fetch(`https://apigym-fourdevs.vercel.app/training/${idTreino}`, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${tokenAdm}`
+    // Função para criar um novo elemento de dia com o número fornecido
+    function createDayElement(dia) {
+        var newDiv = document.createElement('div');
+        newDiv.classList.add('containersDivisoes');
+
+        newDiv.dataset.menuDia = dia.id_dia;
+        newDiv.textContent = dia.dia_nome; // Conteúdo do div com o número do dia
+
+        // Adiciona evento de clique para o novo div de dia
+        newDiv.addEventListener('click', function () {
+            removeSelected();
+            newDiv.classList.add("selected");
+            showDayContent(dia);
+        });
+
+        return newDiv;
+    }
+
+    // Função para inserir um novo dia na ordem correta no menu
+    function insertDayInOrder(newDiv) {
+        var diaDivisoes = document.getElementById('diaDivisoes');
+        var currentDivs = diaDivisoes.querySelectorAll('.containersDivisoes');
+
+        // Encontra o ponto de inserção correto
+        var insertIndex = 0;
+        while (insertIndex < currentDivs.length && parseInt(currentDivs[insertIndex].dataset.menuDia) < parseInt(newDiv.dataset.menuDia)) {
+            insertIndex++;
         }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success && data.conteudoJson && data.conteudoJson.treino) {
-            const treino = data.conteudoJson;
-            preencherDadosTreino(treino); // Preencher os dados do treino nos campos de edição
+
+        // Insere o novo div na posição correta
+        if (insertIndex < currentDivs.length) {
+            diaDivisoes.insertBefore(newDiv, currentDivs[insertIndex]);
         } else {
-            console.error('Erro ao obter os dados do treino:', data);
-            // Exibir mensagem de erro ou tratar conforme necessário
+            diaDivisoes.appendChild(newDiv);
         }
-    })
-    .catch(error => {
-        console.error('Erro na requisição:', error);
-        // Exibir mensagem de erro ou tratar conforme necessário
+    }
+
+    // Restante do seu código para manipulação do menu...
+
+
+    document.getElementById('addDivisoes').addEventListener('click', addNewDay);
+
+    var iconsTrash = document.querySelectorAll('.bi-trash-fill');
+    iconsTrash.forEach(function (icon) {
+        icon.addEventListener('click', function () {
+            var diaToRemove = this.parentNode.parentNode;
+            var Nmenu = diaToRemove.dataset.set;
+
+            // Retira os exercicio apos ser excluido
+            const elementosParaRemover = diaToRemove.querySelectorAll('.exercicio'); // Substitua 'suaClasse' pela classe específica
+            // Remover cada elemento encontrado
+            elementosParaRemover.forEach(elemento => {
+                elemento.remove();
+            });
+
+            let elementos = document.querySelectorAll('[data-menu-dia="' + Nmenu + '"]');
+
+            elementos.forEach(elemento => {
+                elemento.style.display = "none";
+                elemento.remove();
+                document.getElementById('addDivisoes').style.display = "flex";
+                // Remove o dia do array de dias adicionados
+                // Supondo que Nmenu contenha o id_dia que você deseja remover do array diasAdicionados
+                var indexToRemove = diasAdicionados.findIndex(item => item.id_dia === parseInt(Nmenu));
+
+                if (indexToRemove !== -1) {
+                    diasAdicionados.splice(indexToRemove, 1);
+                }
+                //console.log(diasAdicionados)
+            });
+
+            diaToRemove.style.display = 'none';
+
+            if (diasAdicionados.length < 7) {
+                document.getElementById('addDivisoes').addEventListener('click', addNewDay);
+                document.getElementById('addDivisoes').style.display = "flex";
+            }
+        });
     });
 
-    function createDayElement(idDia) {
-        const div = document.createElement('div');
-        div.setAttribute('data-dia-id', idDia);
-        div.classList.add('diaTreino'); // Adicione as classes necessárias conforme sua estrutura
-    
-        // Aqui você pode adicionar mais elementos ou personalizar conforme necessário
-        const title = document.createElement('h3');
-        title.textContent = `Dia ${idDia}`;
-        div.appendChild(title);
-    
-        return div;
-    }
-    function criarDivExercicio(exercicio) {
-        const div = document.createElement('div');
-        div.classList.add('exercicio');
-        div.setAttribute('data-exercicio-id', exercicio.id_exercicio);
-    
-        const nomeExercicio = document.createElement('p');
-        nomeExercicio.textContent = `Exercício: ${exercicio.nome}`;
-        div.appendChild(nomeExercicio);
-    
-        const seriesLabel = document.createElement('label');
-        seriesLabel.textContent = 'Séries:';
-        const seriesInput = document.createElement('input');
-        seriesInput.type = 'number';
-        seriesInput.value = exercicio.series;
-        seriesInput.classList.add('serie-exercicio');
-        div.appendChild(seriesLabel);
-        div.appendChild(seriesInput);
-    
-        const repeticoesLabel = document.createElement('label');
-        repeticoesLabel.textContent = 'Repetições:';
-        const repeticoesInput = document.createElement('input');
-        repeticoesInput.type = 'number';
-        repeticoesInput.value = exercicio.repeticoes;
-        repeticoesInput.classList.add('rep-exercicio');
-        div.appendChild(repeticoesLabel);
-        div.appendChild(repeticoesInput);
-    
-        return div;
-    }
-    function insertDayInOrder(newDiv) {
-        const diaDivisoes = document.getElementById('diaDivisoes');
-        const existingDivs = Array.from(diaDivisoes.children);
-    
-        // Encontrar o índice correto para inserir newDiv em ordem crescente
-        let insertIndex = 0;
-        for (let i = 0; i < existingDivs.length; i++) {
-            const existingDivId = parseInt(existingDivs[i].dataset.menuDia);
-            const newDivId = parseInt(newDiv.dataset.menuDia);
-            if (existingDivId < newDivId) {
-                insertIndex = i + 1;
-            } else {
-                break;
+    // Função para encontrar o próximo dia disponível para adição
+    function findNextDay() {
+
+        // Extrai os id_dia dos objetos na lista diasAdicionados
+        let idsAdicionados = diasAdicionados.map(dia => dia.id_dia);
+
+        for (var i = 1; i <= 7; i++) {
+            if (!idsAdicionados.includes(i)) {
+
+                return i;
             }
         }
-    
-        // Inserir newDiv na posição correta
-        if (insertIndex >= existingDivs.length) {
-            diaDivisoes.appendChild(newDiv);
-        } else {
-            diaDivisoes.insertBefore(newDiv, existingDivs[insertIndex]);
+
+        return 1; // Caso todos os dias tenham sido adicionados, retorna 1 como padrão
+    }
+
+
+    function showDayContent(dayNumber) {
+
+        var diasCorrespondentes = document.getElementById('diasCorrespondentes').querySelectorAll('.dia');
+        for (var i = 0; i < diasCorrespondentes.length; i++) {
+            diasCorrespondentes[i].style.display = 'none';
+        }
+
+        var diaToShow = document.querySelector('.dia[data-set="' + dayNumber.id_dia + '"]');
+        if (diaToShow) {
+            diaToShow.style.display = 'block';
         }
     }
-            
+
+    function removeSelected() {
+        let divsDias = Array.from(document.querySelectorAll('.containersDivisoes'));
+        divsDias.forEach(element => {
+            element.classList.remove("selected");
+        });
+    }
+
+
+
+
+    function exibirExercicioAPI(exercicio, dia) {
+        // Encontrar a div .dia correspondente ao data-set
+        const divDia = document.querySelector(`.dia[data-set="${dia}"]`);
+
+        if (divDia) {
+            const divExercicio = document.createElement('div');
+            divExercicio.classList.add('exercicio');
+
+            // Adicionar data-exercicio-id com o ID do exercício
+            divExercicio.dataset.exercicioId = exercicio.id_exercicio;
+
+            const imgExercicio = document.createElement('img');
+            imgExercicio.src = exercicio.gif_url; // Aqui você usaria a URL do GIF do exercício
+            imgExercicio.alt = exercicio.nome;
+
+            const nomeExercicio = document.createElement('div');
+            nomeExercicio.classList.add('nome-exercicio');
+            nomeExercicio.textContent = exercicio.nome;
+
+            const inputSerie = document.createElement('input');
+            inputSerie.type = 'number';
+            inputSerie.classList.add('serie-exercicio');
+            inputSerie.value = '3'; // Valor inicial da série, ajuste conforme necessário
+
+            const divMultiplicacao = document.createElement('div');
+            divMultiplicacao.textContent = 'X';
+
+            const inputRep = document.createElement('input');
+            inputRep.type = 'number';
+            inputRep.classList.add('rep-exercicio');
+            inputRep.value = '12'; // Valor inicial das repetições, ajuste conforme necessário
+
+            const divAddExercicio = document.createElement('div');
+            divAddExercicio.classList.add('deleteExercicio');
+            divAddExercicio.innerHTML = '<i class="bi bi-trash-fill"></i>'; // Botão ou elemento para adicionar exercício, ajuste conforme necessário
+
+            // Adicionar evento de clique ao botão "Add"
+            divAddExercicio.addEventListener('click', function () {
+                //adicionarExercicio(divExercicio, exercicio.id_exercicio);
+                const exercicioAddAPI = divAddExercicio.parentElement;
+                exercicioAddAPI.remove()
+                
+            });
+
+            // Adicionar elementos ao div do exercício
+            divExercicio.appendChild(imgExercicio);
+            divExercicio.appendChild(nomeExercicio);
+            divExercicio.appendChild(inputSerie);
+            divExercicio.appendChild(divMultiplicacao);
+            divExercicio.appendChild(inputRep);
+            divExercicio.appendChild(divAddExercicio);
+
+            // Adicionar divExercicio à div .dia correspondente
+            divDia.appendChild(divExercicio);
+        }
+    }
+   
 });
+
+
