@@ -170,16 +170,16 @@ enviarTreino.addEventListener('click', function () {
         let InputNomeTreino = document.getElementById('InputNomeTreino').value;
         let TextareaDescricaoTreino = document.getElementById('TextareaDescricaoTreino').value;
         let id_administrador = localStorage.getItem('id_Adm');
-        //let alerta = document.getElementById('alerta');
-        //MostrarAlerta("Enviando...");
+     
+        mostrarAlerta("Enviando...",9000000);
         // Verificar se os inputs não estão vazios
         if (!InputNomeTreino) {
-            MostrarAlerta("O nome do treino está vazio.");
+            mostrarAlerta("O nome do treino está vazio.",5000);
             return null;
         }
 
         if (!TextareaDescricaoTreino) {
-            MostrarAlerta("A descrição do treino está vazia.");
+            mostrarAlerta("A descrição do treino está vazia.",5000);
             return null;
         }
 
@@ -218,7 +218,7 @@ enviarTreino.addEventListener('click', function () {
 
         // Verifica se há algum dia de treino com exercício
         if (treino.dias.length === 0) {
-            MostrarAlerta("Nenhum dia de treino com exercícios foi encontrado.");
+            mostrarAlerta("Nenhum dia de treino com exercícios foi encontrado.",5000);
             return null;
         }
 
@@ -248,7 +248,7 @@ enviarTreino.addEventListener('click', function () {
             })
             .catch(error => {
                 console.error('Erro ao enviar treino:', error);
-                MostrarAlerta('Erro ao enviar treino. Verifique o console para mais detalhes.');
+                mostrarAlerta('Erro ao enviar treino. Fale com os desenvolvedores Instagram: @fourdevs',5000);
             });
     }
 });

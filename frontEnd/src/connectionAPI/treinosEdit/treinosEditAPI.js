@@ -168,16 +168,16 @@ document.addEventListener('DOMContentLoaded', function () {
             let InputNomeTreino = document.getElementById('InputNomeTreino').value;
             let TextareaDescricaoTreino = document.getElementById('TextareaDescricaoTreino').value;
             let id_administrador = localStorage.getItem('id_Adm');
-            //let alerta = document.getElementById('alerta');
-            //MostrarAlerta("Enviando...");
+            
+            mostrarAlerta("Enviando...", 90000000);
             // Verificar se os inputs não estão vazios
             if (!InputNomeTreino) {
-                MostrarAlerta("O nome do treino está vazio.");
+                mostrarAlerta("O nome do treino está vazio.",5000);
                 return null;
             }
 
             if (!TextareaDescricaoTreino) {
-                MostrarAlerta("A descrição do treino está vazia.");
+                mostrarAlerta("A descrição do treino está vazia.", 5000);
                 return null;
             }
 
