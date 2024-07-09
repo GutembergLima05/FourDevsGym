@@ -21,12 +21,12 @@
 </head>
 
 <body>
-    <nav id="nav-contraida"style="display:none;"></nav>
-
-    <section id="treinosView" class="contain-main"style="display:none;">
+    <nav id="nav-contraida" style="display:none;"></nav>
+    <div id="preloader-treino"><img src="../../public/assets/images/logoFourDevsGym.png" alt=""></div>
+    <section id="treinosView" class="contain-main" style="display:none;">
         <div id="contain-dashboard" class="contain-secondary">
-            <h1  class="title-contain-main">Treinos - Edição</h1>
-           
+            <h1 class="title-contain-main">Treinos - Edição</h1>
+
             <div id="nomeDescricao">
                 <input type="text" id="InputNomeTreino" placeholder="Nome do Treino" required>
                 <textarea id="TextareaDescricaoTreino" placeholder="Descrição" required></textarea>
@@ -53,9 +53,7 @@
                         </div>
                     </div>
                 </div>
-
-                <div id="diasCorrespondentes">
-                    <!-- <div class="dia" data-set="conteudo-dia1">
+  <!-- <div class="dia" data-set="conteudo-dia1">
                         <div class="nome_dia">Dia 1</div>
                         <div class="exercicio">
                             <img src="../../public/assets/images/halteresLogin.gif" alt="">
@@ -71,6 +69,8 @@
                             <div>X</div>
                             <div class="rep-exercicio">12</div>
                         </div> -->
+                <div id="diasCorrespondentes">
+                  
                     <div class="dia" data-set="1">
                         <div class="nome_dia">Dia 1 <i class="bi bi-trash-fill"></i></div>
                     </div>
@@ -93,12 +93,12 @@
                     <div class="dia" data-set="7">
                         <div class="nome_dia">Dia 7 <i class="bi bi-trash-fill"></i></div>
                     </div>
-        
+
                 </div>
             </div>
-            <button id="enviarTreino">Adicionar<i class="bi bi-check"></i></button>
+            <button id="enviarTreino">Editar<i class="bi bi-check"></i></button>
         </div>
-       
+
         </div>
     </section>
 </body>
