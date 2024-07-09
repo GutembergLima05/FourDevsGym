@@ -6,10 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Verifica se o valor foi obtido corretamente e é um número válido
     if (!isNaN(treinoEditId)) {
-        //console.log('Valor do parâmetro TreinoEditId:', treinoEditId);
 
         const apiUrl = `https://apigym-fourdevs.vercel.app/training/${treinoEditId}`;
-
+      
         // Fazer a requisição GET para a API
         fetch(apiUrl, {
             method: 'GET',
@@ -32,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch((error) => {
                 console.error('Error:', error);
+                window.location = "../treinosView/treinosView.html";
             });
     } 
 

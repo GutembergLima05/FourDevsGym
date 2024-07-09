@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function addNewDay() {
         // Verifica se já atingiu o limite máximo de 7 dias
         if (diasAdicionados.length >= 7) {
-            alert('Você atingiu o limite máximo de 7 dias.');
+            mostrarAlerta('Você atingiu o limite máximo de 7 dias.');
             return;
         }
 
