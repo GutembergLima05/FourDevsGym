@@ -199,6 +199,9 @@
     width: 90%;
 }
 
+.g-recaptcha{
+   margin: 2%;
+}
 @media screen and (max-width: 800px) {
     #login {
         flex-direction: column;
@@ -247,6 +250,9 @@
     }
     #preloaderLogin{
         margin: 5% 0 0 0;
+    }
+    .g-recaptcha{
+        transform: scale(0.8);
     }
 }
 

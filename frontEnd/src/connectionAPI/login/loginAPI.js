@@ -7,8 +7,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     form.addEventListener('submit', function(e) {
         e.preventDefault(); // Impede o envio padrão do formulário
-        checkLogin();
+        checkRecaptcha(); // Verifica o reCAPTCHA antes de prosseguir com o login
     });
+
+    async function checkRecaptcha() {
+        const token = grecaptcha.getResponse();
+        if (!token) {
+            resultDiv.innerText = "Por favor, confirme que você não é um robô.";
+            return; // Impede o envio do formulário se o reCAPTCHA não estiver validado
+        }
+
+        await checkLogin();
+    }
 
     async function checkLogin() {
         // Mostra o preloader
