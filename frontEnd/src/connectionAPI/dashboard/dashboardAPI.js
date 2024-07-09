@@ -16,9 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('numero-ausente').textContent = conteudo.alunos_sem_plano_ativo;
                 
                 const aniversariantes = conteudo.aniversariantes;
+                
                 if (aniversariantes.length > 0) {
                     document.getElementById('numero-aniversariantes').textContent = aniversariantes.length;
-                    document.getElementById('lista-aniversariantes').textContent = aniversariantes.join(' ');
+                    
+                    // Construir a lista de nomes dos aniversariantes com quebras de linha
+                    const listaNomes = aniversariantes.map(aniversariante => aniversariante.nome).join('<br>');
+                    document.getElementById('lista-aniversariantes').innerHTML = listaNomes;
                 } else {
                     document.getElementById('numero-aniversariantes').textContent = '0';
                     document.getElementById('lista-aniversariantes').textContent = 'Nenhum';
