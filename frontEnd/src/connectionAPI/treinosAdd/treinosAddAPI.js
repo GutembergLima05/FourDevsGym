@@ -228,6 +228,7 @@ enviarTreino.addEventListener('click', function () {
     // Exemplo de uso
     const treinoObj = parseHTMLToObj();
     if (treinoObj) {
+        
         // Realizar a requisição POST para a API com os dados do treino
         fetch('https://apigym-fourdevs.vercel.app/training/', {
             method: 'POST',
