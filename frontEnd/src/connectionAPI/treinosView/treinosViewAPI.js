@@ -90,9 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 accordionContent.innerHTML = '';
                                 if (conteudoJson.dias.length === 0) accordionContent.innerText = "Vazio";
                                 conteudoJson.dias.forEach((dia, indexDia) => {
+                                    console.log(dia)
                                     const divDia = document.createElement('div');
                                     divDia.classList.add('dia');
-                                    divDia.innerHTML = `<div class="nome_dia">Dia ${indexDia + 1}</div>`;
+                                    divDia.innerHTML = `<div class="nome_dia">${dia.dia_nome }</div>`;
 
                                     dia.exercicios?.forEach(exercicio => {
                                         const divExercicio = document.createElement('div');
