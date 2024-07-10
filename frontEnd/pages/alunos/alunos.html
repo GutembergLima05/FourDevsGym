@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Links globais obrigatório nas páginas-->
+    <script src="../../public/headerMain/js/headerMain.js" defer></script>
+    <script src="../../src/components/nav/js/nav.js" defer></script>
+    <script src="../../src/components/preloader/js/preloader.js" defer></script>
+    <script src="../../public/jsMain/jsMain.js" defer></script>
+
+    <!-- Estilo local -->
+    <link rel="stylesheet" href="style/alunos.css">
+    <script defer src="../../src/connectionAPI/alunosAPI/alunosAPI.js"></script>
+    <script defer src="js/alunos.js"></script>
+    <script defer src="../../src/components/alerta/js/alerta.js"></script>
+
+</head>
+
+<body>
+    <nav id="nav-contraida" style="display:none;"></nav>
+    <div id="contain-alerta"></div>
+
+    <section id="treinosView" class="contain-main" style="display: none;">
+        <div id="contain-dashboard" class="contain-secondary">
+          
+
+                <div id="nomeDescricao">
+                    <h1 class="title-contain-main">Alunos</h1>
+                    <a href=""><button id="cadastrar">Cadastrar <i class="bi bi-plus-lg"></i></button></a>
+                    <input type="text" id="InputNomeTreino" placeholder="Procure o Aluno pelo Nome" required>
+                </div>
+        </div>
+    </section>
+</body>
+
+</html>
