@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 document.getElementById('data-niver').querySelector('h4').textContent = todayFormatted;
 
-                document.getElementById('dashboard').style.display = 'block';
+                //document.getElementById('dashboard').style.display = 'block';
             } else {
                 console.error('Erro ao receber os dados da API.');
             }
