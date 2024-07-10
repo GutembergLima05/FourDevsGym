@@ -9,8 +9,13 @@ CREATE TABLE Aluno
     historico VARCHAR(255),
     data_inicio_plano DATE,
     plano_ativo BOOLEAN DEFAULT FALSE,  
+<<<<<<< HEAD
     id_Academia INT NOT NULL,  
     id_Treino INT NOT NULL,  
+=======
+    id_Academia INT,  
+    id_Treino INT,  
+>>>>>>> wilkenio
     id_Plano INT,
     data_Criacao DATE DEFAULT CURRENT_DATE,
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
@@ -140,19 +145,32 @@ CREATE TABLE Produto_Venda
 ( 
     id_Venda INT,  
     id_Produto INT,  
+<<<<<<< HEAD
     Quantidade INT NOT NULL,  
     Valor FLOAT NOT NULL,  
+=======
+    Quantidade INT,  
+    Valor FLOAT,  
+>>>>>>> wilkenio
     PRIMARY KEY (id_Venda, id_Produto),
     data_Criacao DATE DEFAULT CURRENT_DATE,
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE treino_dia_exercicio (
+<<<<<<< HEAD
     id_treino INT NOT NULL,
     id_dia INT NOT NULL,
     id_exercicio INT NOT NULL,
     repeticoes INT NULL,
     series INT NULL
+=======
+    id_treino INT,
+    id_dia INT,
+    id_exercicio INT,
+    repeticoes INT,
+    series INT
+>>>>>>> wilkenio
 );
 
 INSERT INTO dia(nome) values ('Dia 1'), ('Dia 2'), ('Dia 3'), ('Dia 4'), ('Dia 5'),('Dia 6'),('Dia 7') 
