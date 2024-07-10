@@ -7,10 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const headers = new Headers();
+<<<<<<< HEAD
     headers.append('Authorization', `Bearer ${token}`);
 
     const preloaderTreino = document.getElementById('preloader-treino');
 
+=======
+
+    headers.append('Authorization', `Bearer ${token}`);
+    headers.append('Cache-Control', 'no-cache'); // Adicionando o header Cache-Control
+
+    const preloaderTreino = document.getElementById('preloader-treino');
+    const accordionContainer = document.querySelector('.accordion');
+    preloaderTreino.style.display="flex"
+>>>>>>> wilkenio
     fetch('https://apigym-fourdevs.vercel.app/training', {
         method: 'GET',
         headers: headers
@@ -22,11 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
+<<<<<<< HEAD
            // console.log('Resposta da API:', data);
             if (data.success && data.conteudoJson) {
                 const treinos = data.conteudoJson;
                 const accordionContainer = document.querySelector('.accordion');
 
+=======
+            if (data.success && data.conteudoJson) {
+                 preloaderTreino.style.display="none"
+                const treinos = data.conteudoJson;
+                if (treinos.length < 1) {
+                    // Cria o elemento h4
+                    let aviso = document.createElement('p');
+
+                    // Define o texto do elemento h4
+                    aviso.innerText = "Nenhum Treino Encontrado!😞";
+
+                    // Obtém o contêiner onde o elemento será inserido
+                    let containSecondary = document.querySelector('.contain-secondary');
+
+                    // Adiciona o elemento h4 dentro do contêiner
+                    if (containSecondary) {
+                        containSecondary.appendChild(aviso);
+                    }
+                }
+>>>>>>> wilkenio
                 treinos.forEach(treino => {
                     if (!treino.id_treino || !treino.nome) {
                         console.error('Dados do treino inválidos:', treino);
@@ -49,7 +80,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const iconOpTreino = document.createElement('div');
                     iconOpTreino.classList.add('icon-op-treino');
+<<<<<<< HEAD
                     iconOpTreino.innerHTML = `<i class="bi bi-pencil-square"></i><i class="bi bi-trash-fill"></i>`;
+=======
+                    iconOpTreino.innerHTML = `<i class="bi bi-pencil-square edit-icon"></i><i class="bi bi-trash-fill delete-icon"></i>`;
+
+                    // Adicionar eventos de clique para editar e excluir
+                    const editIcon = iconOpTreino.querySelector('.edit-icon');
+                    const deleteIcon = iconOpTreino.querySelector('.delete-icon');
+
+                    editIcon.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Evita que o evento de clique no acordeão seja acionado
+                        const treinoId = accordionHeader.dataset.id;
+                        window.location.href = `../treinosEdit/treinosEdit.html?TreinoEditId=${treinoId}`;
+                    });
+
+                    deleteIcon.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Evita que o evento de clique no acordeão seja acionado
+                        const treinoId = accordionHeader.dataset.id;
+                        if (treinoId) {
+                            openPopup('Você tem certeza que deseja excluir este item?', function () {
+                                // Ação a ser executada em caso de confirmação
+                                fetch(`https://apigym-fourdevs.vercel.app/training/${treinoId}`, {
+                                    method: 'DELETE',
+                                    headers: headers
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Erro na requisição: ' + response.statusText);
+                                        }
+                                        console.log(`Treino com ID ${treinoId} excluído com sucesso.`);
+                                        // Atualizar interface ou remover o item do acordeão, se necessário
+                                        location.reload(true); // Recarregar a página forçando a busca de novos dados
+                                    })
+                                    .catch(error => {
+                                        console.error('Erro ao excluir treino:', error);
+                                    });
+                            });
+                        } else {
+                            console.error('ID do treino não encontrado para exclusão.');
+                        }
+                    });
+>>>>>>> wilkenio
 
                     treinoCard.appendChild(nomeTreino);
                     treinoCard.appendChild(iconOpTreino);
@@ -93,7 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 })
                                 .then(details => {
                                     preloaderTreino.style.display = "none";
+<<<<<<< HEAD
                                     //console.log('Detalhes do treino:', details);
+=======
+>>>>>>> wilkenio
 
                                     // Verificar se details e details.conteudoJson estão definidos
                                     if (details && details.conteudoJson && Array.isArray(details.conteudoJson.dias)) {
