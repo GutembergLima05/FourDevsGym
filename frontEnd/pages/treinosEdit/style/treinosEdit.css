@@ -221,8 +221,45 @@
     }
 }
 @media screen and (max-width: 800px) {
+    #nomeDescricao {
+        margin-top: 10%;
+    }
     #enviarTreino{
-        margin-left: 80%;
+        margin-left: 75%;
+    }
+
+    #exercicioTreino{
+        flex-wrap: wrap;
+        width: 98%;
+    }
+    #buscarExercicio{
+        width: 100%;
+    }
+    #diasCorrespondentes{
+        width: 100%;
+    }
+    #resultadosExercicios input{
+        text-align: center;
+    }
+    .exercicio{
+        padding-right: 1%;
+        margin-bottom: 2%;
+    }
+    .nome_dia{
+        margin-bottom: 1%;
+    }
+    .dia{
+        border: 1px solid var(--cor-12);
+    }
+    .containersDivisoes{
+        padding: 3%;
+        text-align: center;
+    }
+    #addDivisoes{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 15%;
     }
 }
 
