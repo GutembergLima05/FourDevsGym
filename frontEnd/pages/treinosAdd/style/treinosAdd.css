@@ -224,6 +224,20 @@
 }
 @media screen and (max-width: 800px) {
     #enviarTreino{
-        margin-left: 80%;
+        margin-left: 70%;
+    }
+
+    #exercicioTreino{
+        flex-wrap: wrap;
+        width: 98%;
+    }
+    #buscarExercicio{
+        width: 100%;
+    }
+    #diasCorrespondentes{
+        width: 100%;
+    }
+    #resultadosExercicios input{
+        text-align: center;
     }
 }
