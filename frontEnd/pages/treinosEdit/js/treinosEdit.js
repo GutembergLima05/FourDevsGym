@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const inputSerie = document.createElement('input');
             inputSerie.type = 'number';
-            inputSerie.classList.add('serie-exercicio');
+            inputSerie.classList.add('serie-exercicio','serie-exercicio-api');
             inputSerie.value = '3'; // Valor inicial da série, ajuste conforme necessário
 
             const divMultiplicacao = document.createElement('div');
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const inputRep = document.createElement('input');
             inputRep.type = 'number';
-            inputRep.classList.add('rep-exercicio');
+            inputRep.classList.add('rep-exercicio', 'rep-exercicio-api');
             inputRep.value = '12'; // Valor inicial das repetições, ajuste conforme necessário
 
             const divAddExercicio = document.createElement('div');
