@@ -149,4 +149,11 @@ p{
     .dia{
         width: 100%;
     }
+    .icon-op-treino {
+        width: 25%;
+    }
+    
+#preloader-treino img{
+    width: 20%;
+}
 }
