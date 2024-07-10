@@ -10,6 +10,8 @@
     <script src="../../src/components/nav/js/nav.js" defer></script>
     <script src="../../src/components/preloader/js/preloader.js" defer></script>
     <script src="../../public/jsMain/jsMain.js" defer></script>
+    <script src="../../src/components/poupUp/js/poupUp.js" defer></script>
+    <script src="../../src/components/alerta/js/alerta.js" defer></script>
     
     <link rel="stylesheet" href="style/avisos.css">
     <script src="../../src/connectionAPI/avisos/avisosAPI.js" defer></script>
@@ -18,16 +20,13 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    <nav id="nav-contraida"></nav>
-    
-    <section id="avisos" class="contain-main">
-=======
     <nav id="nav-contraida" style="display: none;"></nav>
-    
+    <div id="contain-alerta"  ></div>
+
     <section id="avisos" class="contain-main" style="display: none;">
->>>>>>> wilkenio
         <div id="contain-dashboard" class="contain-secondary">
+            <div id="confirmPopup" class="popup" ></div>
+
             <div id="div-avisos-button">
                 <h1 class="title-contain-main">Avisos</h1>
                 <a id="adicionar" href="../avisosAdd/avisosAdd.html">Adicionar <i class="bi bi-plus-lg"></i></a>
