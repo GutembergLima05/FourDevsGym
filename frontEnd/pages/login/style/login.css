@@ -199,12 +199,9 @@
     width: 90%;
 }
 
-<<<<<<< HEAD
-=======
 .g-recaptcha{
    margin: 2%;
 }
->>>>>>> wilkenio
 @media screen and (max-width: 800px) {
     #login {
         flex-direction: column;
@@ -254,11 +251,8 @@
     #preloaderLogin{
         margin: 5% 0 0 0;
     }
-<<<<<<< HEAD
-=======
     .g-recaptcha{
         transform: scale(0.8);
     }
->>>>>>> wilkenio
 }
 
