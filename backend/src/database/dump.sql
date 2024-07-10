@@ -66,7 +66,6 @@ CREATE TABLE aluno
     historico VARCHAR(255),
     data_inicio_plano DATE,
     plano_ativo BOOLEAN DEFAULT FALSE,  
-<<<<<<< HEAD
     id_academia INT,  
     id_treino INT,  
     id_plano INT,
@@ -75,18 +74,13 @@ CREATE TABLE aluno
     FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE SET NULL,
     FOREIGN KEY (id_treino) REFERENCES treino(id_treino) ON DELETE SET NULL,
     FOREIGN KEY (id_plano) REFERENCES plano(id_plano) ON DELETE SET NULL
-=======
-<<<<<<< HEAD
     id_Academia INT NOT NULL,  
     id_Treino INT NOT NULL,  
-=======
     id_Academia INT,  
     id_Treino INT,  
->>>>>>> wilkenio
     id_Plano INT,
     data_Criacao DATE DEFAULT CURRENT_DATE,
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
->>>>>>> 20fa6d273633acf05dd4625d9fda72a768989c90
 );
 
 CREATE TABLE dia (
@@ -162,7 +156,6 @@ CREATE TABLE avaliacao
 
 CREATE TABLE produto_venda 
 ( 
-<<<<<<< HEAD
     id_venda INT,  
     id_produto INT,  
     quantidade INT,  
@@ -172,43 +165,32 @@ CREATE TABLE produto_venda
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (id_venda) REFERENCES venda(id_venda) ON DELETE CASCADE,
     FOREIGN KEY (id_produto) REFERENCES produto(id_produto) ON DELETE CASCADE
-=======
     id_Venda INT,  
     id_Produto INT,  
-<<<<<<< HEAD
     Quantidade INT NOT NULL,  
     Valor FLOAT NOT NULL,  
-=======
     Quantidade INT,  
     Valor FLOAT,  
->>>>>>> wilkenio
     PRIMARY KEY (id_Venda, id_Produto),
     data_Criacao DATE DEFAULT CURRENT_DATE,
     data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
->>>>>>> 20fa6d273633acf05dd4625d9fda72a768989c90
 );
 
 CREATE TABLE treino_dia_exercicio (
-<<<<<<< HEAD
     id_treino INT NOT NULL,
     id_dia INT NOT NULL,
     id_exercicio INT NOT NULL,
     repeticoes INT NULL,
     series INT NULL
-=======
     id_treino INT,
     id_dia INT,
     id_exercicio INT,
     repeticoes INT,
-<<<<<<< HEAD
     series INT,
     FOREIGN KEY (id_dia) REFERENCES dia(id_dia) ON DELETE CASCADE,
     FOREIGN KEY (id_exercicio) REFERENCES exercicio(id_exercicio) ON DELETE CASCADE,
     FOREIGN KEY (id_treino) REFERENCES treino(id_treino) ON DELETE CASCADE
-=======
     series INT
->>>>>>> wilkenio
->>>>>>> 20fa6d273633acf05dd4625d9fda72a768989c90
 );
 
 

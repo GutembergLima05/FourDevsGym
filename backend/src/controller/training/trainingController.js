@@ -8,7 +8,7 @@ const register = async (req, res) => {
   
     try {
       // Verificação do administrador
-      const [idAdministrador] = await knex('administrador').where({ id_adm: id_administrador }).returning('*');
+      const [idAdministrador] = await knex('administrador').where({ id_adm: id_administrador }).select('*');
       if (!idAdministrador) return msgJson(404, res, 'Administrador não encontrado.');
    
     //Verificação de exercicios
@@ -24,7 +24,7 @@ if (exercicios.some(exercicio => !exercicio)) {
 }
   
       // Criação do treino
-      const [trainingInfo] = await knex('treino').insert({ nome, descricao, id_administrador }).returning('*');
+      const [trainingInfo] = await knex('treino').insert({ nome, descricao, id_administrador }).select('*');
   
       // Formatação das datas do treino
       const formattedDates = formatDates(trainingInfo.data_criacao, trainingInfo.data_atualizacao, null, 3);
@@ -136,7 +136,7 @@ const deleteTraining = async(req, res) => {
     const { params: { id: id_treino }} = req
 
     try {
-        let trainingInfo = await knex('treino').where({ id_treino }).first().returning('*');
+        let trainingInfo = await knex('treino').where({ id_treino }).first().select('*');
         if (!trainingInfo || trainingInfo.length === 0 ) return msgJson(404, res, 'Treino não encontrado.')
 
         const formattedDates = formatDates(trainingInfo.data_criacao,trainingInfo.data_atualizacao,null,3);
@@ -160,7 +160,7 @@ const getTrainingById = async (req, res) => {
 
     try {
         // Verifica se o treino existe
-        const trainingInfo = await knex('treino').where({ id_treino }).first().returning('*');
+        const trainingInfo = await knex('treino').where({ id_treino }).first().select('*');
         if (!trainingInfo) return msgJson(404, res, 'Treino não encontrado.');
 
         // Formata as datas
@@ -199,7 +199,7 @@ const getTrainingById = async (req, res) => {
 
 const getAllTraining = async(req, res) => {
     try {
-        const trainingInfo = await knex('treino').returning('*');
+        const trainingInfo = await knex('treino').select('*');
         const formattedTrainingInfo = trainingInfo.map(training => {
             const formattedDates = formatDates(training.data_criacao,training.data_atualizacao,null,3);
 

@@ -6,13 +6,13 @@ const register = async (req, res) => {
     const { body } = req;
     const { id_administrador, id_aluno } = body;
     try {
-        const idAluno = await knex('aluno').where({ id_aluno }).returning('*');
+        const idAluno = await knex('aluno').where({ id_aluno }).select('*');
         if (!idAluno || idAluno.length === 0 ) return msgJson(404, res, 'Aluno não encontrado.');
 
-        const idAdmin = await knex('administrador').where({ id_adm: id_administrador }).returning('*');
+        const idAdmin = await knex('administrador').where({ id_adm: id_administrador }).select('*');
         if (!idAdmin || idAdmin.length === 0 ) return msgJson(404, res, 'Administrador não encontrado.');
 
-        const [ evaluationInfo ] = await knex('avaliacao').insert({...body}).returning('*');
+        const [ evaluationInfo ] = await knex('avaliacao').insert({...body}).select('*');
 
         const formattedDatesResult = formatDates(evaluationInfo.data_criacao, evaluationInfo.data_atualizacao, null, 3);
         evaluationInfo.nascimento = formattedDatesResult.nascimento;
@@ -31,16 +31,16 @@ const update = async(req, res) => {
     const { id_aluno, id_administrador } = body;
 
     try {
-        const dbInfo = await knex('avaliacao').where({ id_avaliacao }).returning('*');
+        const dbInfo = await knex('avaliacao').where({ id_avaliacao }).select('*');
         if (!dbInfo || dbInfo.length === 0 ) return msgJson(404, res, 'Avaliação não encontrada.');
 
-        const idAluno = await knex('aluno').where({ id_aluno }).returning('*');
+        const idAluno = await knex('aluno').where({ id_aluno }).select('*');
         if (!idAluno || idAluno.length === 0 ) return msgJson(404, res, 'Aluno não encontrado.');
 
-        const idAdmin = await knex('administrador').where({ id_adm: id_administrador }).returning('*');
+        const idAdmin = await knex('administrador').where({ id_adm: id_administrador }).select('*');
         if (!idAdmin || idAdmin.length === 0 ) return msgJson(404, res, 'Administrador não encontrado.');
 
-        const [ evaluationInfo ] = await knex('avaliacao').update({...body}).where({ id_avaliacao }).returning('*');
+        const [ evaluationInfo ] = await knex('avaliacao').update({...body}).where({ id_avaliacao }).select('*');
 
         const formattedDatesResult = formatDates(evaluationInfo.data_criacao, evaluationInfo.data_atualizacao, null, 3);
         evaluationInfo.nascimento = formattedDatesResult.nascimento;
@@ -58,7 +58,7 @@ const deleteEvaluation = async(req, res) => {
     const { params: { id: id_avaliacao }} = req;
 
     try {
-        let evaluationInfo = await knex('avaliacao').where({ id_avaliacao }).first().returning('*');
+        let evaluationInfo = await knex('avaliacao').where({ id_avaliacao }).first().select('*');
         if (!evaluationInfo || evaluationInfo.length === 0 ) return msgJson(404, res, 'Avaliação não encontrada.');
 
         const formattedDatesResult = formatDates(evaluationInfo.data_criacao, evaluationInfo.data_atualizacao, null, 3);
@@ -66,7 +66,7 @@ const deleteEvaluation = async(req, res) => {
         evaluationInfo.data_criacao = formattedDatesResult.data_criacao;
         evaluationInfo.data_atualizacao = formattedDatesResult.data_atualizacao;
 
-        await knex('avaliacao').where({ id_avaliacao }).first().del().returning('*');
+        await knex('avaliacao').where({ id_avaliacao }).first().del().select('*');
 
         msgJson(201, res, evaluationInfo, true);
     } catch (error) {
@@ -79,7 +79,7 @@ const getEvaluationById = async(req, res) => {
     const { params: { id: id_avaliacao }} = req;
 
     try {
-        const evaluationInfo = await knex('avaliacao').where({ id_avaliacao }).first().returning('*');
+        const evaluationInfo = await knex('avaliacao').where({ id_avaliacao }).first().select('*');
         if (!evaluationInfo || evaluationInfo.length === 0 ) return msgJson(404, res, 'Avaliação não encontrada.');
 
         const formattedDatesResult = formatDates(evaluationInfo.data_criacao, evaluationInfo.data_atualizacao, null, 3);
@@ -96,7 +96,7 @@ const getEvaluationById = async(req, res) => {
 
 const getAllEvaluation = async(req, res) => {
     try {
-        const evaluationInfo = await knex('avaliacao').returning('*');
+        const evaluationInfo = await knex('avaliacao').select('*');
         const formattedEvaluationInfo = evaluationInfo.map(evaluation => {
             const formattedDatesResult = formatDates(evaluation.data_criacao, evaluation.data_atualizacao, null, 3);
 
