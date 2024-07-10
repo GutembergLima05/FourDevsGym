@@ -37,6 +37,7 @@
     font-size: 1.2rem;
     display: flex;
     gap: 50%;
+    color: var(--cor-1);
 }
 .editExercicio,.deleteExercicio{
     cursor: pointer;
