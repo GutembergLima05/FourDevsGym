@@ -27,7 +27,7 @@ const validateTokenAndRole = (table, idField = 'id', requiredRole = null) => asy
         const userId = decodedToken[idField];
         const userRole = decodedToken.cargo;
 
-        const [user] = await knex(table).where({ [idField]: userId });
+        const user = await knex(table).where({ [idField]: userId }).first();
 
         if (!user) return msgJson(404, res, 'Usuário não encontrado.');
         delete user.senha;
