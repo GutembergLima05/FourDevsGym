@@ -47,7 +47,9 @@ a{
     font-weight: 400;
     width: 100%;
 }
-
+.title-button-back a{
+    color: var(--cor-6);
+  }
 @media screen and (max-width: 800px) {
     .contain-secondary{
         width: 100%;
@@ -59,5 +61,12 @@ a{
 
     .title-contain-main{
         margin-bottom: 5%;
+        margin-top: 20vw;
     }
+    .title-button-back {
+        margin-top: 20vw;
+      }
+      .title-button-back a{
+        margin-top: -3%;
+      }
 }
