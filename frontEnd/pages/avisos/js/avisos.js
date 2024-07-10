@@ -44,9 +44,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     document.querySelectorAll(".fa-trash-can").forEach((trash) => {
         trash.addEventListener("click", async () => {
-            let id_aviso = trash.parentNode.parentNode.getAttribute("id_aviso")
-            await deleteNotice(id_aviso);
-            trash.parentNode.parentNode.remove();
+            let id_aviso = trash.parentNode.parentNode.getAttribute("id_aviso");
+            openPopup("Deseja excluir o aviso?", async function(){
+                await deleteNotice(id_aviso);
+                trash.parentNode.parentNode.remove();
+                mostrarAlerta("Aviso apagado", 2000);
+            })
         })
     })
 });

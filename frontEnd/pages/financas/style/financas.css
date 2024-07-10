@@ -1,0 +1,150 @@
+#valorEntrada{
+    display: flex;
+    align-items: center;
+    gap: 0.2%;
+}
+#valorEntrada h6{
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: var(--cor-4);
+}
+#totalEntrada{
+    color: var(--cor-1) !important;
+    font-weight: 600 !important;
+    margin: 1% 1% 1% 1%;
+}
+
+#valorEntrada i{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.bi-eye-slash{
+    display: none;
+}
+
+#mini-filtro{
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    margin-top: 7%;
+}
+
+#mini-filtro h4{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: var(--cor-4);
+}
+
+.analiseNegativa{
+    background: radial-gradient(circle, rgba(255,82,82,1) 0%, rgba(200,7,7,1) 39%, rgba(200,7,7,1) 100%, rgba(200,7,7,1) 100%);
+    padding: 1%;
+    color: var(--cor-3);
+    border-radius: 3px;
+}
+
+.analisePositiva{
+    background: radial-gradient(circle, rgb(7, 155, 56) 0%, rgb(25, 146, 9) 39%, rgb(12, 156, 19) 100%, rgb(7, 200, 23) 100%);
+    padding: 1%;
+    color: var(--cor-3);
+    margin-left: 1%;
+    border-radius: 3px;
+}
+
+select{
+    border: 1px solid var(--cor-12);
+    color: var(--cor-4);
+    font-weight: 500;
+    padding: 0.8%;
+    width: 17%;
+    margin-left: 1%;
+    border-radius: 3px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.titleMes{
+    display: flex;
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    border-radius: 5px;
+    margin-top: 3%;
+    font-weight: 500;
+}
+.titleMes i{
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+.titleMes i:hover{
+    color: var(--cor-12);
+}
+.titleDados{
+    display: flex;
+    justify-content: space-around;
+    width: 85%;
+    margin-top: 2%;
+}
+.extratoGeral{
+    display: flex;
+    margin-top: 5%;
+}
+.dataDia{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 3%;
+    font-weight: 500;
+}
+.extratoDia{
+    width: 71%;
+    border-left: 3px solid var(--cor-1);
+    padding: 2% 0 2% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.extrato{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--cor-12);
+    width: 90%;
+    margin-left: 2%;
+}
+.cliente{
+    margin: 1%;
+}
+.item, .valorPago, .cliente{
+    width: 33.3%;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 800px) {
+    #mini-filtro{
+        flex-wrap: wrap;
+    }
+    select{
+        width: 60%;
+    }
+    .titleMes{
+        margin-top: 10%;
+        padding: 2%;
+    }
+    .extratoDia{
+        width: 100%;
+    }
+    .titleDados{
+        width: 100%;
+    }
+    .dia{
+        font-size: 0.8rem;
+    }
+}

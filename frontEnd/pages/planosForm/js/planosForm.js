@@ -1,6 +1,7 @@
 let form = document.getElementById("form-plano");
 let tipo_plano = document.getElementById("tipo-plano");
 let valor_plano = document.getElementById("valor-plano");
+let dias_plano = document.getElementById("dias-plano");
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(plan);
         tipo_plano.value = plan.tipo;
         valor_plano.value = plan.valor;
+        dias_plano.value = plan.dias_validade;
     }
 })
 
@@ -31,6 +33,7 @@ form.addEventListener("submit", async (event) => {
     let data = {
         "tipo": tipo_plano.value,
         "valor": valor_plano.value,
+        "dias_validade": dias_plano.value,
         "id_academia": 1
     }
 

@@ -1,0 +1,24 @@
+#alerta{
+    position: fixed;
+    right: -100%;
+    top: 1%;
+    box-shadow: 0px 0px 20px -3px var(--cor-10);
+    background-color: var(--cor-1);
+    border-left: 4px solid var(--cor-2);
+    color: var(--cor-3);
+    padding: 1% 2% 1% 2%;
+    border-radius: 5px;
+    z-index: 9;
+    transition: 1s;
+    display: none;
+}
+
+
+@media screen and (max-width: 800px) {
+    #alerta{
+        top: 20vw;
+        padding: 3% 6% 3% 6%;
+        right: 2%;
+    }
+}
+
