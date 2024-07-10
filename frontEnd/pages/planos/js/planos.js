@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             openPopup("Deseja excluir o plano?", async function (){
                 await deletePlan(id_plano);
                 event.target.closest(".plano-formato").remove();
+                mostrarAlerta("Plano apagado", 2000);
             });
     })
 });
