@@ -105,7 +105,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Função para lidar com a adição do exercício
-    function adicionarExercicio(divExercicio, exercicioId) {
+    function adicionarExercicio(divExercicio, exercicioId,msg) {
+
+
+
+
+
+
         //inputBuscarExercicio.value=""
         // Exibir a div pai completa no console
         //console.log('Div pai completa:', divExercicio);
@@ -122,24 +128,33 @@ document.addEventListener('DOMContentLoaded', function () {
         divs.forEach(div => {
             // Verifica se a div está visível (display: block)
             if (window.getComputedStyle(div).display === 'block') {
-                // Adiciona o novo elemento dentro da div visível
-                div.appendChild(divExercicio);
+                let elementos = div.querySelectorAll('[data-exercicio-Id="' + exercicioId + '"]');
 
-                // Selecionando todos os elementos com classe 'addExercicio' dentro de elementos com classe 'exercicio' dentro do elemento pai
-                let addExercicios = document.querySelectorAll('.dia .exercicio .addExercicio');
+                // Verifica se algum elemento foi encontrado
+                if (!elementos.length > 0) {
 
-                // Fazendo o logging dos elementos 'addExercicio'
-                addExercicios.forEach(addExercicio => {
-                    addExercicio.classList.remove('addExercicio')
-                    addExercicio.classList.add('deleteExercicio')
-                    addExercicio.innerHTML = '<i class="bi bi-trash-fill"></i>';
+                    // Adiciona o novo elemento dentro da div visível
+                    div.appendChild(divExercicio);
 
-                });
+                    // Selecionando todos os elementos com classe 'addExercicio' dentro de elementos com classe 'exercicio' dentro do elemento pai
+                    let addExercicios = document.querySelectorAll('.dia .exercicio .addExercicio');
+
+                    // Fazendo o logging dos elementos 'addExercicio'
+                    addExercicios.forEach(addExercicio => {
+                        addExercicio.classList.remove('addExercicio')
+                        addExercicio.classList.add('deleteExercicio')
+                        addExercicio.innerHTML = '<i class="bi bi-trash-fill"></i>';
+
+                    });
+                       
+              
+                    // Aqui você pode fazer qualquer outra operação necessária com esses elementos
+                } else {
+
+                }
             }
 
-
             document.querySelectorAll('.deleteExercicio').forEach(function (button) {
-                console.log("clique em um dia")
                 button.addEventListener('click', function (event) {
                     // Obtém o elemento exercicio (pai do botão "Add")
                     const exercicio = event.target.closest('.exercicio');
@@ -168,11 +183,11 @@ document.addEventListener('DOMContentLoaded', function () {
             let InputNomeTreino = document.getElementById('InputNomeTreino').value;
             let TextareaDescricaoTreino = document.getElementById('TextareaDescricaoTreino').value;
             let id_administrador = localStorage.getItem('id_Adm');
-            
+
             mostrarAlerta("Enviando...", 90000000);
             // Verificar se os inputs não estão vazios
             if (!InputNomeTreino) {
-                mostrarAlerta("O nome do treino está vazio.",5000);
+                mostrarAlerta("O nome do treino está vazio.", 5000);
                 return null;
             }
 
@@ -246,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .catch(error => {
                     console.error('Erro ao enviar treino:', error);
-                   // MostrarAlerta('Erro ao enviar treino. Verifique o console para mais detalhes.');
+                    // MostrarAlerta('Erro ao enviar treino. Verifique o console para mais detalhes.');
                 });
         }
     });
