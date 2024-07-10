@@ -1,0 +1,50 @@
+#menuExercicio{
+    background-color: var(--cor-2) !important;
+}
+#nomeDescricao{
+    display: flex;
+    flex-direction: column;
+}
+#nomeDescricao input {
+    border: 1.5px solid var(--cor-12);
+    padding: 1.3%;
+    margin: 1% 0 1% 0;
+    outline: none;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 5%;
+}
+
+#nomeDescricao input:focus {
+    border: 1px solid var(--cor-1);
+}
+.exercicio{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2px;
+    box-shadow: 0px 0px 9px 4px var(--cor-12);
+}
+
+.exercicio img{
+    width: 10%;
+    height: 10vh;
+    object-fit: cover;
+}
+#buttonsEditDelete{
+    padding-right: 5%;
+    font-size: 1.2rem;
+    display: flex;
+    gap: 50%;
+}
+.editExercicio,.deleteExercicio{
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+}
+.editExercicio:hover{
+    color: var(--cor-7);
+}
+.deleteExercicio:hover{
+    color: var(--cor-5);
+}
