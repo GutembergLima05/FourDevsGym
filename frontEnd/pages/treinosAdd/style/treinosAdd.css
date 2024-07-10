@@ -222,6 +222,13 @@
         transform: scale(2);
     }
 }
+#div-treinosAdd-return {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+  }
+
+
 @media screen and (max-width: 800px) {
     #enviarTreino{
         margin-left: 70%;
