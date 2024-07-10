@@ -15,6 +15,7 @@
     <script src="js/login.js" defer></script>
     <script src="../../src/connectionAPI/login/loginAPI.js" defer></script>
     <script defer src="../../public/jsMain/jsMain.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -36,6 +37,8 @@
                     <i id="sgv-eye-closed" class="fa-regular fa-eye-slash"></i>
                     <input required placeholder="Senha" id="InputSenhaAdm" type="password">
                 </div>
+                <div class="g-recaptcha" data-sitekey="6LcMMQwqAAAAAKQhN_Xh_NeF2--GGWfs4UxE0JHu" ></div>
+
                 <button type="submit" id="buttonEntrarAdm">Entrar <i class="fa-solid fa-right-to-bracket"></i></button>
                 <div id="preloaderLogin"><img src="../../public/assets/images/logoFourDevsGym.png" alt=""></div>
                 <p id="msg-login" class="msg-erro"></p>

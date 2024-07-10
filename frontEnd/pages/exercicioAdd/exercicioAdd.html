@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Links globais obrigatório nas páginas-->
+    <script src="../../public/headerMain/js/headerMain.js" defer></script>
+    <script src="../../src/components/nav/js/nav.js" defer></script>
+    <script src="../../src/components/preloader/js/preloader.js" defer></script>
+    <script src="../../public/jsMain/jsMain.js" defer></script>
+    <script src="../../src/components/menuTreinos/js/menuTreinos.js" defer></script>
+    <link rel="stylesheet" href="../../src/components/menuTreinos/style/menuTreinos.css">
+
+    <!-- Estilo local -->
+    <link rel="stylesheet" href="style/exercicioAdd.css">
+    <script defer src="../../src/connectionAPI/exercicioAdd/exercicioAdd.js"></script>
+    <script defer src="js/exercicioAdd.js"></script>
+    <script defer src="../../src/components/alerta/js/alerta.js"></script>
+
+</head>
+
+<body>
+    <nav id="nav-contraida" style="display:none;"></nav>
+    <div id="contain-alerta"></div>
+
+    <section id="treinosView" class="contain-main">
+        <div id="contain-dashboard" class="contain-secondary">
+            <h1 class="title-contain-main">Exercício - Add</h1>
+            <form id="exerciseForm">
+                <div id="menu-treino"></div>
+                <div id="nomeDescricao">
+                    <input type="text" id="InputNomeTreino" placeholder="Nome do Exercício" required>
+                    <textarea id="TextareaDescricaoTreino" placeholder="Descrição" required></textarea>
+                    <input id="inputFile" type="file">
+                    <label for="inputFile"><i class="bi bi-filetype-gif"></i><h5> Editar GIF</h5></label>
+                </div>
+                <button type="submit" id="enviarTreino">Adicionar<i class="bi bi-check"></i></button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>
