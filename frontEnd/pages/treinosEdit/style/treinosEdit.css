@@ -249,3 +249,10 @@
     transition: 1s ease-in-out;
     margin-top: 2%;
 }
+.serie-exercicio-api,.rep-exercicio-api{
+    border: 1px solid var(--cor-4) !important;
+    padding: 1%;
+    text-align: center;
+    border-radius: 3px;
+    pointer-events:visible !important;
+}
