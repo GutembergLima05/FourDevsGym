@@ -220,6 +220,11 @@
         transform: scale(2);
     }
 }
+#div-treinosEdit-return {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+  }
 @media screen and (max-width: 800px) {
     #nomeDescricao {
         margin-top: 10%;
