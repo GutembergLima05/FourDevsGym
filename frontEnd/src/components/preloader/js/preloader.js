@@ -20,11 +20,8 @@ function loadPreloader() {
 
 function hidePreloader() {
     setTimeout(function () {
-<<<<<<< HEAD
-=======
         document.querySelector('.contain-main').style.display = "flex";
         document.querySelector('#nav-contraida').style.display = "block";
->>>>>>> wilkenio
         let preloader = document.getElementById('contain-preLoader');
         if (preloader) {
             preloader.style.display = 'none';
