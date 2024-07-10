@@ -1,10 +1,9 @@
-const { formatInTimeZone } = require('date-fns-tz');
 const { format } = require('date-fns');
 const { ptBR } = require('date-fns/locale');
 
-// Função para formatar uma data em um fuso horário específico
+// Função para formatar uma data em um fuso horário específico e formato brasileiro
 function formatDateInTimeZone(date, timeZone = 'America/Sao_Paulo', formatString = 'dd/MM/yyyy HH:mm:ss') {
-    return formatInTimeZone(date, timeZone, formatString, { locale: ptBR });
+    return format(date, formatString, { locale: ptBR, timeZone });
 }
 
 // Função para remover horas de uma data
@@ -28,6 +27,7 @@ function formatDates(dataCriacao, dataAtualizacao, dataExpiracao, hoursToRemoveF
     return formattedDates;
 }
 
+// Função para formatar datas específicas de estudantes
 function formatDatesStudent(dataCriacao, dataAtualizacao, dataNascimento, dataInicioPlano, hoursToRemoveFromAtualizacao = 0, timeZone = 'America/Sao_Paulo', formatString = 'dd/MM/yyyy HH:mm:ss') {
     const formattedDates = {
         data_inicio_plano: formatDateInTimeZone(dataInicioPlano, timeZone, formatString),

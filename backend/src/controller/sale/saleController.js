@@ -5,7 +5,7 @@ const { formatDates } = require( "../../service/noticeService.js")
 const register = async (req, res) => {
     const { body } = req
     try {
-        const [ productInfo ] = await knex('produto').insert({...body}).returning('*')
+        const [ productInfo ] = await knex('produto').insert({...body}).select('*')
 
         const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao,3);
         
@@ -23,10 +23,10 @@ const update = async(req, res) => {
     const { params: { id: id_produto }, body} = req
 
     try {
-        const idInfo = await knex('produto').where({ id_produto }).returning('*');
+        const idInfo = await knex('produto').where({ id_produto }).select('*');
         if (!idInfo || idInfo.length === 0 ) return msgJson(404, res, 'Produto não encontrado.')
 
-        const [ productInfo ] = await knex('produto').update({...body}).where({ id_produto }).returning('*')
+        const [ productInfo ] = await knex('produto').update({...body}).where({ id_produto }).select('*')
 
         const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao,3);
         
@@ -44,7 +44,7 @@ const deleteProduct = async(req, res) => {
     const { params: { id: id_produto }} = req
 
     try {
-        let productInfo = await knex('produto').where({ id_produto }).first().returning('*');
+        let productInfo = await knex('produto').where({ id_produto }).first().select('*');
         if (!productInfo || productInfo.length === 0 ) return msgJson(404, res, 'Produto não encontrado.')
 
         const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao,3);
@@ -52,7 +52,7 @@ const deleteProduct = async(req, res) => {
         productInfo.data_criacao = formattedDates.data_criacao;
         productInfo.data_atualizacao = formattedDates.data_atualizacao;
 
-        await knex('produto').where({ id_produto }).first().del().returning('*');
+        await knex('produto').where({ id_produto }).first().del().select('*');
 
         msgJson(201, res, productInfo, true)
     } catch (error) {
@@ -65,7 +65,7 @@ const getProductById = async(req, res) => {
     const { params: { id: id_produto }} = req
 
     try {
-        const productInfo = await knex('produto').where({ id_produto }).first().returning('*');
+        const productInfo = await knex('produto').where({ id_produto }).first().select('*');
         if (!productInfo || productInfo.length === 0 ) return msgJson(404, res, 'Produto não encontrado.')
 
         const formattedDates = formatDates(productInfo.data_criacao,productInfo.data_atualizacao,3);
@@ -82,7 +82,7 @@ const getProductById = async(req, res) => {
 
 const getAllProduct = async(req, res) => {
     try {
-        const productInfo = await knex('produto').returning('*');
+        const productInfo = await knex('produto').select('*');
         const formattedProductInfo = productInfo.map(product => {
             const formattedDates = formatDates(product.data_criacao,product.data_atualizacao,3);
 
