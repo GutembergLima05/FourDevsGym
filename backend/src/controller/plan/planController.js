@@ -5,7 +5,7 @@ const { formatDates } = require("../../service/noticeService.js")
 const register = async (req, res) => {
     const { body } = req
     try {
-        const [ planInfo ] = await knex('plano').insert({...body}).select('*')
+        const [ planInfo ] = await knex('plano').insert({...body}).returning('*')
 
         const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao, null, 3);
         
@@ -23,10 +23,10 @@ const update = async(req, res) => {
     const { params: { id: id_plano }, body} = req
 
     try {
-        const idInfo = await knex('plano').where({ id_plano }).select('*');
+        const idInfo = await knex('plano').where({ id_plano }).returning('*');
         if (!idInfo || idInfo.length === 0 ) return msgJson(404, res, 'Plano não encontrado.')
 
-        const [ planInfo ] = await knex('plano').update({...body}).where({ id_plano }).select('*')
+        const [ planInfo ] = await knex('plano').update({...body}).where({ id_plano }).returning('*')
 
         const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao, null, 3);
         
@@ -44,7 +44,7 @@ const deletePlan = async(req, res) => {
     const { params: { id: id_plano }} = req
 
     try {
-        let planInfo = await knex('plano').where({ id_plano }).first().select('*');
+        let planInfo = await knex('plano').where({ id_plano }).first().returning('*');
         if (!planInfo || planInfo.length === 0 ) return msgJson(404, res, 'Plano não encontrado.')
 
         const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao, null, 3);
@@ -52,7 +52,7 @@ const deletePlan = async(req, res) => {
         planInfo.data_criacao = formattedDates.data_criacao;
         planInfo.data_atualizacao = formattedDates.data_atualizacao;
 
-        await knex('plano').where({ id_plano }).first().del().select('*');
+        await knex('plano').where({ id_plano }).first().del().returning('*');
 
         msgJson(201, res, planInfo, true)
     } catch (error) {
@@ -65,7 +65,7 @@ const getPlanById = async(req, res) => {
     const { params: { id: id_plano }} = req
 
     try {
-        const planInfo = await knex('plano').where({ id_plano }).first().select('*');
+        const planInfo = await knex('plano').where({ id_plano }).first().returning('*');
         if (!planInfo || planInfo.length === 0 ) return msgJson(404, res, 'Plano não encontrado.')
 
         const formattedDates = formatDates(planInfo.data_criacao,planInfo.data_atualizacao, null, 3);
@@ -82,7 +82,7 @@ const getPlanById = async(req, res) => {
 
 const getAllPlan = async(req, res) => {
     try {
-        const planInfo = await knex('plano').select('*');
+        const planInfo = await knex('plano').returning('*');
         const formattedPlanInfo = planInfo.map(plan => {
             const formattedDates = formatDates(plan.data_criacao,plan.data_atualizacao, null, 3);
 
