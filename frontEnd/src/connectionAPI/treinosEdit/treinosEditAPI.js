@@ -257,7 +257,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(data => {
                     //console.log('Resposta da API:', data); // Mostra a resposta da API
-                    window.location.href = "../treinosView/treinosView.html";
+                    console.log(data)
+                    //window.location.href = "../treinosView/treinosView.html";
                 })
                 .catch(error => {
                     console.error('Erro ao enviar treino:', error);

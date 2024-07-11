@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!isNaN(treinoEditId)) {
 
         const apiUrl = `https://apigym-fourdevs.vercel.app/training/${treinoEditId}`;
-      
+
         // Fazer a requisição GET para a API
         fetch(apiUrl, {
             method: 'GET',
@@ -19,21 +19,21 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => response.json())
             .then(responseData => {
-   
+
                 // console.log('Success:', responseData);
                 const dias = responseData.conteudoJson.dias;
                 dias.forEach(dia => {
                     addNewDay(dia); // Adiciona cada dia retornado pela API ao menu
                 });
-               
-                document.getElementById('InputNomeTreino').value=responseData.conteudoJson.treino.nome
-                document.getElementById('TextareaDescricaoTreino').value=responseData.conteudoJson.treino.descricao
+
+                document.getElementById('InputNomeTreino').value = responseData.conteudoJson.treino.nome
+                document.getElementById('TextareaDescricaoTreino').value = responseData.conteudoJson.treino.descricao
             })
             .catch((error) => {
                 console.error('Error:', error);
                 window.location = "../treinosView/treinosView.html";
             });
-    } 
+    }
 
     var diasAdicionados = []; // Array para armazenar os dias adicionados
     // Função para adicionar um novo dia
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
         newDiv.classList.add('containersDivisoes');
 
         newDiv.dataset.menuDia = dia.id_dia;
-        newDiv.textContent = dia.dia_nome; // Conteúdo do div com o número do dia
+        newDiv.textContent = "Dia " + dia.id_dia; // Conteúdo do div com o número do dia
 
         // Adiciona evento de clique para o novo div de dia
         newDiv.addEventListener('click', function () {
@@ -235,60 +235,78 @@ document.addEventListener('DOMContentLoaded', function () {
     function exibirExercicioAPI(exercicio, dia) {
         // Encontrar a div .dia correspondente ao data-set
         const divDia = document.querySelector(`.dia[data-set="${dia}"]`);
-
+    
         if (divDia) {
             const divExercicio = document.createElement('div');
             divExercicio.classList.add('exercicio');
-
+    
             // Adicionar data-exercicio-id com o ID do exercício
             divExercicio.dataset.exercicioId = exercicio.id_exercicio;
-
-            const imgExercicio = document.createElement('img');
-            imgExercicio.src = exercicio.gif_url; // Aqui você usaria a URL do GIF do exercício
-            imgExercicio.alt = exercicio.nome;
-
-            const nomeExercicio = document.createElement('div');
-            nomeExercicio.classList.add('nome-exercicio');
-            nomeExercicio.textContent = exercicio.nome;
-
-            const inputSerie = document.createElement('input');
-            inputSerie.type = 'number';
-            inputSerie.classList.add('serie-exercicio','serie-exercicio-api');
-            inputSerie.value = '3'; // Valor inicial da série, ajuste conforme necessário
-
-            const divMultiplicacao = document.createElement('div');
-            divMultiplicacao.textContent = 'X';
-
-            const inputRep = document.createElement('input');
-            inputRep.type = 'number';
-            inputRep.classList.add('rep-exercicio', 'rep-exercicio-api');
-            inputRep.value = '12'; // Valor inicial das repetições, ajuste conforme necessário
-
-            const divAddExercicio = document.createElement('div');
-            divAddExercicio.classList.add('deleteExercicio');
-            divAddExercicio.innerHTML = '<i class="bi bi-trash-fill"></i>'; // Botão ou elemento para adicionar exercício, ajuste conforme necessário
-
-            // Adicionar evento de clique ao botão "Add"
-            divAddExercicio.addEventListener('click', function () {
-                //adicionarExercicio(divExercicio, exercicio.id_exercicio);
-                const exercicioAddAPI = divAddExercicio.parentElement;
-                exercicioAddAPI.remove()
-                
+    
+            fetch(`https://apigym-fourdevs.vercel.app/exercise/${exercicio.id_exercicio}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenAdm}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro na requisição: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const nomeExercicioAPI = data.conteudoJson.nome
+                const imgExercicio = document.createElement('img');
+                imgExercicio.src = exercicio.gif_url; // Use a URL do GIF do exercício, se disponível
+                imgExercicio.alt = nomeExercicioAPI;
+    
+                const nomeExercicio = document.createElement('div');
+                nomeExercicio.classList.add('nome-exercicio');
+                nomeExercicio.textContent = nomeExercicioAPI;
+    
+                const inputSerie = document.createElement('input');
+                inputSerie.type = 'number';
+                inputSerie.classList.add('serie-exercicio', 'serie-exercicio-api');
+                inputSerie.value = exercicio.series || ''; // Valor inicial da série
+    
+                const divMultiplicacao = document.createElement('div');
+                divMultiplicacao.textContent = 'X';
+    
+                const inputRep = document.createElement('input');
+                inputRep.type = 'number';
+                inputRep.classList.add('rep-exercicio', 'rep-exercicio-api');
+                inputRep.value = exercicio.repeticoes || ''; // Valor inicial das repetições
+    
+                const divAddExercicio = document.createElement('div');
+                divAddExercicio.classList.add('deleteExercicio');
+                divAddExercicio.innerHTML = '<i class="bi bi-trash-fill"></i>'; // Botão ou elemento para adicionar exercício
+    
+                // Adicionar evento de clique ao botão "Add"
+                divAddExercicio.addEventListener('click', function () {
+                    divExercicio.remove(); // Remover o div do exercício ao clicar no ícone de lixeira
+                });
+    
+                // Adicionar elementos ao div do exercício
+                divExercicio.appendChild(imgExercicio);
+                divExercicio.appendChild(nomeExercicio);
+                divExercicio.appendChild(inputSerie);
+                divExercicio.appendChild(divMultiplicacao);
+                divExercicio.appendChild(inputRep);
+                divExercicio.appendChild(divAddExercicio);
+    
+                // Adicionar divExercicio à div .dia correspondente
+                divDia.appendChild(divExercicio);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                // Trate o erro de forma adequada aqui, se necessário
             });
-
-            // Adicionar elementos ao div do exercício
-            divExercicio.appendChild(imgExercicio);
-            divExercicio.appendChild(nomeExercicio);
-            divExercicio.appendChild(inputSerie);
-            divExercicio.appendChild(divMultiplicacao);
-            divExercicio.appendChild(inputRep);
-            divExercicio.appendChild(divAddExercicio);
-
-            // Adicionar divExercicio à div .dia correspondente
-            divDia.appendChild(divExercicio);
         }
     }
-   
+    
+
 });
 
 
