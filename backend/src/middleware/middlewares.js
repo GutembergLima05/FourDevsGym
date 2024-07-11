@@ -66,6 +66,7 @@ const uniqueField = (table, fields, path, nameObj = 'dataUnique') => async (req,
         }
         next();
     } catch (error) {
+        console.log(error)
         msgJson(500, res, 'Erro interno no servidor ao validar campos únicos', false);
     }
 };

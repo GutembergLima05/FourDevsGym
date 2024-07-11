@@ -8,7 +8,7 @@ const register = async (req, res) => {
   
     try {
       // Verificação do administrador
-      const [idAdministrador] = await knex('administrador').where({ id_adm: id_administrador }).select('*');
+      const [idAdministrador] = await knex('administrador').where({ id_adm: id_administrador }).returning('*');
       if (!idAdministrador) return msgJson(404, res, 'Administrador não encontrado.');
    
     //Verificação de exercicios
@@ -24,7 +24,7 @@ if (exercicios.some(exercicio => !exercicio)) {
 }
   
       // Criação do treino
-      const [trainingInfo] = await knex('treino').insert({ nome, descricao, id_administrador }).select('*');
+      const [trainingInfo] = await knex('treino').insert({ nome, descricao, id_administrador }).returning('*');
   
       // Formatação das datas do treino
       const formattedDates = formatDates(trainingInfo.data_criacao, trainingInfo.data_atualizacao, null, 3);
@@ -111,7 +111,7 @@ if (exercicios.some(exercicio => !exercicio)) {
             .join('dia', 'treino_dia_exercicio.id_dia', 'dia.id_dia')
             .join('exercicio', 'treino_dia_exercicio.id_exercicio', 'exercicio.id_exercicio')
             .where('treino_dia_exercicio.id_treino', id_treino)
-            .select('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
+            .returning('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
 
         const diasMap = diasExercicios.reduce((acc, { id_dia, dia_nome, id_exercicio, exercicio_nome, repeticoes, series }) => {
             if (!acc[id_dia]) {
@@ -136,7 +136,7 @@ const deleteTraining = async(req, res) => {
     const { params: { id: id_treino }} = req
 
     try {
-        let trainingInfo = await knex('treino').where({ id_treino }).first().select('*');
+        let trainingInfo = await knex('treino').where({ id_treino }).first().returning('*');
         if (!trainingInfo || trainingInfo.length === 0 ) return msgJson(404, res, 'Treino não encontrado.')
 
         const formattedDates = formatDates(trainingInfo.data_criacao,trainingInfo.data_atualizacao,null,3);
@@ -160,7 +160,7 @@ const getTrainingById = async (req, res) => {
 
     try {
         // Verifica se o treino existe
-        const trainingInfo = await knex('treino').where({ id_treino }).first().select('*');
+        const trainingInfo = await knex('treino').where({ id_treino }).first().returning('*');
         if (!trainingInfo) return msgJson(404, res, 'Treino não encontrado.');
 
         // Formata as datas
@@ -173,7 +173,7 @@ const getTrainingById = async (req, res) => {
             .join('dia', 'treino_dia_exercicio.id_dia', 'dia.id_dia')
             .join('exercicio', 'treino_dia_exercicio.id_exercicio', 'exercicio.id_exercicio')
             .where('treino_dia_exercicio.id_treino', id_treino)
-            .select('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'exercicio.gif_url', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
+            .returning('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'exercicio.gif_url', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
 
         // Agrupa os exercícios por dia
         const diasMap = diasExercicios.reduce((acc, { id_dia, dia_nome, id_exercicio, exercicio_nome, gif_url, repeticoes, series }) => {
@@ -199,7 +199,7 @@ const getTrainingById = async (req, res) => {
 
 const getAllTraining = async(req, res) => {
     try {
-        const trainingInfo = await knex('treino').select('*');
+        const trainingInfo = await knex('treino').returning('*');
         const formattedTrainingInfo = trainingInfo.map(training => {
             const formattedDates = formatDates(training.data_criacao,training.data_atualizacao,null,3);
 
