@@ -5,7 +5,7 @@ const { formatDates } = require("../../service/noticeService.js")
 const register = async (req, res) => {
     const { body } = req;
     try {
-        const [admInfo] = await knex('administrador').where({ id_adm: body.id_administrador }).select('*');
+        const [admInfo] = await knex('administrador').where({ id_adm: body.id_administrador }).returning('*');
         if (!admInfo) return msgJson(500, res, 'Administrador não existe!', false);
 
         const [id] = await knex('exercicio').insert({...body});
@@ -32,10 +32,10 @@ const update = async(req, res) => {
     const { params: { id: id_exercicio }, body, dataUnique} = req
 
     try {
-        const idInfo = await knex('exercicio').where({ id_exercicio }).select('*');
+        const idInfo = await knex('exercicio').where({ id_exercicio }).returning('*');
         if (!idInfo || idInfo.length === 0 ) return msgJson(404, res, 'Exercicio não encontrado.')
 
-        const [ exerciseInfo ] = await knex('exercicio').update({...body}).where({ id_exercicio }).select('*')
+        const [ exerciseInfo ] = await knex('exercicio').update({...body}).where({ id_exercicio }).returning('*')
 
         const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,null, 3);
         
@@ -53,7 +53,7 @@ const deleteExercise = async(req, res) => {
     const { params: { id: id_exercicio }} = req
 
     try {
-        let exerciseInfo = await knex('exercicio').where({ id_exercicio }).first().select('*');
+        let exerciseInfo = await knex('exercicio').where({ id_exercicio }).first().returning('*');
         if (!exerciseInfo || exerciseInfo.length === 0 ) return msgJson(404, res, 'Exercicio não encontrado.')
 
         const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,null, 3);
@@ -61,7 +61,7 @@ const deleteExercise = async(req, res) => {
         exerciseInfo.data_criacao = formattedDates.data_criacao;
         exerciseInfo.data_atualizacao = formattedDates.data_atualizacao;
 
-        await knex('exercicio').where({ id_exercicio }).first().del().select('*');
+        await knex('exercicio').where({ id_exercicio }).first().del().returning('*');
 
         msgJson(200, res, exerciseInfo, true)
     } catch (error) {
@@ -74,7 +74,7 @@ const getExerciseById = async(req, res) => {
     const { params: { id: id_exercicio }} = req
 
     try {
-        const exerciseInfo = await knex('exercicio').where({ id_exercicio }).first().select('*');
+        const exerciseInfo = await knex('exercicio').where({ id_exercicio }).first().returning('*');
         if (!exerciseInfo || exerciseInfo.length === 0 ) return msgJson(404, res, 'Exercício não encontrado.')
 
         const formattedDates = formatDates(exerciseInfo.data_criacao,exerciseInfo.data_atualizacao,null, 3);
@@ -91,7 +91,7 @@ const getExerciseById = async(req, res) => {
 
 const getAllExercise = async(req, res) => {
     try {
-        const exerciseInfo = await knex('exercicio').select('*');
+        const exerciseInfo = await knex('exercicio').returning('*');
         const formattedExerciseInfo = exerciseInfo.map(exercise => {
             const formattedDates = formatDates(exercise.data_criacao,exercise.data_atualizacao,null, 3);
 
