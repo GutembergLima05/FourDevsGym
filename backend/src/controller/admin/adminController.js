@@ -15,7 +15,7 @@ const register = async (req, res) => {
         if (dataUnique && dataUnique.field) return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
 
         body.senha = await hash(senha, 10);
-        const [admInfo] = await knex('administrador').insert({ ...body }).select('*');
+        const [admInfo] = await knex('administrador').insert({ ...body }).returning('*');
 
         const formattedDates = formatDates(admInfo.data_criacao, admInfo.data_atualizacao, null, 3);
 
@@ -36,14 +36,14 @@ const update = async (req, res) => {
     const { body, dataUnique } = req;
 
     try {
-        const dbInfo = await knex('administrador').where({ id_adm }).select('*');
+        const dbInfo = await knex('administrador').where({ id_adm }).returning('*');
         if (!dbInfo || dbInfo.length === 0) return msgJson(404, res, 'Administrador não encontrado.');
 
         if (dataUnique && dataUnique.field && dbInfo[0].email !== dataUnique.idObj.email) {
             return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
         }
 
-        const [admInfo] = await knex('administrador').update({ ...body }).where({ id_adm }).select('*');
+        const [admInfo] = await knex('administrador').update({ ...body }).where({ id_adm }).returning('*');
 
         const formattedDates = formatDates(admInfo.data_criacao, admInfo.data_atualizacao, null, 3);
 
@@ -63,7 +63,7 @@ const deleteAdm = async (req, res) => {
     const { id: id_adm } = req.params;
 
     try {
-        let admInfo = await knex('administrador').where({ id_adm }).first().select('*');
+        let admInfo = await knex('administrador').where({ id_adm }).first().returning('*');
         if (!admInfo || admInfo.length === 0) return msgJson(404, res, 'Administrador não encontrado.');
 
         const formattedDates = formatDates(admInfo.data_criacao, admInfo.data_atualizacao, null, 3);
@@ -72,7 +72,7 @@ const deleteAdm = async (req, res) => {
         admInfo.data_atualizacao = formattedDates.data_atualizacao;
         delete admInfo.senha;
 
-        await knex('administrador').where({ id_adm }).first().del().select('*');
+        await knex('administrador').where({ id_adm }).first().del().returning('*');
 
         msgJson(201, res, admInfo, true);
     } catch (error) {
@@ -83,7 +83,7 @@ const deleteAdm = async (req, res) => {
 
 const getAllAdm = async (req, res) => {
     try {
-        const admInfo = await knex('administrador').select('*');
+        const admInfo = await knex('administrador').returning('*');
         const formattedAdmInfo = admInfo.map((adm) => {
             const formattedDates = formatDates(adm.data_criacao, adm.data_atualizacao, null, 3);
             delete adm.senha;
@@ -106,7 +106,7 @@ const getAdmById = async (req, res) => {
     const { id: id_adm } = req.params;
 
     try {
-        const admInfo = await knex('administrador').where({ id_adm }).first().select('*');
+        const admInfo = await knex('administrador').where({ id_adm }).first().returning('*');
         if (!admInfo || admInfo.length === 0) return msgJson(404, res, 'Administrador não encontrado.');
 
         const formattedDates = formatDates(admInfo.data_criacao, admInfo.data_atualizacao, null, 3);
@@ -134,7 +134,7 @@ const login = async (req, res) => {
         const senhaValida = await compare(senha, idObj.senha);
         if (!senhaValida) return msgJson(401, res, 'Email ou senha incorretos!', false);
 
-        const [nome_academia] = await knex('academia').where({ id_academia: idObj.id_academia }).select('nome');
+        const [nome_academia] = await knex('academia').where({ id_academia: idObj.id_academia }).returning('nome');
 
         delete idObj.senha;
         idObj.nome_academia = nome_academia.nome;
