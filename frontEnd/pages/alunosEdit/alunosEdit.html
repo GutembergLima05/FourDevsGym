@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Links globais obrigatório nas páginas-->
+    <script src="../../public/headerMain/js/headerMain.js" defer></script>
+    <script src="../../src/components/nav/js/nav.js" defer></script>
+    <script src="../../src/components/preloader/js/preloader.js" defer></script>
+    <script src="../../public/jsMain/jsMain.js" defer></script>
+
+    <!-- Estilo local -->
+    <link rel="stylesheet" href="style/alunosEdit.css">
+    <script defer src="../../src/connectionAPI/alunosEdit/alunosEdit.js"></script>
+    <script defer src="js/alunosEdit.js"></script>
+    <script defer src="../../src/components/alerta/js/alerta.js"></script>
+
+</head>
+
+<body>
+    <nav id="nav-contraida" style="display:none;"></nav>
+    <div id="contain-alerta"></div>
+
+    <section id="treinosView" class="contain-main" style="display: none;">
+        <div id="contain-alunosEdit" class="contain-secondary">
+            <div id="div-alunoAdd-return" class="title-button-back">
+                <a href="../alunos/alunos.html"><i class="fa-solid fa-arrow-left"></i></a>
+                <h1 class="title-contain-main">Aluno-Editar</h1>
+                <i class="bi bi-pencil-fill" id="edit-icon"></i>
+            </div>
+            <div id="aluno-op">
+                <button id="fazerAvaliacao"><i class="bi bi-rulers"></i> Fazer Avaliação</button>
+                <button id="planoAluno"><i class="bi bi-arrow-clockwise"></i> Plano</button>
+                <button id="treinoAluno"><i class="fa-solid fa-dumbbell"></i> Treino</button>
+                <button id="hist-avaliacoes"><i class="bi bi-pencil"></i></i> Histórico Avaliações</button>
+            </div>
+            <form id="dadosAluno">
+                <p class="model-text-1">Nome:</p>
+                <p class="model-text-2">Telefone:</p>
+                <p class="model-text-2">Plano Ativo:</p>
+                <input disabled type="text" class="model-1" required id="nome" placeholder="Nome do Aluno">
+                <input disabled type="tel" class="model-2" required id="telefone" placeholder="Telefone">
+                <div class="planoAtivo"> Plano Mensal</div>
+                <p class="model-text-2">Data de Nascimento:</p>
+                <p class="model-text-1">Endereço:</p>
+                <p class="model-text-2">Email:</p>
+                <input disabled type="date" class="model-2" required id="dataNascimento" placeholder="Data Nascimento">
+                <input disabled type="text" class="model-1" required id="endereco" placeholder="Endereço">
+                <input disabled type="email" class="model-2" required id="email" placeholder="E-mail">
+                <p class="model-text-1">Histórico de Saúde:</p>
+                <textarea disabled type="text" class="model-1" id="historicoSaude" placeholder="Histórico de Saúde"></textarea>
+            </form>
+            <div id="cadastrar">
+                <input  type="submit" id="button-cadastrar">
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
