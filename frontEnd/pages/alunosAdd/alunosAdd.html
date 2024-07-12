@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Links globais obrigatório nas páginas-->
+    <script src="../../public/headerMain/js/headerMain.js" defer></script>
+    <script src="../../src/components/nav/js/nav.js" defer></script>
+    <script src="../../src/components/preloader/js/preloader.js" defer></script>
+    <script src="../../public/jsMain/jsMain.js" defer></script>
+
+    <!-- Estilo local -->
+    <link rel="stylesheet" href="style/alunosAdd.css">
+    <script defer src="../../src/connectionAPI/alunosAdd/alunosAddAPI.js"></script>
+    <script defer src="js/alunoAdd.js"></script>
+    <script defer src="../../src/components/alerta/js/alerta.js"></script>
+
+</head>
+
+<body>
+    <nav id="nav-contraida" style="display:none;"></nav>
+    <div id="contain-alerta"></div>
+
+    <section id="treinosView" class="contain-main" style="display: none;">
+        <div id="contain-dashboard" class="contain-secondary">
+            <div id="div-alunoAdd-return" class="title-button-back">
+                <a href="../alunos/alunos.html"><i class="fa-solid fa-arrow-left"></i></a>
+                <h1 class="title-contain-main">Alunos-Add</h1>
+            </div>
+            <form id="dadosAluno">
+                <input type="text" class="model-1" required id="nome" placeholder="Nome do Aluno">
+                <input type="tel" class="model-2" required id="telefone" placeholder="Telefone">
+                <input type="date" class="model-2" required id="dataNascimento" placeholder="Data Nascimento">
+                <input type="text" class="model-1" required id="endereco" placeholder="Endereço">
+                <input type="email" class="model-2" required id="email" placeholder="E-mail">
+                <textarea type="text" class="model-1" id="historicoSaude" placeholder="Histórico de Saúde"></textarea>
+                <label>Definir Plano:</label>
+                <select class="model-3" id="plano"></select>
+                <label>Treino Recomendado:</label>
+                <select class="model-3" id="treinoRecomendado"></select>
+                <div id="cadastrar">
+                    <input type="submit" id="button-cadastrar">
+                </div>
+            </form>
+            
+        </div>
+    </section>
+</body>
+
+</html>
