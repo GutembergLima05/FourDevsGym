@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function createDayElement(dia) {
         var newDiv = document.createElement('div');
         newDiv.classList.add('containersDivisoes');
-
+        
         newDiv.dataset.menuDia = dia.id_dia;
         newDiv.textContent = "Dia " + dia.id_dia; // Conteúdo do div com o número do dia
 
@@ -228,10 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
             element.classList.remove("selected");
         });
     }
-
-
-
-
+    
     function exibirExercicioAPI(exercicio, dia) {
         // Encontrar a div .dia correspondente ao data-set
         const divDia = document.querySelector(`.dia[data-set="${dia}"]`);
@@ -243,28 +240,13 @@ document.addEventListener('DOMContentLoaded', function () {
             // Adicionar data-exercicio-id com o ID do exercício
             divExercicio.dataset.exercicioId = exercicio.id_exercicio;
     
-            fetch(`https://apigym-fourdevs.vercel.app/exercise/${exercicio.id_exercicio}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenAdm}`
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erro na requisição: ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                const nomeExercicioAPI = data.conteudoJson.nome
                 const imgExercicio = document.createElement('img');
                 imgExercicio.src = exercicio.gif_url; // Use a URL do GIF do exercício, se disponível
-                imgExercicio.alt = nomeExercicioAPI;
+                imgExercicio.alt = exercicio.nome;
     
                 const nomeExercicio = document.createElement('div');
                 nomeExercicio.classList.add('nome-exercicio');
-                nomeExercicio.textContent = nomeExercicioAPI;
+                nomeExercicio.textContent = exercicio.nome;
     
                 const inputSerie = document.createElement('input');
                 inputSerie.type = 'number';
@@ -298,11 +280,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 // Adicionar divExercicio à div .dia correspondente
                 divDia.appendChild(divExercicio);
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                // Trate o erro de forma adequada aqui, se necessário
-            });
         }
     }
     
