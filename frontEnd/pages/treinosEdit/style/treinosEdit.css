@@ -62,20 +62,20 @@
     flex-wrap: wrap;
     border-bottom: 1px  solid var(--cor-12);
     border-left:4px solid var(--cor-1) ;
+    margin: 1% 0 1% 0;
 }
 
 .nome-exercicio{
+    text-overflow: ellipsis;
     word-wrap: break-word;
-    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 25%;
 }
 .exercicio img{
     width: 12%;
     height: 8vh;
     object-fit: cover;
-}
-
-.nome-exercicio{
-    word-wrap: break-word;
 }
 
 .addExercicio,.deleteExercicio{
