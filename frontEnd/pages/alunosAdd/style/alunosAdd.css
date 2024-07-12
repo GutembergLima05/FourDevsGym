@@ -1,0 +1,66 @@
+#dadosAluno{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5%;
+}
+#div-alunoAdd-return {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+  }
+.model-1, .model-2{
+    width: 49%;
+    outline: none;
+    padding: 1%;
+    margin: 0.5%;
+    border-radius: 4px;
+    border: 1px solid var(--cor-12);
+    transition: 0.7s;
+    font-size:1rem ;
+    font-family: 'Inter', sans-serif;
+}
+.model-2{
+    width: 20% !important;
+}
+
+.model-1:focus, .model-2:focus{
+    border: 1px solid var(--cor-1);
+}
+
+#cadastrar{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+#button-cadastrar{
+    padding: 1% 4% 1% 4%;
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form label{
+    width: 80%;
+    margin-left: 0.5%;
+}
+
+@media screen and (max-width: 800px) {
+    .model-1, .model-2{
+        padding: 3%;
+    }
+    #dadosAluno{
+        width: 95%;
+        justify-content: center;
+    }
+    .title-contain-main{
+        margin-top: 1rem;
+    }
+    .title-contain-main{
+        margin-top: 0.8rem !important;
+    }
+    #button-cadastrar{
+        padding: 3% 7% 3% 7%;
+    }
+}
