@@ -9,6 +9,7 @@
     <script src="../../src/components/nav/js/nav.js" defer></script>
     <script src="../../src/components/preloader/js/preloader.js" defer></script>
     <script src="../../public/jsMain/jsMain.js" defer></script>
+    <script src="../../src/components/poupUp/js/poupUp.js" defer></script>
 
     <!-- Estilo local -->
     <link rel="stylesheet" href="style/alunos.css">
@@ -24,13 +25,15 @@
 
     <section id="treinosView" class="contain-main" style="display: none;">
         <div id="contain-dashboard" class="contain-secondary">
-          
+            <div id="confirmPopup" class="popup" ></div>
 
                 <div id="nomeDescricao">
                     <h1 class="title-contain-main">Alunos</h1>
-                    <a href=""><button id="cadastrar">Cadastrar <i class="bi bi-plus-lg"></i></button></a>
+                    <a href="../alunosAdd/alunosAdd.html"><button id="cadastrar">Cadastrar <i class="bi bi-plus-lg"></i></button></a>
                     <input type="text" id="InputNomeTreino" placeholder="Procure o Aluno pelo Nome" required>
                 </div>
+
+                <div id="alunos"></div>
         </div>
     </section>
 </body>
