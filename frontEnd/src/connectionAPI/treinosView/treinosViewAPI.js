@@ -89,28 +89,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                 accordionContent.innerHTML = '';
                                 if (conteudoJson.dias.length === 0) accordionContent.innerText = "Vazio";
-                                conteudoJson.dias.forEach((dia, indexDia) => {
-                                    console.log(dia)
+                                
+                                conteudoJson.dias.forEach(dia => {
                                     const divDia = document.createElement('div');
                                     divDia.classList.add('dia');
-                                    divDia.innerHTML = `<div class="nome_dia">${dia.dia_nome }</div>`;
-
-                                    dia.exercicios?.forEach(exercicio => {
-                                        const divExercicio = document.createElement('div');
-                                        divExercicio.classList.add('exercicio');
-                                        divExercicio.innerHTML = `
-                                            <img src="../../public/assets/images/halteresLogin.gif" alt="Exercicio">
-                                            <div class="nome-exercicio">${exercicio.exercicio_nome}</div>
-                                            <div class="serie-exercicio">${exercicio.series}</div>
-                                            <div>X</div>
-                                            <div class="rep-exercicio">${exercicio.repeticoes}</div>
-                                        `;
-                                        divDia.appendChild(divExercicio);
-                                    });
+                                    divDia.innerHTML = `<div class="nome_dia">Dia ${dia.id_dia}</div>`;
                                     accordionContent.appendChild(divDia);
+                                    dia.exercicios?.forEach(exercicio => {
+                                            const exercicioDetalhes = data?.conteudoJson;
+                                            if (!exercicioDetalhes) return console.error('Detalhes do exercício não encontrados:', data);
+
+                                            const divExercicio = document.createElement('div');
+                                            divExercicio.classList.add('exercicio');
+                                            divExercicio.innerHTML = `
+                                                <img src="`+exercicio.gif_url+`" alt="Exercicio">
+                                                <div class="nome-exercicio">${exercicio.nome}</div>
+                                                <div class="serie-exercicio">${exercicio.series}</div>
+                                                <div>X</div>
+                                                <div class="rep-exercicio">${exercicio.repeticoes}</div>
+                                            `;
+                                            divDia.appendChild(divExercicio);
+                                        })
+                                    });
+
+                                   
                                 });
-                                accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
-                            });
+                                setTimeout(function(){ 
+                                
+                                accordionContent.style.maxHeight = accordionContent.scrollHeight + 'rem';
+                            }, 800);
+                            /*})
+                            .catch(error => {
+                                preloaderTreino.style.display = 'none';
+                                console.error('Erro ao buscar detalhes do treino:', error);
+                            });*/
                     }
                 });
             });

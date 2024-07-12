@@ -21,7 +21,7 @@ function loadPreloader() {
 function hidePreloader() {
     setTimeout(function () {
         document.querySelector('.contain-main').style.display = "flex";
-        document.querySelector('#nav-contraida').style.display = "block";
+        document.querySelector('#nav-contraida').style.display = "flex";
         let preloader = document.getElementById('contain-preLoader');
         if (preloader) {
             preloader.style.display = 'none';
