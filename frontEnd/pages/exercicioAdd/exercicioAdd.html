@@ -24,7 +24,7 @@
     <nav id="nav-contraida" style="display:none;"></nav>
     <div id="contain-alerta"></div>
 
-    <section id="treinosView" class="contain-main">
+    <section id="treinosView" class="contain-main"style="display:none;">
         <div id="contain-dashboard" class="contain-secondary">
             <h1 class="title-contain-main">Exercício - Add</h1>
             <form id="exerciseForm">
@@ -32,8 +32,7 @@
                 <div id="nomeDescricao">
                     <input type="text" id="InputNomeTreino" placeholder="Nome do Exercício" required>
                     <textarea id="TextareaDescricaoTreino" placeholder="Descrição" required></textarea>
-                    <input id="inputFile" type="file">
-                    <label for="inputFile"><i class="bi bi-filetype-gif"></i><h5> Editar GIF</h5></label>
+                    <input  type="text" id="InputUrlImage" placeholder="Url do GIF ou Imagem" required>
                 </div>
                 <button type="submit" id="enviarTreino">Adicionar<i class="bi bi-check"></i></button>
             </form>
