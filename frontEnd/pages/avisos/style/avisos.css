@@ -1,3 +1,6 @@
+#item-menu-avisos{
+    background-color: var(--cor-2);
+}
 #adicionar{
     cursor: pointer;
 }

@@ -38,40 +38,25 @@ document.addEventListener('DOMContentLoaded', function () {
             alunoElement.innerHTML = `
                 <i class="bi bi-person-square"></i>
                 <h5 class="nomeAluno">${aluno.nome}</h5>
-                <i class="bi bi-pencil-square edit" data-id="${aluno.id_aluno}"></i>
+                
                 <i class="bi bi-trash3-fill delete" data-id="${aluno.id_aluno}"></i>
             `;
             alunosContainer.appendChild(alunoElement);
 
-            // Adiciona eventos de clique para editar e deletar
-            const editButton = alunoElement.querySelector('.edit');
-            editButton.addEventListener('click', () => editarAluno(aluno.id_aluno));
-
-            const deleteButton = alunoElement.querySelector('.delete');
-            deleteButton.addEventListener('click', () => deletarAluno(aluno.id_aluno));
+            // Adiciona evento de clique para o aluno
+            alunoElement.addEventListener('click', () => alunoClicado(aluno.id_aluno));
         });
     }
 
     // Chama a função para exibir os alunos ao carregar a página
     exibirAlunos();
 
-    // Função para editar aluno
-    function editarAluno(idAluno) {
-        // Implemente aqui a lógica para editar o aluno com o ID especificado
-        //console.log(`Editar aluno com ID ${idAluno}`);
-        window.location=`../alunosEdit/alunosEdit.html?idAluno=${idAluno}`;
-    }
-
-    // Função para deletar aluno
-    function deletarAluno(idAluno) {
-        // Implemente aqui a lógica para deletar o aluno com o ID especificado
-        //console.log(`Deletar aluno com ID ${idAluno}`);
-        //precisa mudar a URL e VARIAVEIS
-            openPopup('Você tem certeza que deseja excluir esse Aluno?', () => {
-                fetch(`https://apigym-fourdevs.vercel.app/exercise/${exercicio.id_exercicio}`, { method: 'DELETE', headers:{ 'Authorization': 'Bearer ' + token} })
-                    .then(response => response.ok ? location.reload(true) : Promise.reject(`Erro na requisição: ${response.statusText}`))
-                    .catch(error => console.error('Erro ao excluir treino:', error));
-            });
+    // Função para lidar com o clique no aluno
+    function alunoClicado(idAluno) {
+        // Implemente aqui a lógica para o clique no aluno
+        console.log(`Aluno com ID ${idAluno} clicado`);
+        // Por exemplo, redirecionar para a página de edição:
+        window.location = `../alunosEdit/alunosEdit.html?idAluno=${idAluno}`;
     }
 
     // Evento para buscar e exibir os alunos ao digitar no input
