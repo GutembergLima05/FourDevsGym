@@ -10,6 +10,7 @@
     <script src="../../src/components/preloader/js/preloader.js" defer></script>
     <script src="../../public/jsMain/jsMain.js" defer></script>
     <script src="../../src/components/menuTreinos/js/menuTreinos.js" defer></script>
+    <script defer src="../../src/components//poupUp/js/poupUp.js"></script>
     <link rel="stylesheet" href="../../src/components/menuTreinos/style/menuTreinos.css">
 
     <!-- Estilo local -->
@@ -17,7 +18,6 @@
     <script defer src="../../src/connectionAPI/exerciciosViewAPI/exercicioViewAPI.js"></script>
     <script defer src="js/exercicioView.js"></script>
     <script defer src="../../src/components/alerta/js/alerta.js"></script>
-
 </head>
 
 <body>
@@ -26,6 +26,7 @@
 
     <section id="treinosView" class="contain-main" style="display: none;">
         <div id="contain-dashboard" class="contain-secondary">
+            <div id="confirmPopup" class="popup" ></div>
             <h1 class="title-contain-main">Exercícios</h1>
             <form id="exerciseForm">
                 <div id="menu-treino"></div>

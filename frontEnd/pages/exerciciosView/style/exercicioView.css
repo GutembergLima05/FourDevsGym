@@ -14,6 +14,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     margin-bottom: 5%;
+    margin-top: 3%;
 }
 
 #nomeDescricao input:focus {
@@ -48,4 +49,11 @@
 }
 .deleteExercicio:hover{
     color: var(--cor-5);
+}
+.nome_exercicio, .descricao_exercicio{
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 25%;
 }
