@@ -1,3 +1,7 @@
+#item-menu-planos{
+    background-color: var(--cor-2);
+}
+
 i, a {
     cursor: pointer;
 }

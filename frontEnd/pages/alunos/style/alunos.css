@@ -1,4 +1,4 @@
-#menuExercicio{
+#item-menu-alunos{
     background-color: var(--cor-2) !important;
 }
 #nomeDescricao{
@@ -6,9 +6,10 @@
     flex-wrap: wrap;
 }
 #nomeDescricao a{
-    
+    width: 15%;
 }
 #nomeDescricao input {
+    width: 100%;
     border: 1.5px solid var(--cor-12);
     padding: 1.3%;
     margin: 1% 0 1% 0;
@@ -17,6 +18,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     margin-bottom: 5%;
+    margin-top: 3%;
 }
 
 #nomeDescricao input:focus {
@@ -27,12 +29,67 @@
     border: none;
     background-color: var(--cor-1);
     color: var(--cor-3);
-    padding: 4% 3% 4% 3%;
-    border-radius:3px ;
+    padding: 10% 3% 10% 3%;
+    border-radius:7px ;
     cursor: pointer;
+    width: 100%;
 }
 
 .title-contain-main{
-    background-color: red;
-    width: 80% !important;
+    width: 85% !important;
+}
+
+.aluno {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    box-shadow: 0px 0px 13px -3px var(--cor-10);
+    margin-bottom: 0.5%;
+    border-left: 3px solid var(--cor-1);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.7s;
+}
+
+.aluno:hover {
+   background-color: var(--cor-1);
+   color: var(--cor-3);
+}
+
+.aluno i {
+    color: var(--cor-1);
+}
+
+/* Adicione esta parte */
+.aluno:hover i {
+    color: white;
+}
+
+.nomeAluno{
+    width: 85%;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.bi-pencil-square,.bi-trash3-fill{
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: 0.7s;
+}
+
+.bi-pencil-square:hover{
+    color: var(--cor-4) !important;
+}
+.bi-trash3-fill:hover{
+    color: var(--cor-5) !important;
+}
+
+@media screen and (max-width: 800px) {
+    .nomeAluno{
+        width: 75%;
+    }
 }
