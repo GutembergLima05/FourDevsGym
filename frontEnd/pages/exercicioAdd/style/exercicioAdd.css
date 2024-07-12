@@ -4,6 +4,7 @@
 #nomeDescricao{
     display: flex;
     flex-direction: column;
+    margin-top: 5%;
 }
 #nomeDescricao input,
 #nomeDescricao textarea, #inputBuscarExercicio {
@@ -29,9 +30,6 @@
     cursor: pointer;
 }
 
-#inputFile{
-    display: none;
-}
 
 #enviarTreino{
     background-color: var(--cor-1);
@@ -43,10 +41,18 @@
     display: flex;
     align-items: center;
     margin-top: 3%;
-    margin-left: 90%;
+    margin-left: 89%;
     transition: 0.5s;
 }
 
 #enviarTreino:hover{
     background-color: var(--cor-2);
+    transform: scale(1.07);
+}
+
+@media screen and (max-width: 800px) {
+    #enviarTreino{
+        margin-left: 90%;
+        padding: 2% 4% 2% 4%;
+    }
 }
