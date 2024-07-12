@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     editButton.addEventListener('click', function() {
                         const exercicioId = this.getAttribute('data-id');
                         // Redirecionar para outra página com o ID do exercício
-                        window.location.href = `editarExercicio.html?id=${exercicioId}`;
+                        window.location.href = `../exercicioEdit/exercicioEdit.html?id_exercicio=${exercicioId}`;
                     });
 
                     // Adicionar evento de clique para excluir
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         editButton.addEventListener('click', function() {
                             const exercicioId = this.getAttribute('data-id');
                             // Redirecionar para outra página com o ID do exercício
-                            window.location.href = `../exercicioEdit.html?id_exercicio=${exercicioId}`;
+                            window.location.href = `../exercicioEdit/exercicioEdit.html?id_exercicio=${exercicioId}`;
                         });
 
                         // Adicionar evento de clique para excluir
