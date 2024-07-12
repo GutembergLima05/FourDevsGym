@@ -1,0 +1,158 @@
+#contain-alunosEdit{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#dadosAluno{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3.5%; 
+    width: 80%;
+}
+
+#aluno-op{
+    width: 20%;
+    height: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 0.5%;
+    margin-top: 5%; 
+}
+
+#aluno-op button{
+    border: none;
+    color: var(--cor-3);
+    width: 85%;
+    height: 20%;
+    font-family: 'inter';
+    font-size: 0.8rem;
+    font-weight: 300;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.7s;
+}
+
+#aluno-op button:hover{
+    opacity: 0.8;
+}
+#fazerAvaliacao{
+    background-color: var(--cor-1);
+}
+#planoAluno{
+    background-color: var(--cor-4);
+}
+
+#treinoAluno{
+    background-color: var(--cor-5);
+}
+#hist-avaliacoes{
+    background-color: var(--cor-8);
+}
+#div-alunoAdd-return {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    width: 100%;
+  }
+.model-1, .model-2, .model-3{
+    width: 49%;
+    outline: none;
+    padding: 1%;
+    margin: 0.5%;
+    border-radius: 4px;
+    border: 1px solid var(--cor-3);
+    transition: 0.7s;
+    font-size:1rem ;
+    font-family: 'Inter', sans-serif;
+}
+.model-2{
+    width: 20% !important;
+}
+
+.model-1:focus, .model-2:focus{
+    border: 1px solid var(--cor-1);
+    border-left: 1px solid var(--cor-1);
+}
+
+#cadastrar{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+#button-cadastrar{
+    padding: 1% 4% 1% 4%;
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+form label{
+    width: 100%;
+    margin-left: 0.5%;
+}
+.model-text-1{
+    width: 49%;
+    padding: 1% 1% 0% 1%;
+    color: var(--cor-6);
+    margin-top: 1%;
+}
+.model-text-2{
+    width: 20%;
+    padding: 1% 1% 0% 2%;
+    color: var(--cor-6);
+    margin-top: 1%;
+}
+.planoAtivo{
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 147, 83, 1) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);
+    color: var(--cor-3);
+    border-radius: 5px;
+    width: 22.5%;
+    height: 12.5%;
+    margin-top: 0.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bi-pencil-fill{
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 147, 83, 1) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);
+    color: var(--cor-3);
+    padding: 1% 2% 1% 2%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.editable{
+    border: 1px solid var(--cor-10);
+}
+@media screen and (max-width: 800px) {
+    .model-1, .model-2{
+        padding: 3%;
+    }
+    #dadosAluno{
+        width: 95%;
+        justify-content: center;
+    }
+    .title-contain-main{
+        margin-top: 1rem;
+    }
+    .title-contain-main{
+        margin-top: 0.8rem !important;
+    }
+    #button-cadastrar{
+        padding: 3% 7% 3% 7%;
+    }
+    form label{
+        margin-left: 10%;
+    }
+    .model-3{
+        width: 82% !important;
+    }
+    #button-cadastrar{
+        margin-right: 8%;
+        margin-top: 4%;
+    }
+}
