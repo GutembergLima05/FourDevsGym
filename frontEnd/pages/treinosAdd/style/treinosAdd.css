@@ -2,6 +2,10 @@
     background-color: var(--cor-2) !important;
 }
 
+.title-contain-main{
+    margin-top: 0.8rem !important;
+}
+
 #nomeDescricao {
     display: flex;
     flex-direction: column;
