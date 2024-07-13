@@ -14,24 +14,20 @@
     margin: 8% 0% 0% 5%;
     padding: 4% 10% 4% 7%;
     width: 20%;
-    color: var(--cor-3);
     border-radius: 15px;
     display: flex;
-    box-shadow: 0px 5px 32px -10px rgb(0, 0, 0);
+    box-shadow: 0px 5px 32px -10px rgba(0, 0, 0, 0.534);
     transition: 1s;
 }
 .contain-info-dashboard:hover{
     transform: scale(1.02);
 }
 #total-alunos{
-    background: rgb(2,0,36);
+    color: var(--cor-3);
     background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(255,147,83,1) 0%, rgba(255,107,20,1) 39%, rgba(255,107,20,1) 100%, rgba(255,107,20,1) 100%);
 }
 
-#alunos-ausentes{
-    background: rgb(255,82,82);
-    background: radial-gradient(circle, rgba(255,82,82,1) 0%, rgba(200,7,7,1) 39%, rgba(200,7,7,1) 100%, rgba(200,7,7,1) 100%);
-}
+
 #icon-alunos, #icon-ausentes{
     font-size: 5rem;
 }
@@ -57,12 +53,12 @@
 }
 
 #alunos-ausentes{
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 
 #aniversario{
-    background-color: var(--cor-3);
+    background-image: url('../../../public/assets/images/parabens.gif');
     color: var(--cor-4);
     padding: 4% 10% 4% 7%;
     border-radius: 15px;
@@ -72,7 +68,14 @@
     width: 62%;
     margin-left: 5%;
     margin-top: 5%;
-    box-shadow: 0px 5px 32px -10px rgb(146, 60, 2);
+    box-shadow: 0px 5px 32px -10px rgba(36, 36, 36, 0.5);
+    transition: 0.7s;
+    border-right: 10px solid rgba(80, 0, 0, 0);
+}
+
+#aniversario:hover{
+    transform: scale(1.02);
+   background-image: url('../../../public/assets/images/parabens.gif');
 }
 
 #itens-niver i{
