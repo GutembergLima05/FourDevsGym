@@ -21,7 +21,7 @@ function loadPoupUp() {
 
 // Função para abrir o popup
 function openPopup(message, callback) {
-    document.getElementById('popupMessage').innerText = message;
+    document.getElementById('popupMessage').innerHTML = message;
     document.getElementById('confirmPopup').style.display = 'flex';
     window.confirmCallback = callback;
 }
