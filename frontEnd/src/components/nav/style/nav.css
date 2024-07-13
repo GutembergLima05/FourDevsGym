@@ -94,7 +94,7 @@ nav ul li:active {
 #menu-footer {
    display: flex;
    color: var(--cor-3);
-   justify-content: center;
+   justify-content: space-evenly;
    align-items: center;
    padding-bottom: 5%;
    flex-wrap: wrap;
@@ -103,7 +103,7 @@ nav ul li:active {
 
 #menu-footer h4 {
    font-weight: 300;
-   margin-left: 2%;
+   margin-left: -7%;
    margin-right: 20%;
 }
 
