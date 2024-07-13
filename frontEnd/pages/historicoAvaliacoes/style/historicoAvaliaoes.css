@@ -246,7 +246,7 @@ p{
 }
 .model-1, .model-2{
     outline: none;
-    border: 1px solid var(--cor-12);
+    border: none;
     padding: 1%;
     border-radius: 7px;
     width: 93%;
