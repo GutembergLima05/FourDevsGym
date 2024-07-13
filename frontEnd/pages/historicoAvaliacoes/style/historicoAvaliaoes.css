@@ -1,0 +1,184 @@
+.title-contain-main{
+    display: flex;
+    align-items: center;
+}
+#div-treinosAdd-return {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+  }
+
+#back{
+    cursor: pointer;
+}
+p{
+    margin-left: 3%;
+}
+
+.bi-trash-fill, .bi-pencil-square{
+    font-size: 1.2rem;
+    transition: 0.6s;
+}
+.bi-trash-fill:hover{
+    color:var(--cor-5) ;
+}
+.bi-pencil-square:hover{
+    color:var(--cor-7) ;
+}
+.avaliacao-card {
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 147, 83, 1) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    border-radius: 7px;
+    color: var(--cor-3);
+    cursor: pointer;
+}
+.avaliacao{
+    width: 100%;
+}
+.detalhes-avaliacao{
+    width: 100%;
+    display: flex;
+    flex-direction:row ;
+    gap: 2%;
+    padding: 2%;
+}
+.nome-avaliacao {
+    width: 90%;
+}
+
+.nome-avaliacao i {
+    margin: 1%;
+}
+
+.icon-op-avaliacao {
+    width: 15%;
+    display: flex;
+}
+
+.icon-op-avaliacao i {
+    margin: 10%;
+}
+
+#preloader-avaliacao{
+    width: 100%;
+    height: 100vh;
+    padding: 2%;
+    position: fixed;
+    background-color: var(--cor-11);
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 9;
+    display: none;
+}
+
+#preloader-avaliacao img{
+    width: 5%;
+    padding: 1%;
+    border-radius: 100px;
+    animation: pisca 1s infinite;
+    transition: 1s ease-in-out;
+    margin-top: 2%;
+}
+
+.accordion {
+    margin-top: 5%;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+}
+
+.accordion-header {
+    border: none;
+    outline: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    box-shadow: 0px 0px 40px -3px rgb(102, 102, 102);
+    padding: 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20%;
+}
+
+.accordion-content p {
+    padding: 15px 0;
+    margin: 0;
+}
+
+.dia{
+    width: 29%;
+    background-color: white;
+    margin: 2%;
+    border-radius: 5px;
+    border-radius: 10px;
+}
+
+.nome_dia{
+    background-color: var(--cor-1);
+    padding: 3%;
+    color: var(--cor-3);
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+}
+
+.exercicio{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2%;
+    flex-wrap: wrap;
+    border-bottom: 1px  solid var(--cor-12);
+}
+
+.nome-exercicio{
+    word-wrap: break-word;
+    max-width: 100%;
+}
+.exercicio img{
+    width: 15%;
+    height: 5vh;
+    object-fit: cover;
+}
+
+.nome-exercicio{
+    word-wrap: break-word;
+}
+
+.nome-aluno{
+    font-size: 1.2rem;
+    margin-left: 1%;
+    margin-top: 0.5%;
+}
+@media screen and (max-width: 800px) {
+    .dia{
+        width: 100%;
+    }
+    .icon-op-treino {
+        width: 25%;
+    }
+    
+#preloader-treino img{
+    width: 20%;
+}
+}
