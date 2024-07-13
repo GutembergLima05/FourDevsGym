@@ -1,0 +1,92 @@
+#item-menu-horarios-aula {
+    background-color: var(--cor-2);
+}
+
+#div-horarios-personalizar {
+    margin-top: 3%;
+    display: flex;
+}
+
+#div-horarios-personalizar span {
+    cursor: pointer;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    background-color: var(--cor-1);
+    border-radius: 10px;
+    padding: 15px 25px;
+    transition: 0.5s ease-in-out;
+}
+
+#div-horarios-personalizar span:hover {
+    background-color: var(--cor-5);
+    transition: 0.5s ease-in-out;
+}
+
+#div-horarios-personalizar span p {
+    color: white;
+}
+
+#horarios-lista {
+    margin-top: 2%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10%;
+}
+
+.horario-format {
+    width: 250px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.horario-format:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dia {
+    padding-top: 15px;
+    padding-bottom: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 147, 83, 1) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);
+    color: white;
+}
+
+.div-list-horario {
+    margin-top: 10px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.div-periodo-horario {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+}
+
+.turno {
+    color: #A1A1A1;
+    font-size: 10px;
+}
+
+.div-horario {
+    width: 180px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    column-gap: 20px;
+    padding: 10px;
+    border: 1px solid #A1A1A1;
+    border-radius: 5px;
+    background-color: #FFECEC;
+}
