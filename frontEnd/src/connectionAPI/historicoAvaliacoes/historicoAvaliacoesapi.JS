@@ -86,10 +86,125 @@ document.addEventListener('DOMContentLoaded', () => {
                 divAvaliacao.classList.add('avaliacao');
                 divAvaliacao.innerHTML = `
                     <div class="detalhes-avaliacao">
-                        <div><strong>Objetivo:</strong> ${avaliacao.obj}</div>
-                        <div><strong>Peso:</strong> ${avaliacao.peso}</div>
-                        <div><strong>Altura:</strong> ${avaliacao.altura}</div>
-                        <div><br><br><strong style='color:red;'>Responsável:</strong> ${avaliacao.nome_admAvaliacao}</div>
+                                    <form id="dados-avaliacao">
+                <div class="contain-dado-1" id="dado-1">
+                    <div class="title-dado"><i class="bi bi-bullseye"></i> Análise</div>
+                    <div class="text-dado">Objetivos com relação à atividade física:</div>
+                    <input type="text" class="model-1" value="${avaliacao.obj}">
+                </div>
+                <div class="contain-dado-2" id="dado-2">
+                    <div class="title-dado"><i class="bi bi-clipboard-data-fill"></i> Composição Corporal</div>
+                    <div class="corporal">
+                        <div class="text-dado">Peso(Kg):</div>
+                        <input type="number" class="model-2" value="${avaliacao.peso}">
+                    </div>
+                    <div class="corporal">
+                        <div class="text-dado">Altura(cm):</div>
+                        <input type="number" class="model-2" value="${avaliacao.altura}">
+                    </div>
+                </div>
+                <div class="contain-dado-2" id="dado-3">
+                    <div class="title-dado"><i class="bi bi-activity"></i> Métricas</div>
+                    <section class="dados-duplos">
+                        <div id="direito">
+                            <div class="text-dado">D</div>
+                        </div>
+                        <div id="esquerdo">
+                            <div class="text-dado">E</div>
+                        </div>
+                        <div>
+                            <div class="text-dado">Braço Descançado:</div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                        <div>
+                            <div class="text-dado"><br><br></div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                        <div>
+                            <div class="text-dado">Braço Contraído:</div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                        <div>
+                            <div class="text-dado"><br><br></div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                        <div>
+                            <div class="text-dado">Panturrilha:</div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                        <div>
+                            <div class="text-dado"><br></div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                        <div>
+                            <div class="text-dado">Coxa:</div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                        <div>
+                            <div class="text-dado"><br></div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                        <div>
+                            <div class="text-dado">Antebraço:</div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                        <div>
+                            <div class="text-dado"><br></div>
+                            <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        </div>
+                    </section>
+                    <div class="dado-individual">
+                        <div class="text-dado">Cintura:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        <div class="text-dado">Abdomen:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        <div class="text-dado">Quadril:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                        <div class="text-dado">Torax Relaxado:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                    </div>
+
+                </div>
+                <div class="contain-dado-2" id="dado-4">
+                    <div class="title-dado"><i class="bi bi-speedometer2"></i> Bioimpedância</div>
+                    <div>
+                        <div class="text-dado">Água Corporal:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                    </div>
+                    <div>
+                        <div class="text-dado">Massa Óssea:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                    </div>
+                    <div>
+                        <div class="text-dado">Gordura Visceral:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                    </div>
+                    <div>
+                        <div class="text-dado">Massa Magra:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                    </div>
+                    <div>
+                        <div class="text-dado">Idade Metabólica:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                    </div>
+                    <div>
+                        <div class="text-dado">Relação Cintura-Quadril:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                    </div>
+                    <div>
+                        <div class="text-dado">Taxa Metabólica Basal:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                    </div>
+                    <div>
+                        <div class="text-dado">% de Gordura Corporal:</div>
+                        <input type="number" class="model-2" value="${avaliacao.bracoDescD}">
+                    </div>
+                </div>
+                <div class="contain-dado-2" >
+                    <div class="title-dado"><i class="bi bi-pencil-square"></i> Avaliador</div>
+                </div>
+                <div>${avaliacao.nome_admAvaliacao}</div>
+            </form>
                     </div>
                 `;
                 accordionContent.appendChild(divAvaliacao);
