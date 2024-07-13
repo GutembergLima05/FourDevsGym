@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         treinoAluno()
     });
     document.getElementById('hist-avaliacoes').addEventListener('click', () => {
-        window.location = "../historicoAvaliaoes/historicoAvaliaoes.html?idAluno=" + AlunoId
+        window.location = "../historicoAvaliacoes/historicoAvaliacoes.html?idAluno=" + AlunoId
     });
     document.getElementById('fazerAvaliacao').addEventListener('click', () => {
         window.location = "../avaliacaoAdd/avaliacaoAdd.html?idAluno=" + AlunoId
