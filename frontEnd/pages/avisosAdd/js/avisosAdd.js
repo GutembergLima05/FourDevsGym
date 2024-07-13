@@ -1,8 +1,3 @@
-// document.getElementById('file-input').addEventListener('change', function () {
-//   var fileName = this.files[0].name;
-//   document.getElementById('file-name').innerText = fileName;
-// });
-
 document.getElementById("form-add-aviso").addEventListener("submit", async (event) => {
   event.preventDefault();
   let time = new Date();
@@ -28,26 +23,6 @@ document.getElementById("form-add-aviso").addEventListener("submit", async (even
     "id_academia": id_academia
   };
 
-  console.log(data)
-
   await postNotice(data);
   window.location.href = "../avisos/avisos.html";
-})
-
-let imgEle = document.querySelector("#img-form");
-let imgInp = document.querySelector("#file-input");
-
-imgInp.addEventListener("change", (event) => {
-
-  if (!(event.target && event.target.files && event.target.files.length > 0)) {
-    return;
-  }
-
-  let reader = new FileReader();
-  reader.onload = function () {
-    imgEle.src = reader.result;
-  }
-
-  reader.readAsDataURL(event.target.files[0]);
-
-})
+});
