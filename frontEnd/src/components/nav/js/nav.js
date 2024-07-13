@@ -91,6 +91,20 @@ function initializeNav() {
             }
         }
     }
+    document.getElementById('user-menu-footer').addEventListener('click', function () {
+        const nomeAdm = localStorage.getItem('nomeAdm');
+        const nomeAcademia = localStorage.getItem('nome_academia');
+        const emailAdm = localStorage.getItem('emailAdm');
+        const cargoAdm = localStorage.getItem('cargoAdm');
+        let elementoHtml = `<p><b>Nome:</b> ${nomeAdm}</p>
+                            <p><b>email:</b>${emailAdm}</p>
+                            <p><b>Cargo:</b>${cargoAdm}</p>
+                            <p><b>Nome da Academia:</b>${nomeAcademia}</p>`
+        openPopup("<style>#confirmarPoupUp{display:none;}</style>" + elementoHtml, () => {
+            const selectedPlanId = document.getElementById('planos').value;
+            console.log('ID do plano selecionado:', selectedPlanId);
+        });
+    });
 
     function menu() {
         if (window.screen.availWidth > 800) {
