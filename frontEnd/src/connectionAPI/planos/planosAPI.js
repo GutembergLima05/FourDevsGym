@@ -12,7 +12,6 @@ async function readPlans() {
             },
         });
         const result = await response.json();
-        console.log(result.conteudoJson)
         return result.conteudoJson;
     } catch (error) {
         console.error("Error:", error);
@@ -23,10 +22,18 @@ async function showPlans() {
     const noticesArray = await readPlans();
     let plano_element;
     noticesArray.forEach(element => {
+
+        let tituloPlano;
+        if (element.tipo.toLowerCase().includes("plano")) {
+            tituloPlano = element.tipo.replace(/plano/gi, "Plano");
+        } else {
+            tituloPlano = "Plano " + element.tipo;
+        }
+
         plano_element = `
                 <div class="plano-formato" id_plano="${element.id_plano}">
                     <div class="plano-edit-remove">
-                        <h4>Plano ${element.tipo}</h4>
+                        <h4>${tituloPlano}</h4>
                         <div class="div-edit-remove">
                             <a class="edit-button" href="../planosForm/planosForm.html"><i class="fa-solid fa-pen-to-square"
                                     style="color: #ffffff;"></i></a>
@@ -57,8 +64,6 @@ async function deletePlan(id) {
                 Authorization: "Bearer " + `${token}`,
             },
         });
-        const result = await response.json();
-        console.log("Plano apagado (RESULT): ", await result)
     } catch (error) {
         console.error("Erro:", error);
     }
@@ -74,8 +79,6 @@ async function postPlan(data) {
             },
             body: JSON.stringify(data),
         });
-        const result = await response.json();
-        console.log("Plano enviado (RESULT): ", await result)
     } catch (error) {
         console.error("Error:", error);
     }
@@ -91,14 +94,12 @@ async function updatePlan(id, data) {
             },
             body: JSON.stringify(data),
         });
-        const result = await response.json();
-        console.log("Plano atualizado (RESULT): ", await result)
     } catch (error) {
         console.error("Error:", error);
     }
 }
 
-async function readPlan(id){
+async function readPlan(id) {
     try {
         const response = await fetch(`${URLPlans}/${id}`, {
             method: "GET",
