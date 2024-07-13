@@ -6,10 +6,8 @@ let dias_plano = document.getElementById("dias-plano");
 document.addEventListener("DOMContentLoaded", async () => {
 
     if (sessionStorage.getItem("actionForm") === "edit") {
-        console.log("edit")
         let id_plano = sessionStorage.getItem("id_plano");
         let plan = await readPlan(id_plano)
-        console.log(plan);
         tipo_plano.value = plan.tipo;
         valor_plano.value = plan.valor;
         dias_plano.value = plan.dias_validade;
@@ -36,7 +34,6 @@ form.addEventListener("submit", async (event) => {
         "dias_validade": dias_plano.value,
         "id_academia": 1
     }
-
 
     if (sessionStorage.getItem("actionForm") === "add") {
         await postPlan(data);

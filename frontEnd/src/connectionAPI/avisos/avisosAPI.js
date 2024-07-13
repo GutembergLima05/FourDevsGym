@@ -12,7 +12,6 @@ async function readNotices() {
             },
         });
         const result = await response.json();
-        console.log(result.conteudoJson)
         return result.conteudoJson;
     } catch (error) {
         console.error("Error:", error);
@@ -26,10 +25,7 @@ async function showNotices() {
         aviso_element = `
                 <div class="avisos-div" id_aviso="${element.id_aviso}">
                     <div class="img-icos">
-                        <img src="../../public/assets/images/halteresLogin.gif" alt="imagem">
                         <i class="fa-solid fa-trash-can"></i>
-                        <input id="file-notice" type="file">
-                        <label for="file-notice"><i class="fa-solid fa-cloud-arrow-up" style="color: #ff6b14;"></i></label>
                     </div>
                     <div>
                         <div class="text-edit">
@@ -56,8 +52,6 @@ async function deleteNotice(id) {
                 Authorization: "Bearer " + `${token}`,
             },
         });
-        const result = await response.json();
-        console.log("Noticia apagada (RESULT): ", await result)
     } catch (error) {
         console.error("Erro:", error);
     }
@@ -73,8 +67,6 @@ async function postNotice(data) {
             },
             body: JSON.stringify(data),
         });
-        const result = await response.json();
-        console.log("Aviso enviado (RESULT): ", await result)
     } catch (error) {
         console.error("Error:", error);
     }
@@ -90,8 +82,6 @@ async function updateNotice(id, data) {
             },
             body: JSON.stringify(data),
         });
-        const result = await response.json();
-        console.log("Aviso atualizado (RESULT): ", await result)
     } catch (error) {
         console.error("Error:", error);
     }
