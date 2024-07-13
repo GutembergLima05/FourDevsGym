@@ -50,12 +50,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 var nomeAdm = dadosResposta.conteudoJson.usuario.nome;
                 var id_Adm = dadosResposta.conteudoJson.usuario.id_adm;
                 var nome_academia = dadosResposta.conteudoJson.usuario.nome_academia;
+                var emailAdm = dadosResposta.conteudoJson.usuario.email;
+                var cargoAdm = dadosResposta.conteudoJson.usuario.cargo;
 
                 // Armazena os dados no localStorage
                 localStorage.setItem('tokenAdm', tokenAdm);
-                localStorage.setItem('nomeAdm', nomeAdm);
                 localStorage.setItem('id_Adm', id_Adm);
+                localStorage.setItem('nomeAdm', nomeAdm);
                 localStorage.setItem('nome_academia', nome_academia);
+                localStorage.setItem('emailAdm', emailAdm);
+                localStorage.setItem('cargoAdm', cargoAdm);
                 
                 // Redireciona para o dashboard
                 window.location.href = '../../pages/dashboard/dashboard.html';
