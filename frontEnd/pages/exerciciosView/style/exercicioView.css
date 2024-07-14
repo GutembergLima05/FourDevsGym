@@ -25,7 +25,9 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 2px;
-    box-shadow: 0px 0px 9px 4px var(--cor-12);
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.226);
+    margin-bottom: 1%;
+    border-right: 4px solid var(--cor-1);
 }
 
 .exercicio img{
@@ -56,4 +58,52 @@
     white-space: nowrap;
     overflow: hidden;
     width: 25%;
+}
+#back{
+    cursor: pointer;
+}
+#div-treinosAdd-return {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+  }
+@media screen and (max-width: 800px) {
+    #exerciseForm{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    #exercicioTreino{
+        flex-wrap: wrap;
+        width: 98%;
+    }
+    #menu-treino {
+        width: 100%;
+        display: flex;
+        margin-top: 0;
+    }
+    #back{
+        margin-top: -2% !important;
+    }
+    .title-contain-main{
+        margin-top: 1% !important;
+        margin-bottom: 3% !important;
+    }
+    #nomeDescricao{
+        width: 100%;
+    }
+    #nomeDescricao input{
+        padding: 4%;
+        margin-top: 5%;
+    }
+    .exercicio{
+        width: 100%;
+    }
+    .resultadosExercicio{
+        width: 95%;
+  
+    }
+    #buttonsEditDelete{
+        padding-right: 10%;
+    }
 }
