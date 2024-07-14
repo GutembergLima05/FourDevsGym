@@ -159,7 +159,7 @@ function initializeNav() {
         } else {
             //menu mobile
             if (situacaoMenuMobile === "fechado") {
-                nav.style.height = "100vh"
+                nav.style.height = "100%"
                 nav.style.overflow = "overlay"
                 situacaoMenuMobile = "aberto"
             } else {
