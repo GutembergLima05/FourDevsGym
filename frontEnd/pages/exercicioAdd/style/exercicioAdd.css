@@ -49,10 +49,34 @@
     background-color: var(--cor-2);
     transform: scale(1.07);
 }
-
+#back{
+    cursor: pointer;
+}
+#div-treinosAdd-return {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+  }
 @media screen and (max-width: 800px) {
     #enviarTreino{
         margin-left: 70%;
         padding: 2% 4% 2% 4%;
+    }
+    #exerciseForm input{
+        padding: 3%;
+    }
+    #menu-treino {
+        width: 100%;
+        display: flex;
+    }
+    #back{
+        margin-top: -4%;
+    }
+    .title-contain-main{
+        margin-top: 0 !important;
+    }
+    #enviarTreino{
+        margin-left: 65%;
+        padding: 3% 5% 3% 5%;
     }
 }
