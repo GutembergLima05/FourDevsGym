@@ -58,11 +58,6 @@
     background-color: red;
 }
 
-#alunos-ausentes {
-    /* background-color: blue; */
-}
-
-
 #aniversario {
     background-image: url('../../../public/assets/images/parabens.gif');
     color: var(--cor-4);
