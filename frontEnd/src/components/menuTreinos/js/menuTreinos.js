@@ -3,7 +3,7 @@ function loadMenuTreino() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('menu-treino').innerHTML += data;
-            initializeNav()
+            //initializeNav()
         })
         .catch(error => console.error('Erro ao carregar o cabeçalho:', error));
 }
