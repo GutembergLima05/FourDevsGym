@@ -12,7 +12,10 @@
     margin-top: 3%;
     border-radius: 7px;
 }
-
+#back{
+    cursor: pointer;
+    margin-top: 1vw;
+}
 #nomeDescricao input,
 #nomeDescricao textarea, #inputBuscarExercicio {
     border: 1.5px solid var(--cor-12);
@@ -36,7 +39,7 @@
 }
 
 #addDivisoes {
-    background-color: var(--cor-1);
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgb(224, 125, 68) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);
     -webkit-border-top-left-radius: 10px;
     -webkit-border-bottom-left-radius: 10px;
     -moz-border-radius-topleft: 10px;
@@ -115,7 +118,7 @@
 }
 
 .nome_dia{
-    background-color: var(--cor-1);
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 147, 83, 1) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);
     padding: 3%;
     color: var(--cor-3);
     -webkit-border-top-left-radius: 10px;
@@ -173,8 +176,18 @@
     border-bottom: 3px solid var(--cor-1);
     border-radius: 3px;
     outline: none;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--cor-4);
 }
 
+.bi-trash-fill{
+    transition: 0.5s;
+}
+.bi-trash-fill:hover{
+    color: var(--cor-5);
+    cursor: pointer;
+}
 #resultadosExercicios input:focus{
     border: 1px solid var(--cor-1);
     border-bottom: 3px solid var(--cor-1);
@@ -235,7 +248,8 @@
 
 @media screen and (max-width: 800px) {
     #enviarTreino{
-        margin-left: 70%;
+        margin-left: 65%;
+        padding: 3% 5% 3% 5%;
     }
 
     #exercicioTreino{
@@ -250,5 +264,29 @@
     }
     #resultadosExercicios input{
         text-align: center;
+    }
+    #back{
+        margin: 0;
+    }
+    #menu-treino {
+        width: 100%;
+        display: flex;
+    }
+    #nomeDescricao input, #nomeDescricao textarea, #inputBuscarExercicio{
+        padding: 4%;
+    }
+    #addDivisoes{
+        padding: 4%;
+        display: flex;
+        flex-direction: row;
+    }
+    .containersDivisoes{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    #diaDivisoes{
+        margin-top: 15%;
     }
 }
