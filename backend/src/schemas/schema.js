@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 dotenv.config()
 
-const email = Joi.string().email().max(30).required(),
+const email = Joi.string().email().required(),
     senha = Joi.string().min(8).max(72).required(),
     cargo = Joi.string().valid('recepcionista', 'personal', 'dono').required(),
     descricao = Joi.string().max(100).required(),
