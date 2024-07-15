@@ -242,11 +242,11 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 const imgExercicio = document.createElement('img');
                 imgExercicio.src = exercicio.gif_url; // Use a URL do GIF do exercício, se disponível
-                imgExercicio.alt = exercicio.nome;
+                imgExercicio.alt = exercicio.exercicio_nome;
     
                 const nomeExercicio = document.createElement('div');
                 nomeExercicio.classList.add('nome-exercicio');
-                nomeExercicio.textContent = exercicio.nome;
+                nomeExercicio.textContent = exercicio.exercicio_nome;
     
                 const inputSerie = document.createElement('input');
                 inputSerie.type = 'number';
