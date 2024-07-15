@@ -93,6 +93,21 @@ const getAllPlan = async(req, res) => {
             };
         });
 
+       // Para cada plano, contar a quantidade de alunos ativos associados
+       for (let i = 0; i < formattedPlanInfo.length; i++) {
+        const planoId = formattedPlanInfo[i].id_plano;
+
+        // Consulta para contar alunos associados ao plano com plano_ativo true
+        const quantidadeAlunos = await knex('aluno')
+            .where('id_plano', planoId)
+            .andWhere('plano_ativo', true)
+            .count('id_aluno as count')
+            .first();
+
+        // Adiciona a quantidade de alunos ao objeto do plano
+        formattedPlanInfo[i].quantidade_alunos = quantidadeAlunos.count;
+    }
+
         msgJson(201, res, formattedPlanInfo, true)
     } catch (error) {
         console.error(error)
