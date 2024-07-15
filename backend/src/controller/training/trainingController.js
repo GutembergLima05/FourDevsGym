@@ -160,20 +160,20 @@ const getTrainingById = async (req, res) => {
 
     try {
         // Verifica se o treino existe
-        const trainingInfo = await knex('treino').where({ id_treino }).first().returning('*');
+        const trainingInfo = await knex('treino').where({ id_treino }).first();
         if (!trainingInfo) return msgJson(404, res, 'Treino não encontrado.');
-
-        // Formata as datas
-        const formattedDates = formatDates(trainingInfo.data_criacao, trainingInfo.data_atualizacao, null, 3);
-        trainingInfo.data_criacao = formattedDates.data_criacao;
-        trainingInfo.data_atualizacao = formattedDates.data_atualizacao;
 
         // Busca os dias e exercícios associados ao treino
         const diasExercicios = await knex('treino_dia_exercicio')
+            .select('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'exercicio.gif_url', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series')
             .join('dia', 'treino_dia_exercicio.id_dia', 'dia.id_dia')
             .join('exercicio', 'treino_dia_exercicio.id_exercicio', 'exercicio.id_exercicio')
-            .where('treino_dia_exercicio.id_treino', id_treino)
-            .returning('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'exercicio.gif_url', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
+            .where('treino_dia_exercicio.id_treino', id_treino);
+
+        // Verifique se há exercícios retornados corretamente
+        if (diasExercicios.length === 0) {
+            return msgJson(404, res, 'Nenhum exercício encontrado para este treino.');
+        }
 
         // Agrupa os exercícios por dia
         const diasMap = diasExercicios.reduce((acc, { id_dia, dia_nome, id_exercicio, exercicio_nome, gif_url, repeticoes, series }) => {
@@ -193,9 +193,11 @@ const getTrainingById = async (req, res) => {
         msgJson(200, res, response, true);
     } catch (error) {
         console.error(error);
-        msgJson(500, res, 'Erro interno do servidor ao detalhar Treino.', false);
+        msgJson(500, res, 'Erro interno do servidor ao detalhar Treino.');
     }
 };
+
+
 
 const getAllTraining = async(req, res) => {
     try {
