@@ -1,14 +1,17 @@
 CREATE TABLE academia 
 ( 
     id_academia SERIAL PRIMARY KEY, 
+    id_academia SERIAL PRIMARY KEY, 
     nome VARCHAR(255) NOT NULL,  
     endereco VARCHAR(255) NOT NULL,
     data_criacao DATE DEFAULT CURRENT_DATE,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 ); 
 
 CREATE TABLE administrador 
 ( 
+    id_adm SERIAL PRIMARY KEY, 
     id_adm SERIAL PRIMARY KEY, 
     email VARCHAR(255) NOT NULL UNIQUE,  
     nome VARCHAR(255) NOT NULL,  
@@ -17,11 +20,13 @@ CREATE TABLE administrador
     id_academia INT,
     data_criacao DATE DEFAULT CURRENT_DATE,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE SET NULL
 );
 
 CREATE TABLE plano 
 ( 
+    id_plano SERIAL PRIMARY KEY, 
     id_plano SERIAL PRIMARY KEY, 
     tipo VARCHAR(255) NOT NULL,  
     valor FLOAT NOT NULL,  
@@ -29,16 +34,19 @@ CREATE TABLE plano
     dias_validade INT NOT NULL,
     data_criacao DATE DEFAULT CURRENT_DATE,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE SET NULL
 );
 
 CREATE TABLE treino 
 ( 
     id_treino SERIAL PRIMARY KEY, 
+    id_treino SERIAL PRIMARY KEY, 
     nome VARCHAR(255) NOT NULL,  
     descricao VARCHAR(255),  
     id_administrador INT,
     data_criacao DATE DEFAULT CURRENT_DATE,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_administrador) REFERENCES administrador(id_adm) ON DELETE SET NULL
 );
@@ -46,17 +54,20 @@ CREATE TABLE treino
 CREATE TABLE exercicio 
 ( 
     id_exercicio SERIAL PRIMARY KEY, 
+    id_exercicio SERIAL PRIMARY KEY, 
     nome VARCHAR(255) NOT NULL,  
     descricao VARCHAR(255),  
     id_administrador INT,
     gif_url VARCHAR(255),
     data_criacao DATE DEFAULT CURRENT_DATE,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_administrador) REFERENCES administrador(id_adm) ON DELETE SET NULL
 );
 
 CREATE TABLE aluno 
 ( 
+    id_aluno SERIAL PRIMARY KEY, 
     id_aluno SERIAL PRIMARY KEY, 
     nome VARCHAR(255) NOT NULL,  
     email VARCHAR(255) NOT NULL UNIQUE,  
@@ -71,6 +82,7 @@ CREATE TABLE aluno
     id_plano INT,
     data_criacao DATE DEFAULT CURRENT_DATE,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE SET NULL,
     FOREIGN KEY (id_treino) REFERENCES treino(id_treino) ON DELETE SET NULL,
     FOREIGN KEY (id_plano) REFERENCES plano(id_plano) ON DELETE SET NULL
@@ -78,21 +90,25 @@ CREATE TABLE aluno
 
 CREATE TABLE dia (
     id_dia SERIAL PRIMARY KEY,
+    id_dia SERIAL PRIMARY KEY,
     nome VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE venda 
 ( 
     id_venda SERIAL PRIMARY KEY, 
+    id_venda SERIAL PRIMARY KEY, 
     nome VARCHAR(255) NOT NULL,  
     metodo_pagamento VARCHAR(50) NOT NULL,  
     data_venda DATE NOT NULL,
     data_criacao DATE DEFAULT CURRENT_DATE,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE produto 
 ( 
+    id_produto SERIAL PRIMARY KEY, 
     id_produto SERIAL PRIMARY KEY, 
     nome VARCHAR(255) NOT NULL,  
     valor FLOAT NOT NULL,  
@@ -101,11 +117,13 @@ CREATE TABLE produto
     id_academia INT,
     data_criacao DATE DEFAULT CURRENT_DATE,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE SET NULL
 );
 
 CREATE TABLE aviso 
 ( 
+    id_aviso SERIAL PRIMARY KEY, 
     id_aviso SERIAL PRIMARY KEY, 
     titulo VARCHAR(255) NOT NULL,  
     descricao VARCHAR(255),  
@@ -113,12 +131,14 @@ CREATE TABLE aviso
     gif_url VARCHAR(255),
     data_criacao DATE DEFAULT CURRENT_DATE,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_expiracao TIMESTAMP,
     FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE SET NULL
 );
 
 CREATE TABLE avaliacao 
 ( 
+    id_avaliacao SERIAL PRIMARY KEY, 
     id_avaliacao SERIAL PRIMARY KEY, 
     braco_direito_contraido FLOAT,  
     braco_direito_relaxado FLOAT,  
@@ -142,6 +162,7 @@ CREATE TABLE avaliacao
     id_administrador INT,  
     id_aluno INT,
     data_criacao DATE DEFAULT CURRENT_DATE,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_administrador) REFERENCES administrador(id_adm) ON DELETE SET NULL,
     FOREIGN KEY (id_aluno) REFERENCES aluno(id_aluno) ON DELETE SET NULL
@@ -177,58 +198,73 @@ INSERT INTO dia(nome) values ('Dia 1'), ('Dia 2'), ('Dia 3'), ('Dia 4'), ('Dia 5
 
 CREATE OR REPLACE FUNCTION update_timestamp()
 RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION update_timestamp()
+RETURNS TRIGGER AS $$
 BEGIN
    NEW.data_atualizacao = NOW();
    RETURN NEW;
+   NEW.data_atualizacao = NOW();
+   RETURN NEW;
 END;
+$$ LANGUAGE plpgsql;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_aluno_timestamp_trigger
 BEFORE UPDATE ON aluno
 FOR EACH ROW
 EXECUTE FUNCTION update_timestamp();
+EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_administrador_timestamp_trigger
 BEFORE UPDATE ON administrador
 FOR EACH ROW
+EXECUTE FUNCTION update_timestamp();
 EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_exercicio_timestamp_trigger
 BEFORE UPDATE ON exercicio
 FOR EACH ROW
 EXECUTE FUNCTION update_timestamp();
+EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_treino_timestamp_trigger
 BEFORE UPDATE ON treino
 FOR EACH ROW
+EXECUTE FUNCTION update_timestamp();
 EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_venda_timestamp_trigger
 BEFORE UPDATE ON venda
 FOR EACH ROW
 EXECUTE FUNCTION update_timestamp();
+EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_produto_timestamp_trigger
 BEFORE UPDATE ON produto
 FOR EACH ROW
+EXECUTE FUNCTION update_timestamp();
 EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_aviso_timestamp_trigger
 BEFORE UPDATE ON aviso
 FOR EACH ROW
 EXECUTE FUNCTION update_timestamp();
+EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_academia_timestamp_trigger
 BEFORE UPDATE ON academia
 FOR EACH ROW
+EXECUTE FUNCTION update_timestamp();
 EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_plano_timestamp_trigger
 BEFORE UPDATE ON plano
 FOR EACH ROW
 EXECUTE FUNCTION update_timestamp();
+EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_avaliacao_timestamp_trigger
 BEFORE UPDATE ON avaliacao
 FOR EACH ROW
+EXECUTE FUNCTION update_timestamp();
 EXECUTE FUNCTION update_timestamp();
