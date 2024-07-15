@@ -39,7 +39,7 @@ estrutura fictícia
 Você pode acessar o FourDevs GymManager nos seguintes links:
 
 - **Painel Administrativo**:
-  [FourDevs GymManager - Painel Administrativo](https://fourdevs.com.br)
+  [FourDevs GymManager - Painel Administrativo](gym.fourdevs.com.br)
 
 - **Baixar App**:
   [FourDevs GymManager - Baixar App](https://fourdevs.com.br)
