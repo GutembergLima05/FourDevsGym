@@ -149,29 +149,22 @@ CREATE TABLE avaliacao
 
 CREATE TABLE produto_venda 
 ( 
-    id_venda INT,  
-    id_produto INT,  
-    quantidade INT,  
-    valor FLOAT,  
-    PRIMARY KEY (id_venda, id_produto),
-    data_criacao DATE DEFAULT CURRENT_DATE,
-    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_venda) REFERENCES venda(id_venda) ON DELETE CASCADE,
-    FOREIGN KEY (id_produto) REFERENCES produto(id_produto) ON DELETE CASCADE
+    id_Venda INT,  
+    id_Produto INT,  
+    Quantidade INT,  
+    Valor FLOAT,  
+    PRIMARY KEY (id_Venda, id_Produto),
+    data_Criacao DATE DEFAULT CURRENT_DATE,
+    data_Atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE treino_dia_exercicio (
-    id_treino INT NOT NULL,
-    id_dia INT NOT NULL,
-    id_exercicio INT NOT NULL,
-    repeticoes INT NULL,
-    series INT NULL,
-    FOREIGN KEY (id_dia) REFERENCES dia(id_dia) ON DELETE CASCADE,
-    FOREIGN KEY (id_exercicio) REFERENCES exercicio(id_exercicio) ON DELETE CASCADE,
-    FOREIGN KEY (id_treino) REFERENCES treino(id_treino) ON DELETE CASCADE
+    id_treino INT,
+    id_dia INT,
+    id_exercicio INT,
+    repeticoes INT,
+    series INT
 );
-
-
 
 INSERT INTO dia(nome) values ('Dia 1'), ('Dia 2'), ('Dia 3'), ('Dia 4'), ('Dia 5'),('Dia 6'),('Dia 7')
 
