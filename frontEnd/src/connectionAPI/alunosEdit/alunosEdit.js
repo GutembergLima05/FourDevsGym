@@ -1,29 +1,95 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const mockResponse = {
-        "conteudoJson": [
-            {
-                "id_aluno": 19,
-                "nome": "Wilkenio",
-                "telefone": "814971052203",
-                "endereco": "rua 1",
-                "historicoSaude": "vazio",
-                "data_nasc": "11/07/2024 14:07:49",
-                "email": "wilkeniopereiraguitarra@gmail.com"
-            }
-        ],
-        "success": true
-    };
-    
-    const AlunoId = parseInt(new URLSearchParams(window.location.search).get('idAluno'));
+    const alunoId = parseInt(new URLSearchParams(window.location.search).get('idAluno'));
+    const tokenAdm = localStorage.getItem('tokenAdm');
+    const idAcademia = parseInt(localStorage.getItem('id_academia'));
 
-    // Preencher os campos do formulário com os dados recebidos
-    const aluno = mockResponse.conteudoJson[0];
-    document.getElementById('nome').value = aluno.nome;
-    document.getElementById('telefone').value = aluno.telefone;
-    document.getElementById('dataNascimento').value = convertDateFormat(aluno.data_nasc);
-    document.getElementById('endereco').value = aluno.endereco;
-    document.getElementById('email').value = aluno.email;
-    document.getElementById('historicoSaude').value = aluno.historicoSaude;
+    // Verificar se tokenAdm e idAcademia estão definidos
+    if (!tokenAdm || !idAcademia) {
+        console.error("Token de administrador ('tokenAdm') ou ID da academia ('id_academia') não encontrados no localStorage.");
+        return;
+    }
+
+    // Função para converter a data de "DD/MM/YYYY HH:MM:SS" para "YYYY-MM-DD"
+    function convertDateFormat(dateTime) {
+        if (!dateTime) return '';
+        const [date, time] = dateTime.split(' ');
+        const [day, month, year] = date.split('/');
+        return `${year}-${month}-${day}`;
+    }
+
+    // Buscar dados do aluno pela API
+    fetch(`https://apigym-fourdevs.vercel.app/student/${alunoId}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${tokenAdm}`,
+            'id_academia': idAcademia
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const aluno = data.conteudoJson;
+            
+            // Armazenar dados do aluno no localStorage
+            localStorage.setItem('alunoData', JSON.stringify(aluno));
+
+            // Preencher campos do formulário com os dados do aluno
+            document.getElementById('nome').value = aluno.nome;
+            document.getElementById('telefone').value = aluno.telefone;
+            document.getElementById('dataNascimento').value = convertDateFormat(aluno.nascimento);
+            document.getElementById('endereco').value = aluno.endereco;
+            document.getElementById('email').value = aluno.email;
+            document.getElementById('historicoSaude').value = aluno.historico;
+
+            // Exibir o plano ativo do aluno
+            fetch(`https://apigym-fourdevs.vercel.app/plan/${aluno.id_plano}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${tokenAdm}`,
+                    'id_academia': idAcademia
+                }
+            })
+            .then(response => response.json())
+            .then(planData => {
+                if (planData.success) {
+                    const plano = planData.conteudoJson;
+                    document.querySelector('.planoAtivo').textContent = `${plano.tipo}`;
+                } else {
+                    console.error('Erro ao buscar plano do aluno:', planData.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro na requisição do plano:', error);
+            });
+
+
+             // Exibir o plano ativo do aluno
+             fetch(`https://apigym-fourdevs.vercel.app/training/${aluno.id_treino}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${tokenAdm}`,
+                    'id_academia': idAcademia
+                }
+            })
+            .then(response => response.json())
+            .then(planData => {
+                if (planData.success) {
+                    const plano = planData.conteudoJson.treino;
+                    document.querySelector('.treinoRecomendado').textContent = `${plano.nome}`;
+                } else {
+                    console.error('Erro ao buscar plano do aluno:', planData.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro na requisição do plano:', error);
+            });
+        } else {
+            console.error('Erro ao buscar dados do aluno:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Erro na requisição:', error);
+    });
 
     // Habilitar edição ao clicar no ícone de lápis
     document.getElementById('edit-icon').addEventListener('click', function () {
@@ -37,15 +103,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Função para converter a data de "DD/MM/YYYY HH:MM:SS" para "YYYY-MM-DD"
-    function convertDateFormat(dateTime) {
-        const [date, time] = dateTime.split(' ');
-        const [day, month, year] = date.split('/');
-        return `${year}-${month}-${day}`;
-    }
+    // Enviar dados atualizados para a API ao clicar no botão Cadastrar
+    document.getElementById('button-cadastrar').addEventListener('click', function (event) {
+        event.preventDefault();
 
-    // Enviar dados para a API ao clicar no botão Cadastrar
-    document.getElementById('button-cadastrar').addEventListener('click', function () {
         const nome = document.getElementById('nome').value;
         const telefone = document.getElementById('telefone').value;
         const dataNascimento = document.getElementById('dataNascimento').value;
@@ -53,31 +114,52 @@ document.addEventListener('DOMContentLoaded', function () {
         const email = document.getElementById('email').value;
         const historicoSaude = document.getElementById('historicoSaude').value;
 
-        const data = {
-            nome: nome,
-            telefone: telefone,
-            dataNascimento: dataNascimento,
-            endereco: endereco,
-            email: email,
-            historicoSaude: historicoSaude
-        };
-        console.log(data)
-        fetch('URL_DA_API', {
-            method: 'POST',
+        // Buscar dados do aluno do localStorage
+        const aluno = JSON.parse(localStorage.getItem('alunoData'));
+
+        // Enviar dados atualizados para a API
+        fetch(`https://apigym-fourdevs.vercel.app/student/${alunoId}`, {
+            method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenAdm}`,
+                'id_academia': idAcademia
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                nome: nome,
+                telefone: telefone,
+                nascimento: dataNascimento,
+                endereco: endereco,
+                email: email,
+                historico: historicoSaude,
+                id_academia: idAcademia,
+                id_treino: aluno.id_treino,
+                id_plano: aluno.id_plano
+            })
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
-            // Adicione aqui o que deseja fazer após o sucesso do envio
+            console.log(data);
+            if (data.success) {
+                // Atualizar dados no localStorage
+                localStorage.setItem('alunoData', JSON.stringify({
+                    ...aluno,
+                    nome: nome,
+                    telefone: telefone,
+                    nascimento: dataNascimento,
+                    endereco: endereco,
+                    email: email,
+                    historico: historicoSaude
+                }));
+                // Recarregar a página após sucesso
+                window.location.reload();
+                console.log('Dados atualizados com sucesso:', data);
+            } else {
+                console.error('Erro ao atualizar dados:', data.message);
+            }
         })
-        .catch((error) => {
-            console.error('Error:', error);
-            mostrarAlerta("Esperando a api",5000)
-            // Adicione aqui o que deseja fazer após o erro no envio
+        .catch(error => {
+            console.error('Erro na requisição:', error);
         });
     });
 });

@@ -45,7 +45,7 @@ async function showPlans() {
                             <h1>${element.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</h1>
                         </div>
                         <div class="div-plano-ativo">
-                            <h1>60</h1>
+                            <h1>${element.quantidade_alunos}</h1>
                             <h3>Planos ativos</h3>
                         </div>
                     </div>

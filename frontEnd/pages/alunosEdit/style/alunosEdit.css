@@ -118,14 +118,20 @@ form label{
 
     margin-top: 1%;
 }
-.planoAtivo{
-    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 147, 83, 1) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);
+.planoAtivo, .treinoRecomendado{
     color: var(--cor-3);
     border-radius: 5px;
     padding: 4%;
     margin-top: 0.5%;
     text-align: center;
     width: 80% !important;
+}
+
+.planoAtivo{
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgb(110, 109, 109) 0%, rgb(83, 83, 83) 39%, rgb(90, 89, 89) 100%, rgb(78, 78, 78) 100%);
+}
+.treinoRecomendado{
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgb(236, 67, 67) 0%, rgb(235, 62, 62) 39%, rgb(226, 45, 45) 100%, rgba(255, 107, 20, 1) 100%);
 }
 .bi-pencil-fill{
     background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(255, 147, 83, 1) 0%, rgba(255, 107, 20, 1) 39%, rgba(255, 107, 20, 1) 100%, rgba(255, 107, 20, 1) 100%);

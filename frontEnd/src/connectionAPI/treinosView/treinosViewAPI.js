@@ -83,13 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         fetch(`https://apigym-fourdevs.vercel.app/training/${treino.id_treino}`, { method: 'GET', headers })
                             .then(response => response.ok ? response.json() : Promise.reject(`Erro na requisição: ${response.statusText}`))
                             .then(details => {
+                              
                                 preloaderTreino.style.display = "none";
                                 const conteudoJson = details?.conteudoJson;
-                                if (!conteudoJson?.dias) return console.error('Detalhes do treino ou array de dias não encontrado ou inválido:', details);
+                                //if (!conteudoJson?.dias) return console.error('Detalhes do treino ou array de dias não encontrado ou inválido:', details);
 
                                 accordionContent.innerHTML = '';
                                 if (conteudoJson.dias.length === 0) accordionContent.innerText = "Vazio";
-                                
+                             
                                 conteudoJson.dias.forEach(dia => {
                                     const divDia = document.createElement('div');
                                     divDia.classList.add('dia');
@@ -98,12 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                     dia.exercicios?.forEach(exercicio => {
                                             const exercicioDetalhes = data?.conteudoJson;
                                             if (!exercicioDetalhes) return console.error('Detalhes do exercício não encontrados:', data);
-
                                             const divExercicio = document.createElement('div');
                                             divExercicio.classList.add('exercicio');
                                             divExercicio.innerHTML = `
                                                 <img src="`+exercicio.gif_url+`" alt="Exercicio">
-                                                <div class="nome-exercicio">${exercicio.nome}</div>
+                                                <div class="nome-exercicio">${exercicio.exercicio_nome}</div>
                                                 <div class="serie-exercicio">${exercicio.series}</div>
                                                 <div>X</div>
                                                 <div class="rep-exercicio">${exercicio.repeticoes}</div>
@@ -114,15 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                    
                                 });
-                                setTimeout(function(){ 
-                                
-                                accordionContent.style.maxHeight = accordionContent.scrollHeight + 'rem';
-                            }, 800);
-                            /*})
-                            .catch(error => {
-                                preloaderTreino.style.display = 'none';
-                                console.error('Erro ao buscar detalhes do treino:', error);
-                            });*/
+
+                                accordionContent.style.maxHeight = 140 + 'rem';
                     }
                 });
             });
