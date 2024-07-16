@@ -139,7 +139,11 @@ CREATE TABLE aviso
 CREATE TABLE avaliacao 
 ( 
     id_avaliacao SERIAL PRIMARY KEY, 
-    id_avaliacao SERIAL PRIMARY KEY, 
+    id_avaliacao SERIAL PRIMARY KEY,
+    obj TEXT,
+    idadeMeta FLOAT,
+    rcq FLOAT,
+    tmb FLOAT, 
     braco_direito_contraido FLOAT,  
     braco_direito_relaxado FLOAT,  
     braco_esquerdo_contraido FLOAT,  
@@ -192,7 +196,43 @@ CREATE TABLE treino_dia_exercicio (
     FOREIGN KEY (id_treino) REFERENCES treino(id_treino) ON DELETE CASCADE
 );
 
+CREATE TABLE periodo_semana (
+    id_periodo_semana SERIAL PRIMARY KEY,
+    dia_semana VARCHAR(10) NOT NULL, 
+    periodo VARCHAR(10) NOT NULL
+);
 
+CREATE TABLE horario (
+    id_horario SERIAL PRIMARY KEY,
+    id_academia INTEGER REFERENCES academia(id_academia),
+    id_periodo_semana INTEGER REFERENCES periodo_semana(id_periodo_semana),
+    hora_abertura TIME NOT NULL,
+    hora_fechamento TIME NOT NULL
+);
+
+
+INSERT INTO periodo_semana (dia_semana, periodo) VALUES
+('Segunda', 'Manhã'),
+('Segunda', 'Tarde'),
+('Segunda', 'Noite'),
+('Terça', 'Manhã'),
+('Terça', 'Tarde'),
+('Terça', 'Noite'),
+('Quarta', 'Manhã'),
+('Quarta', 'Tarde'),
+('Quarta', 'Noite'),
+('Quinta', 'Manhã'),
+('Quinta', 'Tarde'),
+('Quinta', 'Noite'),
+('Sexta', 'Manhã'),
+('Sexta', 'Tarde'),
+('Sexta', 'Noite'),
+('Sábado', 'Manhã'),
+('Sábado', 'Tarde'),
+('Sábado', 'Noite'),
+('Domingo', 'Manhã'),
+('Domingo', 'Tarde'),
+('Domingo', 'Noite');
 
 INSERT INTO dia(nome) values ('Dia 1'), ('Dia 2'), ('Dia 3'), ('Dia 4'), ('Dia 5'),('Dia 6'),('Dia 7')
 

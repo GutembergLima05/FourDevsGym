@@ -19,7 +19,7 @@ const allRoutes = [
     routeProduct,
     routeStudent,
     routeTraining,
-    routeDashboard
+    routeDashboard,
 ];
 
 module.exports = { allRoutes };
