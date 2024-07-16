@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    setTimeout(function() {
     const tokenAdm = localStorage.getItem('tokenAdm');
     const idAcademia = parseInt(localStorage.getItem('id_academia'));
     const alunoId = parseInt(new URLSearchParams(window.location.search).get('idAluno'));
@@ -44,7 +45,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         const option = document.createElement('option');
                         option.value = plano.id_plano; // Armazenando o ID do plano no valor da opção
                         option.textContent = plano.tipo; // Nome do plano
+
+                        if(plano.id_plano === aluno.id_plano){
+                            option.setAttribute('selected', 'selected');
+                        }
+
                         select.appendChild(option);
+   
                     });
 
                     openPopup("Renove o plano do aluno:" + select.outerHTML, () => {
@@ -125,6 +132,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     const option = document.createElement('option');
                     option.value = treino.id_treino; // Armazenando o ID do treino no valor da opção
                     option.textContent = treino.nome; // Nome do treino
+
+                    if(treino.id_treino === aluno.id_treino){
+                        option.setAttribute('selected', 'selected');
+                    }
                     select.appendChild(option);
                 });
     
@@ -192,4 +203,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         preLoader.style.display = "none"
         preLoader.style.opacity = "1"
     }
+}, 2000);
 });
