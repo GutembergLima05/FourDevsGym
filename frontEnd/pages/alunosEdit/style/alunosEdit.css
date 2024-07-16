@@ -152,6 +152,7 @@ form label{
 @media screen and (max-width: 800px) {
     .model-1, .model-2{
         padding: 3%;
+        padding-left: 0;
     }
     #dadosAluno{
         width: 95%;
