@@ -66,8 +66,17 @@ select{
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     text-align: center;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
-
+ #selectMes option{
+background-color: var(--cor-1);
+color: var(--cor-3);
+}
+select:focus{
+    border-color: var(--cor-1);
+}
 .titleMes{
     display: flex;
     background-color: var(--cor-1);
@@ -131,23 +140,42 @@ select{
 
 
 @media screen and (max-width: 800px) {
+    .extratoGeral{
+        justify-content: end;
+    }
     #mini-filtro{
         flex-wrap: wrap;
+        justify-content: space-around;
     }
     select{
-        width: 60%;
+        width: 40%;
     }
     .titleMes{
         margin-top: 10%;
-        padding: 2%;
+        padding: 3%;
     }
     .extratoDia{
-        width: 100%;
+        width: 80%;
     }
     .titleDados{
         width: 100%;
     }
     .dia{
         font-size: 0.8rem;
+    }
+    .analisePositiva,.analiseNegativa{
+        margin-left: 0;
+        padding: 3%;
+        font-size: 0.8rem;
+    }
+    select{
+        padding: 1.5%;
+        border-radius: 4px;
+    }
+    #valorEntrada{
+        margin-left: 1%;
+    }
+    .dataDia{
+        text-align: center;
     }
 }
