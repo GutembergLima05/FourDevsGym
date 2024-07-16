@@ -208,7 +208,8 @@ nav ul li:active {
    }
 
    #logo-menu {
-      width: 17%;
+      width: 10%;
+      margin: 3.5%;
    }
 
    nav ul {
