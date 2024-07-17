@@ -1,12 +1,14 @@
 const { msgJson } = require("../../utils/responseJson.js");
 const { knex } = require("../../database/connection/dbConnection.js");
 
-
 const getInfoDashboard = async (req, res) => {
     try {
-        // Verificar e desativar planos expirados
+        // Verificar e desativar planos expirados ou com id_plano nulo
         await knex('aluno')
-            .whereRaw(`plano_ativo = TRUE AND data_inicio_plano + INTERVAL '1 day' * (SELECT dias_validade FROM plano WHERE id_plano = aluno.id_plano) < CURRENT_DATE`)
+            .where(function() {
+                this.whereRaw(`plano_ativo = TRUE AND data_inicio_plano + INTERVAL '1 day' * (SELECT dias_validade FROM plano WHERE id_plano = aluno.id_plano) < CURRENT_DATE`)
+                    .orWhere('id_plano', null);
+            })
             .update({ plano_ativo: false });
 
         const totalAlunos = await knex('aluno').count();
@@ -26,7 +28,6 @@ const getInfoDashboard = async (req, res) => {
             alunos_sem_plano_ativo: alunosSemPlanoAtivo[0].count,
             aniversariantes: aniversariantes
         };
-
 
         msgJson(201, res, dashboardInfo, true);
     } catch (error) {
