@@ -107,4 +107,10 @@
     .avisos-div {
         width: 90%;
     }
+        #div-avisos-button a {
+            height: 2.2vh;
+            margin-top: 21%;
+            padding: 0.8rem;
+            display: flex;
+        }
 }

@@ -98,6 +98,7 @@
     }
     .exercicio{
         width: 100%;
+        margin-bottom: 5%;
     }
     .resultadosExercicio{
         width: 95%;
@@ -105,5 +106,8 @@
     }
     #buttonsEditDelete{
         padding-right: 10%;
+    }
+    .exercicio img{
+        width: 20%;
     }
 }

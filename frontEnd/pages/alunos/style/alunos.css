@@ -89,7 +89,14 @@
 }
 
 @media screen and (max-width: 800px) {
+    #nomeDescricao input{
+        padding: 3%;
+    }
     .nomeAluno{
         width: 75%;
+    }
+    .aluno{
+        padding: 4% 2% 4% 2%;
+        margin-bottom: 3%;
     }
 }

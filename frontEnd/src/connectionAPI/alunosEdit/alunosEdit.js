@@ -51,11 +51,13 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => response.json())
             .then(planData => {
+                let planoAtivoDiv = document.querySelector('.planoAtivo')
                 if (planData.success) {
                     const plano = planData.conteudoJson;
-                    document.querySelector('.planoAtivo').textContent = `${plano.tipo}`;
+                    planoAtivoDiv.textContent = `${plano.tipo}`;
                 } else {
                     console.error('Erro ao buscar plano do aluno:', planData.message);
+                    planoAtivoDiv.textContent = `Não Encontrado 😥`;
                 }
             })
             .catch(error => {
