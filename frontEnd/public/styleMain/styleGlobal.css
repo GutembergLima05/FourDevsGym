@@ -51,6 +51,7 @@ a{
 .title-button-back a{
     color: var(--cor-6);
   }
+
 @media screen and (max-width: 800px) {
     .contain-secondary{
         width: 100%;
