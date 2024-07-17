@@ -157,7 +157,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 window.location.reload();
                 console.log('Dados atualizados com sucesso:', data);
             } else {
-                console.error('Erro ao atualizar dados:', data.message);
+
+                if(data.conteudoJson.message === "Informe um número válido no campo 'id_plano'."){
+                  mostrarAlerta("Adicione um plano a esse aluno para poder editá-lo",5000)
+                }
+                console.error('Erro ao atualizar dados:', data);
             }
         })
         .catch(error => {
