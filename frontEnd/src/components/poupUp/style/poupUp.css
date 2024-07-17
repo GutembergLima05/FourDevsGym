@@ -11,7 +11,7 @@
     overflow: auto; /* Habilitar scroll se necessário */
     background-color: rgba(0, 0, 0, 0.486); /* Preto com opacidade */
     transition: 1s;
-    z-index: 7;
+    z-index: 9;
   }
 
   

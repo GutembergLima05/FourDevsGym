@@ -106,10 +106,12 @@ i, a {
 }
 @media screen and (max-width: 800px) {
     #div-planos-button a {
-        width: 35%;
+        display: flex;
         height: 2.2vh;
         margin-top: 21%;
         padding: 1rem;
+        justify-content: center;
+        align-items: center;
     }
     .plano-formato {
         width: 90%;
