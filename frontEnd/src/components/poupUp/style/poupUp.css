@@ -22,7 +22,7 @@
     border: 1px solid #888;
     width: 60%;
     height: fit-content;
-    border-radius: 5px;
+    border-radius: 8px;
     animation: mostarPoupUp 0.5s ease-in-out;
   }
   @keyframes mostarPoupUp {
@@ -45,19 +45,23 @@
   }
   /* O botão fechar (x) */
   .closePoupUp {
-    color: var(--cor-3);
-    background-color: var(--cor-1);
+    color: var(--cor-1);
     padding: 0.3% 1% 0.3% 1%;
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 7px;
+    border-radius: 10px;
+    transition: 0.7s;
+  }
+  .closePoupUp:hover{
+    color: var(--cor-5);
   }
   #popupMessage{
     padding: 2%;
     word-wrap: break-word;
     margin-top: 5%;
+    font-weight: 500;
   }
   .close:hover,
   .close:focus {
@@ -73,6 +77,10 @@
     font-family: 'Inter', sans-serif;
     float: right;
     margin: 1%;
+    transition: 0.7s;
+  }
+  #confirmarPoupUp:hover, #cancelarPoupUp:hover{
+    opacity: 0.8;
   }
   #confirmarPoupUp{
     background-color: var(--cor-1);
@@ -81,7 +89,7 @@
   }
   #cancelarPoupUp{
     background-color: var(--cor-10);
-    color:var(--cor-6);
+    color:var(--cor-3);
     border-radius: 3px;
   }
 
