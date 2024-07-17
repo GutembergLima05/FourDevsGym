@@ -29,11 +29,11 @@
     border: none;
     color: var(--cor-3);
     width: 85%;
-    padding: 4% 2% 4% 2%;
+    padding: 6% 2% 6% 2%;
     margin: 1% 1% 3% 1%;
     font-family: 'inter';
     font-size: 0.8rem;
-    font-weight: 300;
+    font-weight: 400;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.7s;
@@ -197,5 +197,8 @@ form label{
     }
     #edit-icon{
         padding: 3% 5% 3% 5%;
+    }
+    .planoAtivo, .treinoRecomendado{
+        font-size: 0.7rem;
     }
 }
