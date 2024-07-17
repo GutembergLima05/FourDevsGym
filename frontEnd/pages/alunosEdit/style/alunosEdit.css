@@ -94,7 +94,7 @@
 }
 #button-cadastrar{
     padding: 1% 4% 1% 4%;
-    background-color: var(--cor-1);
+    background-color: var(--cor-1) !important;
     color: var(--cor-3);
     border: none;
     border-radius: 5px;

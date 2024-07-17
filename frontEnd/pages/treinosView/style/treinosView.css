@@ -86,6 +86,7 @@ p {
     text-align: left;
     cursor: pointer;
     font-size: 16px;
+    background-color: transparent;
     transition: background-color 0.2s ease;
 }
 
@@ -107,10 +108,11 @@ p {
 
 .dia {
     width: 29%;
-    background-color: white;
+    background-color: var(--cor-13);
     margin: 2%;
     border-radius: 5px;
     border-radius: 10px;
+    border: 1px solid var(--cor-3);
 }
 
 .nome_dia {
@@ -129,7 +131,7 @@ p {
 .exercicio {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 2%;
     flex-wrap: wrap;
     border-bottom: 1px solid var(--cor-12);

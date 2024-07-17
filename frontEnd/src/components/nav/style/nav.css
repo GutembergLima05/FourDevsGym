@@ -157,8 +157,13 @@ nav ul li:hover i {
 
 /* Estilo para o fundo preto */
 .black-background {
-   background-color: var(--cor-9);
-   color: var(--cor-3);
+   background-color: rgb(58, 58, 58) !important;
+   color: var(--cor-3) !important;
+}
+
+.black-background input, .black-background textarea, .black-background select{
+   background-color: rgb(58, 58, 58) !important;
+   color: var(--cor-3) !important;
 }
 
 /* Estilo para o fundo vermelho */

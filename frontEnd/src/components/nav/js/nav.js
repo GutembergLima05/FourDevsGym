@@ -12,7 +12,7 @@ function loadNav() {
 document.addEventListener("DOMContentLoaded", function () {
     loadNav();
 });
-
+const root = document.documentElement;
 function initializeNav() {
     // Declarando variáveis
     let buttonTheme = document.getElementById('buttonTheme');
@@ -81,6 +81,20 @@ function initializeNav() {
                 IconthemeEscuro.style.display = "none";
                 IconthemeClaro.style.display = "block";
                 localStorage.setItem('tema', 'dark'); // Salva o tema 'dark' no localStorage
+
+                root.style.setProperty('--cor-1', '#161616');
+                root.style.setProperty('--cor-2', '#DD5E13');
+                root.style.setProperty('--cor-3', '#fff');
+                root.style.setProperty('--cor-4', '#5C5C5C');
+                root.style.setProperty('--cor-5', '#B53636');
+                root.style.setProperty('--cor-6', '#fff');
+                root.style.setProperty('--cor-7', '#A1A1A1');
+                root.style.setProperty('--cor-8', '#278314');
+                root.style.setProperty('--cor-9', '#161616');
+                root.style.setProperty('--cor-10', '#b1b1b1');
+                root.style.setProperty('--cor-11', '#ff6a14c2');
+                root.style.setProperty('--cor-12', '#fff');
+                root.style.setProperty('--cor-13', 'rgb(58, 58, 58) ');
             } else {
                 //console.log("light")
                 body.classList.remove('black-background');
@@ -88,6 +102,20 @@ function initializeNav() {
                 IconthemeEscuro.style.display = "block";
                 IconthemeClaro.style.display = "none";
                 localStorage.setItem('tema', 'light'); // Salva o tema 'light' no localStorage
+
+                root.style.setProperty('--cor-1', '#FF6B14');
+                root.style.setProperty('--cor-2', '#DD5E13');
+                root.style.setProperty('--cor-3', '#fff');
+                root.style.setProperty('--cor-4', '#5C5C5C');
+                root.style.setProperty('--cor-5', '#B53636');
+                root.style.setProperty('--cor-6', '#383838');
+                root.style.setProperty('--cor-7', '#A1A1A1');
+                root.style.setProperty('--cor-8', '#278314');
+                root.style.setProperty('--cor-9', '#161616');
+                root.style.setProperty('--cor-10', '#888');
+                root.style.setProperty('--cor-11', '#ff6a14c2');
+                root.style.setProperty('--cor-12', '#c0c0c0de');
+                root.style.setProperty('--cor-13', '#fff');
             }
         }
     }

@@ -103,7 +103,7 @@
     width: 100%;
     height: 35vh;
     overflow: overlay;
-    background-color: white;
+    background-color: var(--cor-13);
     border-radius: 5px;
     border-radius: 10px;
 }
