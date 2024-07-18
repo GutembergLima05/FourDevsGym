@@ -14,6 +14,7 @@
     --cor-10:#888 ;
     --cor-11:#ff6a14c2;
     --cor-12:#c0c0c0de;
+    --cor-13:#fff;
 }
 
 *{
@@ -50,6 +51,7 @@ a{
 .title-button-back a{
     color: var(--cor-6);
   }
+
 @media screen and (max-width: 800px) {
     .contain-secondary{
         width: 100%;

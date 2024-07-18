@@ -71,8 +71,8 @@ i, a {
 
 .div-edit-remove div {
     background-color: white;
-    padding: 1px 4px 1px 4px;
-    border-radius: 2px;
+    padding: 1px 5px 1px 5px;
+    border-radius: 3px;
 }
 
 .plano-valor-quantidade {
@@ -103,4 +103,20 @@ i, a {
 .div-plano-ativo h3 {
     font-size: 20px;
     font-weight: 300;
+}
+@media screen and (max-width: 800px) {
+    #div-planos-button a {
+        display: flex;
+        height: 2.2vh;
+        margin-top: 21%;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    .plano-formato {
+        width: 90%;
+    }
+    .div-plano-ativo h3{
+        font-size: 0.9rem;
+    }
 }

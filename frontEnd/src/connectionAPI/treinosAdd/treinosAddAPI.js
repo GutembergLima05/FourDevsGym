@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const adicionarExercicio = (divExercicio, exercicioId) => {
         const divs = document.querySelectorAll('#diasCorrespondentes .dia');
+        inputBuscarExercicio.value=""
         divs.forEach(div => {
             if (window.getComputedStyle(div).display === 'block') {
                 div.appendChild(divExercicio);

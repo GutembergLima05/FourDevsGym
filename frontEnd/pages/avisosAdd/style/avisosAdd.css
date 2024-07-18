@@ -13,23 +13,24 @@ button{
 }
 
 #div-info-aviso form input {
-  border: 1px solid hsl(0, 0%, 36%);
+  border: 1px solid var(--cor-10);
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px;
 }
 
 #button-add-aviso {
   border: none;
   width: 150px;
-  padding: 0.6rem;
+  padding: 0.8rem;
   background-color: var(--cor-1);
   color: var(--cor-3);
   border-radius: 5px;
   transition: 0.5s;
+  margin-top: 3%;
 }
 
 #button-add-aviso:hover {
-  background-color: var(--cor-5);
+  background-color: var(--cor-2);
 }
 
 #div-avisoAdd-return {
@@ -51,4 +52,16 @@ button{
   margin-top: 2px;
   width: 35px;
   appearance: textfield;
+}
+
+#addaviso{
+  display: flex;
+  justify-content: end;
+}
+
+@media screen and (max-width: 800px) {
+
+      .title-contain-main{
+          margin-top: 1vw !important;
+      }
 }

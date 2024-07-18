@@ -158,7 +158,7 @@
 
     #itens-niver {
         align-items: end;
-        justify-content: space-around;
+        justify-content: space-between;
         width: 100%;
     }
 
@@ -188,4 +188,11 @@
     #data-niver {
         margin-top: 5%;
     }
+    #alunos-ausentes{
+        margin-top: 6%;
+    }
+    #text-niver{
+        margin-left: 2vw;
+    }
+
 }

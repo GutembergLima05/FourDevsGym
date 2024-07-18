@@ -24,24 +24,24 @@
             <div id="confirmPopup" class="popup"></div>
             <div id="div-avaliacaoAdd-return" class="title-button-back">
                 <a id="back"><i class="fa-solid fa-arrow-left"></i></a>
-                <h1 class="title-contain-main">Realizando Avaliação do aluno:<label class="nome-aluno">Wilkenio</label>
+                <h1 class="title-contain-main">Realizando Avaliação do aluno:<label class="nome-aluno">...</label>
                 </h1>
             </div>
             <form id="dados-avaliacao">
                 <div class="contain-dado-1" id="dado-1">
                     <div class="title-dado"><i class="bi bi-bullseye"></i> Análise</div>
                     <div class="text-dado">Objetivos com relação à atividade física:</div>
-                    <input type="text" class="model-1">
+                    <input type="text" class="model-1" id="obj" required>
                 </div>
                 <div class="contain-dado-2" id="dado-2">
                     <div class="title-dado"><i class="bi bi-clipboard-data-fill"></i> Composição Corporal</div>
                     <div class="corporal">
                         <div class="text-dado">Peso(Kg):</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="peso"required>
                     </div>
                     <div class="corporal">
                         <div class="text-dado">Altura(cm):</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="altura"required>
                     </div>
                 </div>
                 <div class="contain-dado-2" id="dado-3">
@@ -55,98 +55,96 @@
                         </div>
                         <div>
                             <div class="text-dado">Braço Descançado:</div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="braco_direito_relaxado" required>
                         </div>
                         <div>
                             <div class="text-dado"><br><br></div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="braco_esquerdo_relaxado" required>
                         </div>
                         <div>
                             <div class="text-dado">Braço Contraído:</div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="braco_direito_contraido"required>
                         </div>
                         <div>
                             <div class="text-dado"><br><br></div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="braco_esquerdo_contraido" required>
                         </div>
                         <div>
                             <div class="text-dado">Panturrilha:</div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="panturrilha_direita"required>
                         </div>
                         <div>
                             <div class="text-dado"><br></div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="panturrilha_esquerda"required>
                         </div>
                         <div>
                             <div class="text-dado">Coxa:</div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="coxa_direita" required>
                         </div>
                         <div>
                             <div class="text-dado"><br></div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="coxa_esquerda" required>
                         </div>
                         <div>
                             <div class="text-dado">Antebraço:</div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="antebraco_direito"required>
                         </div>
                         <div>
                             <div class="text-dado"><br></div>
-                            <input type="number" class="model-2">
+                            <input type="number" class="model-2" id="antebraco_esquerdo" required>
                         </div>
                     </section>
                     <div class="dado-individual">
                         <div class="text-dado">Cintura:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="cintura" required>
                         <div class="text-dado">Abdomen:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="abdomen" required>
                         <div class="text-dado">Quadril:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="quadril" required>
                         <div class="text-dado">Torax Relaxado:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="torax" required>
                     </div>
-
                 </div>
                 <div class="contain-dado-2" id="dado-4">
                     <div class="title-dado"><i class="bi bi-speedometer2"></i> Bioimpedância</div>
                     <div>
                         <div class="text-dado">Água Corporal:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="agua_corporal" required>
                     </div>
                     <div>
                         <div class="text-dado">Massa Óssea:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="massa_ossea" required>
                     </div>
                     <div>
                         <div class="text-dado">Gordura Visceral:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="gordura_visceral" required>
                     </div>
                     <div>
                         <div class="text-dado">Massa Magra:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="massa_magra" required>
                     </div>
                     <div>
                         <div class="text-dado">Idade Metabólica:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="idadeMeta" required>
                     </div>
                     <div>
                         <div class="text-dado">Relação Cintura-Quadril:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="rcq" required>
                     </div>
                     <div>
                         <div class="text-dado">Taxa Metabólica Basal:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="tmb" required>
                     </div>
                     <div>
                         <div class="text-dado">% de Gordura Corporal:</div>
-                        <input type="number" class="model-2">
+                        <input type="number" class="model-2" id="gordura_corporal" required>
                     </div>
                 </div>
                 <div id="enviarAvaliacao">
-                    <button id="buttonEnviarAvaliacao">Realizar Avaliação <i class="bi bi-check2"></i></button>
+                    <button id="buttonEnviarAvaliacao" type="submit" class="buttoes">Realizar Avaliação <i class="bi bi-check2"></i></button>
                 </div>
             </form>
         </div>
-
     </section>
 
 </body>

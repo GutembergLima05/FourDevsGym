@@ -51,11 +51,13 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => response.json())
             .then(planData => {
+                let planoAtivoDiv = document.querySelector('.planoAtivo')
                 if (planData.success) {
                     const plano = planData.conteudoJson;
-                    document.querySelector('.planoAtivo').textContent = `${plano.tipo}`;
+                    planoAtivoDiv.textContent = `${plano.tipo}`;
                 } else {
                     console.error('Erro ao buscar plano do aluno:', planData.message);
+                    planoAtivoDiv.textContent = `Não Encontrado 😥`;
                 }
             })
             .catch(error => {
@@ -155,7 +157,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 window.location.reload();
                 console.log('Dados atualizados com sucesso:', data);
             } else {
-                console.error('Erro ao atualizar dados:', data.message);
+
+                if(data.conteudoJson.message === "Informe um número válido no campo 'id_plano'."){
+                  mostrarAlerta("Adicione um plano a esse aluno para poder editá-lo",5000)
+                }
+                console.error('Erro ao atualizar dados:', data);
             }
         })
         .catch(error => {
