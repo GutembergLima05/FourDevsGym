@@ -94,33 +94,6 @@ CREATE TABLE dia (
     nome VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE venda 
-( 
-    id_venda SERIAL PRIMARY KEY, 
-    id_venda SERIAL PRIMARY KEY, 
-    nome VARCHAR(255) NOT NULL,  
-    metodo_pagamento VARCHAR(50) NOT NULL,  
-    data_venda DATE NOT NULL,
-    data_criacao DATE DEFAULT CURRENT_DATE,
-    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-);
-
-CREATE TABLE produto 
-( 
-    id_produto SERIAL PRIMARY KEY, 
-    id_produto SERIAL PRIMARY KEY, 
-    nome VARCHAR(255) NOT NULL,  
-    valor FLOAT NOT NULL,  
-    descricao VARCHAR(255),  
-    quantidade INT NOT NULL,  
-    id_academia INT,
-    data_criacao DATE DEFAULT CURRENT_DATE,
-    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE SET NULL
-);
-
 CREATE TABLE aviso 
 ( 
     id_aviso SERIAL PRIMARY KEY, 
@@ -172,19 +145,6 @@ CREATE TABLE avaliacao
     FOREIGN KEY (id_aluno) REFERENCES aluno(id_aluno) ON DELETE SET NULL
 );
 
-CREATE TABLE produto_venda 
-( 
-    id_venda INT,  
-    id_produto INT,  
-    quantidade INT,  
-    valor FLOAT,  
-    PRIMARY KEY (id_venda, id_produto),
-    data_criacao DATE DEFAULT CURRENT_DATE,
-    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_venda) REFERENCES venda(id_venda) ON DELETE CASCADE,
-    FOREIGN KEY (id_produto) REFERENCES produto(id_produto) ON DELETE CASCADE
-);
-
 CREATE TABLE treino_dia_exercicio (
     id_treino INT NOT NULL,
     id_dia INT NOT NULL,
@@ -208,6 +168,14 @@ CREATE TABLE horario (
     id_periodo_semana INTEGER REFERENCES periodo_semana(id_periodo_semana),
     hora_abertura TIME NOT NULL,
     hora_fechamento TIME NOT NULL
+);
+
+CREATE TABLE financas (
+    id_financa SERIAL PRIMARY KEY,
+    data_ocorrida DATE NOT NULL,
+    item VARCHAR(255) NOT NULL,
+    cliente VARCHAR(255) NOT NULL,
+    valor_pago DECIMAL(10, 2) NOT NULL
 );
 
 
@@ -269,18 +237,6 @@ EXECUTE FUNCTION update_timestamp();
 
 CREATE TRIGGER update_treino_timestamp_trigger
 BEFORE UPDATE ON treino
-FOR EACH ROW
-EXECUTE FUNCTION update_timestamp();
-EXECUTE FUNCTION update_timestamp();
-
-CREATE TRIGGER update_venda_timestamp_trigger
-BEFORE UPDATE ON venda
-FOR EACH ROW
-EXECUTE FUNCTION update_timestamp();
-EXECUTE FUNCTION update_timestamp();
-
-CREATE TRIGGER update_produto_timestamp_trigger
-BEFORE UPDATE ON produto
 FOR EACH ROW
 EXECUTE FUNCTION update_timestamp();
 EXECUTE FUNCTION update_timestamp();

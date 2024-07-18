@@ -1,3 +1,4 @@
+const  routeFinance  = require("./financeRoutes/financeRouter.js").routeFinance;
 const routeDashboard = require("./dashboardRoutes/dashboardRouter.js").routeDashboard;
 const routeAdm = require("./admRoutes/admRouter.js").routeAdm;
 const routeEvaluation = require("./evaluationRoutes/evaluationRouter.js").routeEvaluation;
@@ -20,6 +21,7 @@ const allRoutes = [
     routeStudent,
     routeTraining,
     routeDashboard,
+    routeFinance
 ];
 
 module.exports = { allRoutes };

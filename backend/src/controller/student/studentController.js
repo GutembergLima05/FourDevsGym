@@ -23,6 +23,16 @@ const register = async (req, res) => {
 
         const [studentInfo] = await knex('aluno').insert({ ...body }).returning('*')
 
+        console.log(idPlano)
+
+        const financeInfo = {
+            data_ocorrida: currentDate,
+            item: idPlano[0].tipo,
+            cliente: body.nome,
+            valor_pago: idPlano[0].valor
+        }
+        await knex('financas').insert(financeInfo)
+
         const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento, studentInfo.data_inicio_plano, 3);
 
         studentInfo.nascimento = formattedDates.nascimento;
@@ -63,7 +73,16 @@ const update = async (req, res) => {
             body.plano_ativo = true;
         }
 
+        const currentDate = new Date().toISOString().split('T')[0];
         const [studentInfo] = await knex('aluno').update({ ...body }).where({ id_aluno }).returning('*')
+
+        const financeInfo = {
+            data_ocorrida: currentDate,
+            item: idPlano[0].tipo,
+            cliente: body.nome,
+            valor_pago: idPlano[0].valor
+        }
+        await knex('financas').insert(financeInfo)
 
         const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento,studentInfo.data_inicio_plano, 3);
 

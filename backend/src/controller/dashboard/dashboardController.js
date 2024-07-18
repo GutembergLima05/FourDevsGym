@@ -32,7 +32,7 @@ const getInfoDashboard = async (req, res) => {
         msgJson(201, res, dashboardInfo, true);
     } catch (error) {
         console.error(error);
-        msgJson(500, res, 'Erro interno do servidor ao detalhar avaliações.', false);
+        msgJson(500, res, 'Erro interno do servidor ao detalhar dashboard.', false);
     }
 }
 
