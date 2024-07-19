@@ -2,8 +2,13 @@ let form = document.getElementById("form-plano");
 let tipo_plano = document.getElementById("tipo-plano");
 let valor_plano = document.getElementById("valor-plano");
 let dias_plano = document.getElementById("dias-plano");
+let button = document.querySelector('.buttoes')
+let title = document.querySelector('.title-contain-main')
 
 document.addEventListener("DOMContentLoaded", async () => {
+// Alterando testos do botão e do titulo
+ button.innerHTML="Adicionar <i class='bi bi-check2'></i>"
+ title.innerHTML="Planos - Add"
 
     if (sessionStorage.getItem("actionForm") === "edit") {
         let id_plano = sessionStorage.getItem("id_plano");
@@ -11,6 +16,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         tipo_plano.value = plan.tipo;
         valor_plano.value = plan.valor;
         dias_plano.value = plan.dias_validade;
+        button.innerHTML="Editar <i class='bi bi-check2'></i>"
+         title.innerHTML="Planos - Edição"
     }
 })
 

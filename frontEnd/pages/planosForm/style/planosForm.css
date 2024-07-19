@@ -38,7 +38,7 @@ form button {
 }
 
 form button:hover {
-    background-color: var(--cor-5);
+    background-color: var(--cor-2);
     transition: 0.5s ease-in-out;
 }
 

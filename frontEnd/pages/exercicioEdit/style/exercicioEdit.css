@@ -1,6 +1,3 @@
-#menuAddExercicio{
-    background-color: var(--cor-2) !important;
-}
 #nomeDescricao{
     display: flex;
     flex-direction: column;
