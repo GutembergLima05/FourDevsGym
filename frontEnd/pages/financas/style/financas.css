@@ -11,10 +11,13 @@
     font-size: 1.6rem;
     color: var(--cor-4);
 }
-#totalEntrada{
+#totalEntrada,#ValorOculto{
     color: var(--cor-2) !important;
     font-weight: 600 !important;
     margin: 1% 1% 1% 1%;
+}
+#totalEntrada{
+    display: none;
 }
 
 #valorEntrada i{
@@ -25,7 +28,11 @@
 .bi-eye-slash{
     display: none;
 }
-
+.extratoCard{
+    width: 100%;
+    display: flex;
+    margin-bottom: 4%;
+}
 #mini-filtro{
     display: flex;
     align-items: center;
@@ -45,6 +52,7 @@
     padding: 1%;
     color: var(--cor-3);
     border-radius: 3px;
+    margin-left: 1%;
 }
 
 .analisePositiva{
@@ -104,6 +112,7 @@ select:focus{
 }
 .extratoGeral{
     display: flex;
+    flex-direction: column;
     margin-top: 5%;
 }
 .dataDia{
@@ -137,7 +146,12 @@ select:focus{
     width: 33.3%;
     text-align: center;
 }
-
+.analiseNegativa::before{
+    content: "↓";
+}
+.analisePositiva::before{
+    content: "↑";
+}
 
 @media screen and (max-width: 800px) {
     .extratoGeral{
@@ -167,6 +181,7 @@ select:focus{
         margin-left: 0;
         padding: 3%;
         font-size: 0.8rem;
+        margin-top: 5%;
     }
     select{
         padding: 1.5%;
@@ -177,5 +192,8 @@ select:focus{
     }
     .dataDia{
         text-align: center;
+    }
+    .title-contain-main{
+        font-size: 0.8rem;
     }
 }

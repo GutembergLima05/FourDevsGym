@@ -143,7 +143,7 @@ form label{
 .editable{
     border: 1px solid var(--cor-10);
 }
-#planos, #treinoAlunoSelect{
+#planos, #treinoAlunoSelect, #treinos{
     padding: 1%;
     border: 1px solid var(--cor-10);
     width: 99%;

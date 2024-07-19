@@ -99,6 +99,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const buttonCadastrar = document.getElementById('button-cadastrar');
         buttonCadastrar.style.display = "block";
         this.style.display = "none";
+
+        document.querySelector('.title-contain-main').textContent="Aluno - Editar"
         inputs.forEach(input => {
             input.disabled = false;
             input.classList.add('editable');
