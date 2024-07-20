@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alunoElement.classList.add('aluno');
             alunoElement.innerHTML = `
                 <i class="bi bi-person-square"></i>
-                <h5 class="nomeAluno">${aluno.nome}</h5>
+                <h5 class="nomeAluno">${aluno.nome} (${aluno.id_aluno})</h5>
                 <i class="bi bi-trash3-fill delete" data-id="${aluno.id_aluno}"></i>
             `;
             alunosContainer.appendChild(alunoElement);

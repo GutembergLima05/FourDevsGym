@@ -143,6 +143,11 @@ form label{
 .editable{
     border: 1px solid var(--cor-10);
 }
+
+#ValidadePlano{
+    font-size: 0.9rem;
+    margin-bottom: 3%;
+}
 #planos, #treinoAlunoSelect, #treinos{
     padding: 1%;
     border: 1px solid var(--cor-10);
