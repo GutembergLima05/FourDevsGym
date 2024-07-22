@@ -9,13 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // Função para converter a data de "DD/MM/YYYY HH:MM:SS" para "YYYY-MM-DD"
-    function convertDateFormat(dateTime) {
-        if (!dateTime) return '';
-        const [date, time] = dateTime.split(' ');
-        const [day, month, year] = date.split('/');
-        return `${year}-${month}-${day}`;
-    }
+
 
     // Buscar dados do aluno pela API
     fetch(`https://apigym-fourdevs.vercel.app/student/${alunoId}`, {
@@ -58,9 +52,10 @@ function parseDate(dateStr) {
 function convertDateFormat(dateTime) {
     if (!dateTime) return '';
     const [date, time] = dateTime.split(' ');
-    const [year, month, day] = date.split('-');
-    return `${day}/${month}/${year} ${time}`;
+    const [day, month, year] = date.split('/');
+    return `${year}-${month}-${day}`;
 }
+
 
 function calcularDiasRestantes(dataInicio, diasPlano) {
     const dataInicioDate = parseDate(dataInicio);
