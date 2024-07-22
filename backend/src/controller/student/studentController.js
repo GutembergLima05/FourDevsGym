@@ -1,6 +1,8 @@
 const { msgJson } = require("../../utils/responseJson.js")
 const { knex } = require("../../database/connection/dbConnection.js")
 const { formatDates, formatDatesStudent } = require("../../service/noticeService.js")
+const jwt = require('jsonwebtoken');
+const { format } = require('date-fns');
 
 const register = async (req, res) => {
     const { body, dataUnique } = req
@@ -164,12 +166,52 @@ const getAllStudent = async (req, res) => {
     }
 }
 
+const login = async (req, res) => {
+    const { matricula: id_aluno, nascimento } = req.body;
+    
+    try {
+        const alunoInfo = await knex('aluno')
+            .where({ id_aluno, nascimento })
+            .first();
+
+        if (!alunoInfo) {
+            return msgJson(404, res, 'Matrícula ou nascimento incorretos!', false);
+        }
+
+        const academiaInfo = await knex('academia')
+            .where({ id_academia: alunoInfo.id_academia })
+            .select('nome')
+            .first();
+
+        
+        alunoInfo.nome_academia = academiaInfo.nome;
+
+        const formattedDates = formatDates(alunoInfo.data_criacao, alunoInfo.data_atualizacao, null, 3);
+
+        alunoInfo.nascimento = format(new Date(alunoInfo.nascimento), 'dd/MM/yyyy');
+        alunoInfo.data_inicio_plano = alunoInfo.data_inicio_plano ? format(new Date(alunoInfo.data_inicio_plano), 'dd/MM/yyyy') : null;
+
+        alunoInfo.data_criacao = formattedDates.data_criacao;
+        alunoInfo.data_atualizacao = formattedDates.data_atualizacao;
+
+        const payload = { ...alunoInfo };
+        const options = { expiresIn: '7d' };
+        const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, options);
+
+        msgJson(200, res, { usuario: alunoInfo, token }, true);
+    } catch (error) {
+        console.error(error);
+        msgJson(500, res, 'Erro interno do servidor ao realizar login.', false);
+    }
+};
+
 
 module.exports = {
     register,
     update,
     getAllStudent,
     getStudentById,
-    deleteStudent
+    deleteStudent,
+    login
 }
 
