@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const alunoId = parseInt(new URLSearchParams(window.location.search).get('idAluno'));
     const tokenAdm = localStorage.getItem('tokenAdm');
     const idAcademia = parseInt(localStorage.getItem('id_academia'));
-
+    const msgVencimento = document.getElementById('ValidadePlano')
     // Verificar se tokenAdm e idAcademia estão definidos
     if (!tokenAdm || !idAcademia) {
         console.error("Token de administrador ('tokenAdm') ou ID da academia ('id_academia') não encontrados no localStorage.");
@@ -41,6 +41,42 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('email').value = aluno.email;
             document.getElementById('historicoSaude').value = aluno.historico;
 
+
+
+
+
+// Função para converter a string de data "DD/MM/YYYY HH:MM:SS" para um objeto Date
+function parseDate(dateStr) {
+    if (!dateStr) return null;
+    const [date, time] = dateStr.split(' ');
+    const [day, month, year] = date.split('/').map(Number);
+    const [hour, minute, second] = time.split(':').map(Number);
+    return new Date(year, month - 1, day, hour, minute, second);
+}
+
+// Função para converter a data no formato "YYYY-MM-DD" para o formato "DD/MM/YYYY"
+function convertDateFormat(dateTime) {
+    if (!dateTime) return '';
+    const [date, time] = dateTime.split(' ');
+    const [year, month, day] = date.split('-');
+    return `${day}/${month}/${year} ${time}`;
+}
+
+function calcularDiasRestantes(dataInicio, diasPlano) {
+    const dataInicioDate = parseDate(dataInicio);
+    const dataVencimento = new Date(dataInicioDate);
+    dataVencimento.setDate(dataInicioDate.getDate() + diasPlano);
+
+    const dataAtual = new Date();
+    const diferencaMs = dataVencimento - dataAtual;
+    return Math.ceil(diferencaMs / (1000 * 60 * 60 * 24));
+}
+
+
+
+
+            const dataInicioPlano = aluno.data_inicio_plano
+
             // Exibir o plano ativo do aluno
             fetch(`https://apigym-fourdevs.vercel.app/plan/${aluno.id_plano}`, {
                 method: 'GET',
@@ -51,6 +87,9 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => response.json())
             .then(planData => {
+                const diasRestantes = calcularDiasRestantes(dataInicioPlano, planData.conteudoJson.dias_validade);
+                msgVencimento.innerText=`${diasRestantes} dias para o vencimento.`;
+               
                 let planoAtivoDiv = document.querySelector('.planoAtivo')
                 if (planData.success) {
                     const plano = planData.conteudoJson;

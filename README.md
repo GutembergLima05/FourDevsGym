@@ -2,7 +2,7 @@
 # FourDevs GymManager
 
 ## 💻 Visão Geral
-FourDevs GymManager é um sistema inovador de gerenciamento de academias desenvolvido pela equipe da FourDevs. Nosso objetivo é fornecer uma solução completa e integrada para administração de academias, incluindo controle financeiro, gerenciamento de treinos, processamento de pagamentos e muito mais. Além disso, oferecemos um aplicativo dedicado para os alunos, onde eles podem acessar seus treinos, fazer pagamentos e acompanhar seu progresso diretamente pelo celular.
+FourDevs GymManager é um sistema de gerenciamento de academias de bairro desenvolvido pela equipe da FourDevs. Nosso objetivo é fornecer uma solução integrada para administração de academias, incluindo controle financeiro dos planos, gerenciamento de treinos, processamento de pagamentos e muito mais. Além disso, oferecemos um aplicativo dedicado para os alunos, onde eles podem acessar seus treinos, fazer pagamentos dos planos e acompanhar seu progresso diretamente pelo celular.
 
 Inicialmente, estamos desenvolvendo o FourDevs GymManager como um projeto de portfólio para demonstrar nossas habilidades e expertise. Em seguida, planejamos comercializar a solução para academias de bairro, oferecendo uma ferramenta poderosa e acessível para melhorar a gestão e a experiência dos alunos.
 
@@ -11,7 +11,7 @@ Inicialmente, estamos desenvolvendo o FourDevs GymManager como um projeto de por
 ### Painel Administrativo
 - **Controle Financeiro**: Gerencie receitas e despesas de forma eficiente.
 - **Gerenciamento de Treinos**: Crie e atribua planos de treino personalizados para os alunos.
-- **Pagamentos**: Processe e acompanhe pagamentos de mensalidades e outros serviços.
+- **Pagamentos**: Processe e acompanhe pagamentos de planos.
 - **Relatórios Detalhados**: Gere relatórios administrativos para insights profundos.
 
 ### Aplicativo para Alunos

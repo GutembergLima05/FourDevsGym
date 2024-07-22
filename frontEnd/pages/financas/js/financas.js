@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     eyeOcultar.addEventListener('click', toggleEye);
 
     function toggleEye() {
-        const isMostrar = this.id === 'eyeMostrar';
+        const isMostrar = this.id === 'eyeOcultar';
         const totalEntrada = document.getElementById('totalEntrada'); // Seleciona o elemento totalEntrada
         const ValorOculto = document.getElementById('ValorOculto');
         const eyeMostrar = document.getElementById('eyeMostrar');
@@ -189,8 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         totalEntrada.style.display = isMostrar ? 'block' : 'none'; // Ajusta a exibição de totalEntrada
         ValorOculto.style.display = isMostrar ? 'none' : 'block'; // Ajusta a exibição de totalEntrada
-        eyeMostrar.style.display = isMostrar ? 'none' : 'block';
-        eyeOcultar.style.display = isMostrar ? 'block' : 'none';
+        eyeMostrar.style.display = isMostrar ? 'block' : 'none';
+        eyeOcultar.style.display = isMostrar ? 'none' : 'block';
     }
 
     const selectMes = document.getElementById('selectMes');
