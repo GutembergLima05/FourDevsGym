@@ -1,9 +1,11 @@
 const { Router } = require("express")
 const { validateEntry, validateTokenAndRole, uniqueField } = require("../../middleware/middlewares.js")
-const { s_idCheck, s_student } = require("../../schemas/schema.js")
+const { s_idCheck, s_student, s_studentLogin } = require("../../schemas/schema.js")
 const student = require("../../controller/student/studentController.js")
 
 const routeStudent = Router();
+
+routeStudent.route('/student/login').post(validateEntry(s_studentLogin, 'body'), student.login)
 
 routeStudent.route('/student')
 .all(validateTokenAndRole('administrador','id_adm'))

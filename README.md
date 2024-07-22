@@ -36,7 +36,109 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 <details>
 <summary>🗂️ Rotas API Backend</summary>
 <br>
-A seguir poderá ser encontrado as rotas e seus respectivos endpoints/retornos.
+
+**ATENÇÃO! Os endpoints deverão seguir a estrutura descrita logo abaixo.**
+
+<hr>
+
+**IMPORTANTE: Para realizar o a chamada de qualquer uma das rotas é necessário realizar um login, seja como aluno ou administrador da academia. TODAS as rotas precisam de uma informação de TOKEN, que obtém-se através dos login's. A seguir você encontrará as rotas de login respectivamente;**
+
+<hr>
+<details>
+  <summary>Login Administrador</summary>
+    <hr>
+
+**ATENÇÃO! Para realizar o login é necessário informar a key de acesso do sistema.**
+
+| routes | description  
+|----------------------|-----------------------------------------------------
+| <kbd>GET /adm/login | realiza o login de administrador
+
+
+<h3 id="post-login">REQUEST POST <kbd>/adm/login</kbd></h3>
+
+
+```json
+{
+	"email": "recepcionista@gmail.com",
+	"senha": "adm12345",
+	"key": "3f7e9b8d4c1a2e5b7f6a8c3d9e1b7a2c"
+}
+```
+
+**RESPONSE: <kbd>200 Ok</kbd>**
+
+```json
+{
+	"conteudoJson": {
+		"usuario": {
+			"id_adm": 2,
+			"email": "recepcionista@gmail.com",
+			"nome": "Jessica",
+			"cargo": "recepcionista",
+			"id_academia": 1,
+			"data_criacao": "08/07/2024 00:00:00",
+			"data_atualizacao": "08/07/2024 14:42:55",
+			"nome_academia": "Soares FIT"
+		},
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hZG0iOjIsImVtYWlsIjoicmVjZXBjaW9uaXN0YUBnbWFpbC5jb20iLCJub21lIjoiSmVzc2ljYSIsImNhcmdvIjoicmVjZXBjaW9uaXN0YSIsImlkX2FjYWRlbWlhIjoxLCJkYXRhX2NyaWFjYW8iOiIwOC8wNy8yMDI0IDAwOjAwOjAwIiwiZGF0YV9hdHVhbGl6YWNhbyI6IjA4LzA3LzIwMjQgMTQ6NDI6NTUiLCJub21lX2FjYWRlbWlhIjoiU29hcmVzIEZJVCIsImlhdCI6MTcyMTQ5Njg4NSwiZXhwIjoxNzIyMTAxNjg1fQ.F-aDl226btZuu7Zd5wF_RK-5riyQdntY1ug5E1tcVYk"
+	},
+	"success": true
+}
+```
+</details>
+<hr>
+
+<details>
+  <summary>Login Aluno</summary>
+    <hr>
+
+**ATENÇÃO! Para realizar o login é necessário informar a key de acesso do sistema.**
+
+| routes | description  
+|----------------------|-----------------------------------------------------
+| <kbd>GET /student/login | realiza o login de alunos
+
+
+<h3 id="post-login">REQUEST POST <kbd>/adm/login</kbd></h3>
+
+
+```json
+{
+	"nascimento": "2024-07-19",
+	"matricula": 13,
+	"key": "3f7e9b8d4c1a2e5b7f6a8c3d9e1b7a2c"
+}
+```
+
+**RESPONSE: <kbd>200 Ok</kbd>**
+
+```json
+{
+	"conteudoJson": {
+		"usuario": {
+			"id_aluno": 13,
+			"nome": "Show",
+			"email": "mario@gmail.com",
+			"nascimento": "19/07/2024",
+			"telefone": "454545",
+			"endereco": "Tiúmaa",
+			"historico": "sd",
+			"data_inicio_plano": "17/07/2024",
+			"plano_ativo": true,
+			"id_academia": 1,
+			"id_treino": 19,
+			"id_plano": 6,
+			"data_criacao": "15/07/2024 00:00:00",
+			"data_atualizacao": "19/07/2024 14:12:38",
+			"nome_academia": "Soares FIT"
+		},
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hbHVubyI6MTMsIm5vbWUiOiJTaG93IiwiZW1haWwiOiJtYXJpb0BnbWFpbC5jb20iLCJuYXNjaW1lbnRvIjoiMTkvMDcvMjAyNCIsInRlbGVmb25lIjoiNDU0NTQ1IiwiZW5kZXJlY28iOiJUacO6bWFhIiwiaGlzdG9yaWNvIjoic2QiLCJkYXRhX2luaWNpb19wbGFubyI6IjE3LzA3LzIwMjQiLCJwbGFub19hdGl2byI6dHJ1ZSwiaWRfYWNhZGVtaWEiOjEsImlkX3RyZWlubyI6MTksImlkX3BsYW5vIjo2LCJkYXRhX2NyaWFjYW8iOiIxNS8wNy8yMDI0IDAwOjAwOjAwIiwiZGF0YV9hdHVhbGl6YWNhbyI6IjE5LzA3LzIwMjQgMTQ6MTI6MzgiLCJub21lX2FjYWRlbWlhIjoiU29hcmVzIEZJVCIsImlhdCI6MTcyMTY0ODczMywiZXhwIjoxNzIyMjUzNTMzfQ.YhGCMFSWF_TWgdgBf9jA_H-OInVOlDJlIV4N58Ma8tI"
+	},
+	"success": true
+}
+```
+</details>
 
 <hr>
 <details>

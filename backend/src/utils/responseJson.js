@@ -20,8 +20,8 @@ const msgError = {
     'string.isoDate': `O campo '$' precisa ser uma data válida no formato YYYY-MM-ddThh:mm:ss.`,
     'array.base': 'O campo $ precisa ser um array.',
     'array.includesRequiredUnknowns': 'O campo $ contém elementos que não são permitidos.',
-    'date.format': 'A data de venda deve estar no formato YYYY-MM-DD.',
-    'date.base': 'A data de venda deve ser uma data válida.'
+    'date.format': 'A data deve estar no formato YYYY-MM-DD.',
+    'date.base': 'A data deve ser uma data válida.'
 };
 
 module.exports = {
