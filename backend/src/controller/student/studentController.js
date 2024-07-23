@@ -185,6 +185,7 @@ const login = async (req, res) => {
 
         
         alunoInfo.nome_academia = academiaInfo.nome;
+        alunoInfo.cargo = 'aluno';
 
         const formattedDates = formatDates(alunoInfo.data_criacao, alunoInfo.data_atualizacao, null, 3);
 

@@ -52,7 +52,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 | routes | description  
 |----------------------|-----------------------------------------------------
-| <kbd>GET /adm/login | realiza o login de administrador
+| <kbd>POST /adm/login | realiza o login de administrador
 
 
 <h3 id="post-login">REQUEST POST <kbd>/adm/login</kbd></h3>
@@ -97,7 +97,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 | routes | description  
 |----------------------|-----------------------------------------------------
-| <kbd>GET /student/login | realiza o login de alunos
+| <kbd>POST /student/login | realiza o login de alunos
 
 
 <h3 id="post-login">REQUEST POST <kbd>/adm/login</kbd></h3>
