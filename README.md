@@ -139,6 +139,54 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 }
 ```
 </details>
+<hr>
+
+<details>
+  <summary>Endpoint Payment</summary>
+  <hr>
+
+| routes | description  
+|----------------------|-----------------------------------------------------
+| <kbd>POST /payment | realiza a criação para pagamento pix [post details](#post-tasks-user)
+| <kbd>GET /payment/:id_pagamento | retorna as informações do pagamento [get details](#get-tasks-user)
+
+
+<h3 id="post-login">REQUEST POST <kbd>/payment</kbd></h3>
+
+```json
+{
+	"id_aluno": 10,
+	"id_plano": 14
+}
+```
+
+**RESPONSE: <kbd>201 Ok</kbd>**
+
+```json
+{
+	"conteudoJson": {
+		"id_pagamento": 83291775685,
+		"copia_cola": "00020126580014br.gov.bcb.pix01360a683152-b9b8-400f-a281-63805b18a28152040000530398654040.015802BR5923WILKENIOPEREIRAGUITARRA6009Sao Paulo62240520mpqrinter832917756856304487E",
+		"status": "pending"
+	},
+	"success": true
+}
+```
+
+<h3 id="post-login">REQUEST GET <kbd>/payment/:id_pagamento</kbd></h3>
+
+**RESPONSE: <kbd>200 Ok</kbd>**
+
+```json
+{
+	"conteudoJson": {
+		"message": "Pagamento aprovado",
+		"status": "approved"
+	},
+	"success": true
+}
+```
+</details>
 
 <hr>
 <details>
