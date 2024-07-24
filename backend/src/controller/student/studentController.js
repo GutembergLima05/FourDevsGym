@@ -73,20 +73,20 @@ const update = async (req, res) => {
             // Plano alterado, atualizar data_inicio_plano e plano_ativo
             body.data_inicio_plano = new Date().toISOString().split('T')[0];
             body.plano_ativo = true;
+
+            const currentDate = new Date().toISOString().split('T')[0];
+            const financeInfo = {
+                data_ocorrida: currentDate,
+                item: idPlano[0].tipo,
+                cliente: body.nome,
+                valor_pago: idPlano[0].valor
+            };
+            await knex('financas').insert(financeInfo);
         }
 
-        const currentDate = new Date().toISOString().split('T')[0];
         const [studentInfo] = await knex('aluno').update({ ...body }).where({ id_aluno }).returning('*')
 
-        const financeInfo = {
-            data_ocorrida: currentDate,
-            item: idPlano[0].tipo,
-            cliente: body.nome,
-            valor_pago: idPlano[0].valor
-        }
-        await knex('financas').insert(financeInfo)
-
-        const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento,studentInfo.data_inicio_plano, 3);
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento, studentInfo.data_inicio_plano, 3);
 
         studentInfo.nascimento = formattedDates.nascimento;
         studentInfo.data_criacao = formattedDates.data_criacao;
@@ -107,7 +107,7 @@ const deleteStudent = async (req, res) => {
         let studentInfo = await knex('aluno').where({ id_aluno }).first().returning('*');
         if (!studentInfo || studentInfo.length === 0) return msgJson(404, res, 'Aluno não encontrado.')
 
-        const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento,studentInfo.data_inicio_plano, 3);
+        const formattedDates = formatDatesStudent(studentInfo.data_criacao, studentInfo.data_atualizacao, studentInfo.nascimento, studentInfo.data_inicio_plano, 3);
 
         studentInfo.nascimento = formattedDates.nascimento;
         studentInfo.data_criacao = formattedDates.data_criacao;
@@ -168,7 +168,7 @@ const getAllStudent = async (req, res) => {
 
 const login = async (req, res) => {
     const { matricula: id_aluno, nascimento } = req.body;
-    
+
     try {
         const alunoInfo = await knex('aluno')
             .where({ id_aluno, nascimento })
@@ -183,7 +183,7 @@ const login = async (req, res) => {
             .select('nome')
             .first();
 
-        
+
         alunoInfo.nome_academia = academiaInfo.nome;
         alunoInfo.cargo = 'aluno';
 
