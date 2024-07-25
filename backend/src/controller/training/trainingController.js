@@ -12,15 +12,17 @@ const register = async (req, res) => {
             const administrador = await trx('administrador').where({ id_adm: id_administrador }).first();
             if (!administrador) return msgJson(404, res, 'Administrador não encontrado.');
 
-            // Verificação de exercícios
+            // Coletar IDs de exercícios para verificação
             const id_exercicios = dias.flatMap(dia => dia.exercicios.map(exercicio => exercicio.id_exercicio));
-            const exercicios = await trx('exercicio').whereIn('id_exercicio', id_exercicios);
+            const exerciciosExistentes = await trx('exercicio').whereIn('id_exercicio', id_exercicios);
 
-            if (exercicios.length !== id_exercicios.length) {
-                const idsExerciciosNaoEncontrados = id_exercicios.filter(id => !exercicios.some(ex => ex.id_exercicio === id));
+            // Verificar se todos os IDs fornecidos existem
+            const exerciciosExistentesIds = exerciciosExistentes.map(ex => ex.id_exercicio);
+            const idsExerciciosNaoEncontrados = id_exercicios.filter(id => !exerciciosExistentesIds.includes(id));
+
+            if (idsExerciciosNaoEncontrados.length > 0) {
                 return msgJson(404, res, `Exercício(s) não encontrado(s): ${idsExerciciosNaoEncontrados.join(', ')}`);
             }
-
 
             // Criação do treino
             const [trainingInfo] = await trx('treino').insert({ nome, descricao, id_administrador }).returning('*');
@@ -42,7 +44,24 @@ const register = async (req, res) => {
             );
             await trx('treino_dia_exercicio').insert(inserts);
 
-            const response = { treino: trainingInfo, dias };
+            // Construir a resposta com as informações do treino e os dias associados
+            const diasExercicios = await trx('treino_dia_exercicio')
+                .join('dia', 'treino_dia_exercicio.id_dia', 'dia.id_dia')
+                .join('exercicio', 'treino_dia_exercicio.id_exercicio', 'exercicio.id_exercicio')
+                .where('treino_dia_exercicio.id_treino', trainingInfo.id_treino)
+                .select('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
+
+            const diasMap = diasExercicios.reduce((acc, { id_dia, dia_nome, id_exercicio, exercicio_nome, repeticoes, series }) => {
+                if (!acc[id_dia]) {
+                    acc[id_dia] = { id_dia, dia_nome, exercicios: [] };
+                }
+                acc[id_dia].exercicios.push({ id_exercicio, exercicio_nome, repeticoes, series });
+                return acc;
+            }, {});
+
+            const diasList = Object.values(diasMap);
+            const response = { treino: trainingInfo, dias: diasList };
+
             msgJson(201, res, response, true);
         });
     } catch (error) {
@@ -50,7 +69,6 @@ const register = async (req, res) => {
         msgJson(500, res, 'Erro interno do servidor ao cadastrar treino.', false);
     }
 };
-
 
 const update = async (req, res) => {
     const { params: { id: id_treino }, body } = req;
@@ -67,15 +85,17 @@ const update = async (req, res) => {
             const treinoId = await trx('treino').where({ id_treino }).first();
             if (!treinoId) return msgJson(404, res, 'Treino não encontrado.');
 
-            // Verificação de exercícios
-            const id_exercicios = dias.flatMap(dia => dia.exercicios.map(exercicio => exercicio.id_exercicio));
-            const exercicios = await trx('exercicio').whereIn('id_exercicio', id_exercicios);
+            // Coletar IDs de exercícios para verificar se todos existem
+            const exerciciosIds = dias.flatMap(dia => dia.exercicios.map(exercicio => exercicio.id_exercicio));
+            const exerciciosExistentes = await trx('exercicio').whereIn('id_exercicio', exerciciosIds);
 
-            if (exercicios.length !== id_exercicios.length) {
-                const idsExerciciosNaoEncontrados = id_exercicios.filter(id => !exercicios.some(ex => ex.id_exercicio === id));
+            // Verificar se todos os IDs fornecidos existem
+            const exerciciosExistentesIds = exerciciosExistentes.map(ex => ex.id_exercicio);
+            const idsExerciciosNaoEncontrados = exerciciosIds.filter(id => !exerciciosExistentesIds.includes(id));
+
+            if (idsExerciciosNaoEncontrados.length > 0) {
                 return msgJson(404, res, `Exercício(s) não encontrado(s): ${idsExerciciosNaoEncontrados.join(', ')}`);
             }
-
 
             // Atualização do treino
             await trx('treino').where({ id_treino }).update({ nome, descricao, id_administrador });
@@ -126,6 +146,8 @@ const update = async (req, res) => {
         msgJson(500, res, 'Erro interno do servidor ao atualizar treino.', false);
     }
 };
+
+
 
 
 const deleteTraining = async (req, res) => {
