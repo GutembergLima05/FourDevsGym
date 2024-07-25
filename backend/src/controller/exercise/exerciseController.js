@@ -5,17 +5,11 @@ const { formatDates } = require("../../service/noticeService.js")
 const register = async (req, res) => {
     const { body } = req;
     try {
-        const [admInfo] = await knex('administrador').where({ id_adm: body.id_administrador }).returning('*');
+        const admInfo = await knex('administrador').where({ id_adm: body.id_administrador }).first();
         if (!admInfo) return msgJson(500, res, 'Administrador não existe!', false);
 
-        const [id] = await knex('exercicio').insert({...body});
-        if (!id) return msgJson(500, res, 'Erro ao cadastrar exercício.', false);
-
-        const exerciseInfo = await knex('exercicio').where({ id_exercicio: id }).first();
-
-        if (!exerciseInfo) {
-            return msgJson(500, res, 'Erro ao recuperar informações do exercício cadastrado.', false);
-        }
+        const [exerciseInfo] = await knex('exercicio').insert({...body}).returning('*');
+        if (!exerciseInfo) return msgJson(500, res, 'Erro ao cadastrar exercício.', false);
 
         const formattedDates = formatDates(exerciseInfo.data_criacao, exerciseInfo.data_atualizacao, null, 3);
         exerciseInfo.data_criacao = formattedDates.data_criacao;
