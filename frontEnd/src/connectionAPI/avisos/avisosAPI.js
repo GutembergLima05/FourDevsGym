@@ -29,11 +29,11 @@ async function showNotices() {
                     </div>
                     <div>
                         <div class="text-edit">
-                            <p>${element.titulo}</p>
+                            <p class="tituloAviso">${element.titulo}</p>
                             <i class="fa-solid fa-pen-to-square" style="color: #fa6b14;"></i>
                         </div>
                         <div class="text-edit">
-                            <p>${element.descricao}</p>
+                            <p class="descricaoAviso">${element.descricao}</p>
                             <i class="fa-solid fa-pen-to-square" style="color: #fa6b14;"></i>
                         </div>
                     </div>
