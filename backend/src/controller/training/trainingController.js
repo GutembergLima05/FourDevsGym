@@ -5,142 +5,136 @@ const { formatDates } = require("../../service/noticeService.js")
 const register = async (req, res) => {
     const { body } = req;
     const { nome, descricao, id_administrador, dias } = body;
-  
-    try {
-      // Verificação do administrador
-      const [idAdministrador] = await knex('administrador').where({ id_adm: id_administrador }).returning('*');
-      if (!idAdministrador) return msgJson(404, res, 'Administrador não encontrado.');
-   
-    //Verificação de exercicios
-    // Obtém todos os IDs de exercícios do corpo da requisição
-    const id_exercicios = dias.flatMap(dia => dia.exercicios.map(exercicio => exercicio.id_exercicio))
 
-    // Verifica se todos os IDs de exercícios existem na tabela 'exercicio'
-    const exerciciosPromises = id_exercicios.map(id_exercicio => knex('exercicio').where('id_exercicio', id_exercicio).first());
-    const exercicios = await Promise.all(exerciciosPromises);
-if (exercicios.some(exercicio => !exercicio)) {
-    const idsExerciciosNaoEncontrados = id_exercicios.filter(id => !exercicios.find(ex => ex && ex.id_exercicio === id));
-    return msgJson(404, res, `Exercício(s) não encontrado(s): ${idsExerciciosNaoEncontrados.join(', ')}`);
-}
-  
-      // Criação do treino
-      const [trainingInfo] = await knex('treino').insert({ nome, descricao, id_administrador }).returning('*');
-  
-      // Formatação das datas do treino
-      const formattedDates = formatDates(trainingInfo.data_criacao, trainingInfo.data_atualizacao, null, 3);
-      trainingInfo.data_criacao = formattedDates.data_criacao;
-      trainingInfo.data_atualizacao = formattedDates.data_atualizacao;
-  
-      // Inserção dos dias, exercícios, repetições e séries associados
-      for (const dia of dias) {
-        const { id_dia, exercicios } = dia;
-  
-        // Inserir o vínculo na tabela treino_dia_exercicio para cada dia e exercício com repetições e séries
-        for (const exercicio of exercicios) {
-          const { id_exercicio, repeticoes, series } = exercicio;
-  
-          await knex('treino_dia_exercicio').insert({
-            id_treino: trainingInfo.id_treino,
-            id_dia,
-            id_exercicio,
-            repeticoes,
-            series
-          });
-        }
-      }
-      const response = { treino: trainingInfo, dias };
-  
-      msgJson(201, res, response, true); 
+    try {
+        await knex.transaction(async trx => {
+            // Verificação do administrador
+            const administrador = await trx('administrador').where({ id_adm: id_administrador }).first();
+            if (!administrador) return msgJson(404, res, 'Administrador não encontrado.');
+
+            // Verificação de exercícios
+            const id_exercicios = dias.flatMap(dia => dia.exercicios.map(exercicio => exercicio.id_exercicio));
+            const exercicios = await trx('exercicio').whereIn('id_exercicio', id_exercicios);
+
+            if (exercicios.length !== id_exercicios.length) {
+                const idsExerciciosNaoEncontrados = id_exercicios.filter(id => !exercicios.some(ex => ex.id_exercicio === id));
+                return msgJson(404, res, `Exercício(s) não encontrado(s): ${idsExerciciosNaoEncontrados.join(', ')}`);
+            }
+
+            // Criação do treino
+            const [trainingInfo] = await trx('treino').insert({ nome, descricao, id_administrador }).returning('*');
+
+            // Formatação das datas do treino
+            const formattedDates = formatDates(trainingInfo.data_criacao, trainingInfo.data_atualizacao, null, 3);
+            trainingInfo.data_criacao = formattedDates.data_criacao;
+            trainingInfo.data_atualizacao = formattedDates.data_atualizacao;
+
+            // Inserção dos dias, exercícios, repetições e séries associados
+            const inserts = dias.flatMap(dia =>
+                dia.exercicios.map(exercicio => ({
+                    id_treino: trainingInfo.id_treino,
+                    id_dia: dia.id_dia,
+                    id_exercicio: exercicio.id_exercicio,
+                    repeticoes: exercicio.repeticoes,
+                    series: exercicio.series
+                }))
+            );
+            await trx('treino_dia_exercicio').insert(inserts);
+
+            const response = { treino: trainingInfo, dias };
+            msgJson(201, res, response, true);
+        });
     } catch (error) {
-      console.error(error);
-      msgJson(500, res, 'Erro interno do servidor ao cadastrar treino.', false); 
+        console.error(error);
+        msgJson(500, res, 'Erro interno do servidor ao cadastrar treino.', false);
     }
 };
 
-const update = async(req, res) => {
+
+const update = async (req, res) => {
     const { params: { id: id_treino }, body } = req;
     const { nome, descricao, id_administrador, dias } = body;
 
     try {
-        // Verificação de administrador
-        const administrador = await knex('administrador').where({ id_adm: id_administrador }).first();
-        if (!administrador) return msgJson(404, res, 'Administrador não encontrado.');
+        // Iniciar transação
+        await knex.transaction(async trx => {
+            // Verificação de administrador
+            const administrador = await trx('administrador').where({ id_adm: id_administrador }).first();
+            if (!administrador) return msgJson(404, res, 'Administrador não encontrado.');
 
-        // Verificação de treino
-        const treino = await knex('treino').where({ id_treino }).first();
-        if (!treino) return msgJson(404, res, 'Treino não encontrado.');
+            // Verificação de treino
+            const treinoId = await trx('treino').where({ id_treino }).first();
+            if (!treinoId) return msgJson(404, res, 'Treino não encontrado.');
 
-         //Verificação de exercicios
-    // Obtém todos os IDs de exercícios do corpo da requisição
-    const id_exercicios = dias.flatMap(dia => dia.exercicios.map(exercicio => exercicio.id_exercicio))
+            // Verificação de exercícios
+            const id_exercicios = dias.flatMap(dia => dia.exercicios.map(exercicio => exercicio.id_exercicio));
+            const exercicios = await trx('exercicio').whereIn('id_exercicio', id_exercicios);
 
-    // Verifica se todos os IDs de exercícios existem na tabela 'exercicio'
-    const exerciciosPromises = id_exercicios.map(id_exercicio => knex('exercicio').where('id_exercicio', id_exercicio).first());
-    const exercicios = await Promise.all(exerciciosPromises);
-if (exercicios.some(exercicio => !exercicio)) {
-    const idsExerciciosNaoEncontrados = id_exercicios.filter(id => !exercicios.find(ex => ex && ex.id_exercicio === id));
-    return msgJson(404, res, `Exercício(s) não encontrado(s): ${idsExerciciosNaoEncontrados.join(', ')}`);
-}
+            if (exercicios.length !== id_exercicios.length) {
+                const idsExerciciosNaoEncontrados = id_exercicios.filter(id => !exercicios.some(ex => ex.id_exercicio === id));
+                return msgJson(404, res, `Exercício(s) não encontrado(s): ${idsExerciciosNaoEncontrados.join(', ')}`);
+            }
 
-        // Atualização do treino
-        await knex('treino').where({ id_treino }).update({ nome, descricao, id_administrador });
+            // Atualização do treino
+            await trx('treino').where({ id_treino }).update({ nome, descricao, id_administrador });
 
-        // Remoção dos relacionamentos antigos
-        await knex('treino_dia_exercicio').where({ id_treino }).del();
+            // Remoção dos relacionamentos antigos
+            await trx('treino_dia_exercicio').where({ id_treino }).del();
 
-        // Inserção dos novos relacionamentos
-        for (const dia of dias) {
-            for (const exercicio of dia.exercicios) {
-                await knex('treino_dia_exercicio').insert({
+            // Inserção dos novos relacionamentos
+            const inserts = dias.flatMap(dia =>
+                dia.exercicios.map(exercicio => ({
                     id_treino,
                     id_dia: dia.id_dia,
                     id_exercicio: exercicio.id_exercicio,
                     repeticoes: exercicio.repeticoes,
                     series: exercicio.series
-                });
-            }
-        }
+                }))
+            );
+            await trx('treino_dia_exercicio').insert(inserts);
 
-        // Formatação das datas
-        const formattedDates = formatDates(treino.data_criacao, treino.data_atualizacao, null, 3);
-        treino.data_criacao = formattedDates.data_criacao;
-        treino.data_atualizacao = formattedDates.data_atualizacao;
+            // Obter e formatar as informações do treino
+            const treinoInfo = await trx('treino').where({ id_treino }).first();
+            const formattedDates = formatDates(treinoInfo.data_criacao, treinoInfo.data_atualizacao, null, 3);
+            treinoInfo.data_criacao = formattedDates.data_criacao;
+            treinoInfo.data_atualizacao = formattedDates.data_atualizacao;
 
-        // Construção da resposta
-        const diasExercicios = await knex('treino_dia_exercicio')
-            .join('dia', 'treino_dia_exercicio.id_dia', 'dia.id_dia')
-            .join('exercicio', 'treino_dia_exercicio.id_exercicio', 'exercicio.id_exercicio')
-            .where('treino_dia_exercicio.id_treino', id_treino)
-            .returning('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
+            // Construção da resposta
+            const diasExercicios = await trx('treino_dia_exercicio')
+                .join('dia', 'treino_dia_exercicio.id_dia', 'dia.id_dia')
+                .join('exercicio', 'treino_dia_exercicio.id_exercicio', 'exercicio.id_exercicio')
+                .where('treino_dia_exercicio.id_treino', id_treino)
+                .select('dia.id_dia', 'dia.nome as dia_nome', 'exercicio.id_exercicio', 'exercicio.nome as exercicio_nome', 'treino_dia_exercicio.repeticoes', 'treino_dia_exercicio.series');
 
-        const diasMap = diasExercicios.reduce((acc, { id_dia, dia_nome, id_exercicio, exercicio_nome, repeticoes, series }) => {
-            if (!acc[id_dia]) {
-                acc[id_dia] = { id_dia, dia_nome, exercicios: [] };
-            }
-            acc[id_dia].exercicios.push({ id_exercicio, exercicio_nome, repeticoes, series });
-            return acc;
-        }, {});
+            const diasMap = diasExercicios.reduce((acc, { id_dia, dia_nome, id_exercicio, exercicio_nome, repeticoes, series }) => {
+                if (!acc[id_dia]) {
+                    acc[id_dia] = { id_dia, dia_nome, exercicios: [] };
+                }
+                acc[id_dia].exercicios.push({ id_exercicio, exercicio_nome, repeticoes, series });
+                return acc;
+            }, {});
 
-        const diasList = Object.values(diasMap);
+            const diasList = Object.values(diasMap);
+            const response = { treino: treinoInfo, dias: diasList };
 
-        const response = { treino, dias: diasList };
-
-        msgJson(201, res, response, true);
+            msgJson(201, res, response, true);
+        });
     } catch (error) {
         console.error(error);
         msgJson(500, res, 'Erro interno do servidor ao atualizar treino.', false);
     }
 };
 
-const deleteTraining = async(req, res) => {
-    const { params: { id: id_treino }} = req
+
+const deleteTraining = async (req, res) => {
+    const { params: { id: id_treino } } = req
 
     try {
         let trainingInfo = await knex('treino').where({ id_treino }).first().returning('*');
-        if (!trainingInfo || trainingInfo.length === 0 ) return msgJson(404, res, 'Treino não encontrado.')
+        if (!trainingInfo || trainingInfo.length === 0) return msgJson(404, res, 'Treino não encontrado.')
 
-        const formattedDates = formatDates(trainingInfo.data_criacao,trainingInfo.data_atualizacao,null,3);
-        
+        const formattedDates = formatDates(trainingInfo.data_criacao, trainingInfo.data_atualizacao, null, 3);
+
         trainingInfo.data_criacao = formattedDates.data_criacao;
         trainingInfo.data_atualizacao = formattedDates.data_atualizacao;
 
@@ -199,11 +193,11 @@ const getTrainingById = async (req, res) => {
 
 
 
-const getAllTraining = async(req, res) => {
+const getAllTraining = async (req, res) => {
     try {
         const trainingInfo = await knex('treino').returning('*');
         const formattedTrainingInfo = trainingInfo.map(training => {
-            const formattedDates = formatDates(training.data_criacao,training.data_atualizacao,null,3);
+            const formattedDates = formatDates(training.data_criacao, training.data_atualizacao, null, 3);
 
             return {
                 ...training,
