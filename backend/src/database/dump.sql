@@ -30,6 +30,7 @@ CREATE TABLE plano
     id_plano SERIAL PRIMARY KEY, 
     tipo VARCHAR(255) NOT NULL,  
     valor FLOAT NOT NULL,  
+    descricao TEXT,
     id_academia INT,
     dias_validade INT NOT NULL,
     data_criacao DATE DEFAULT CURRENT_DATE,
@@ -156,20 +157,6 @@ CREATE TABLE treino_dia_exercicio (
     FOREIGN KEY (id_treino) REFERENCES treino(id_treino) ON DELETE CASCADE
 );
 
-CREATE TABLE periodo_semana (
-    id_periodo_semana SERIAL PRIMARY KEY,
-    dia_semana VARCHAR(10) NOT NULL, 
-    periodo VARCHAR(10) NOT NULL
-);
-
-CREATE TABLE horario (
-    id_horario SERIAL PRIMARY KEY,
-    id_academia INTEGER REFERENCES academia(id_academia),
-    id_periodo_semana INTEGER REFERENCES periodo_semana(id_periodo_semana),
-    hora_abertura TIME NOT NULL,
-    hora_fechamento TIME NOT NULL
-);
-
 CREATE TABLE financas (
     id_financa SERIAL PRIMARY KEY,
     data_ocorrida DATE NOT NULL,
@@ -181,8 +168,8 @@ CREATE TABLE financas (
 CREATE TABLE pagamentos(
     id_pagamento BIGINT PRIMARY KEY,
     copia_cola TEXT,
-    id_aluno INTEGER REFERENCES aluno(id_aluno),
-    id_plano INTEGER REFERENCES plano(id_plano),
+    id_aluno INTEGER REFERENCES aluno(id_aluno) ON DELETE CASCADE,
+    id_plano INTEGER REFERENCES plano(id_plano) ON DELETE CASCADE,
     status TEXT
 );
 
