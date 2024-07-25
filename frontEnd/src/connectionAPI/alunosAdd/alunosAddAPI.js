@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (!response.ok) {
                     const errorData = await response.json();
                     const errorMessage = errorData.conteudoJson?.message || 'Erro desconhecido';
-                    throw new Error(`Erro na requisição: ${response.status} (${response.statusText}) - ${errorMessage}`);
+                    throw new Error(`${errorMessage}`);
                 }
 
                 const responseData = await response.json();
