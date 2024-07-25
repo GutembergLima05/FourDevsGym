@@ -1,4 +1,3 @@
-## 🚧 Em construção
 # FourDevs GymManager
 
 ## 💻 Visão Geral
@@ -17,7 +16,7 @@ Inicialmente, estamos desenvolvendo o FourDevs GymManager como um projeto de por
 - **Visualização de Treinos**: Acesse o treino recomendado pela academia a qualquer momento.
 - **Pagamentos Online**: Realize pagamentos do plano de forma fácil e segura pelo app.
 - **Visualização das Avaliações**: Acompanhe sua evolução tendo acesso às suas avaliações físicas realizadas na academia.
-- - **Avisos da Academia**:Fique por dentro de todas as atualizações e avisos importantes da academia.
+- **Avisos da Academia**:Fique por dentro de todas as atualizações e avisos importantes da academia.
 
 ## ⭐ Diferenciais Implementados
 - **Dashboard Interativo**:Visualização do total de alunos, incluindo aqueles sem planos, para uma melhor tomada de decisão.
