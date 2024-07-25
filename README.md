@@ -52,7 +52,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 | routes | description  
 |----------------------|-----------------------------------------------------
-| <kbd>GET /adm/login | realiza o login de administrador
+| <kbd>POST /adm/login | realiza o login de administrador
 
 
 <h3 id="post-login">REQUEST POST <kbd>/adm/login</kbd></h3>
@@ -97,7 +97,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 | routes | description  
 |----------------------|-----------------------------------------------------
-| <kbd>GET /student/login | realiza o login de alunos
+| <kbd>POST /student/login | realiza o login de alunos
 
 
 <h3 id="post-login">REQUEST POST <kbd>/adm/login</kbd></h3>
@@ -134,6 +134,54 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 			"nome_academia": "Soares FIT"
 		},
 		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hbHVubyI6MTMsIm5vbWUiOiJTaG93IiwiZW1haWwiOiJtYXJpb0BnbWFpbC5jb20iLCJuYXNjaW1lbnRvIjoiMTkvMDcvMjAyNCIsInRlbGVmb25lIjoiNDU0NTQ1IiwiZW5kZXJlY28iOiJUacO6bWFhIiwiaGlzdG9yaWNvIjoic2QiLCJkYXRhX2luaWNpb19wbGFubyI6IjE3LzA3LzIwMjQiLCJwbGFub19hdGl2byI6dHJ1ZSwiaWRfYWNhZGVtaWEiOjEsImlkX3RyZWlubyI6MTksImlkX3BsYW5vIjo2LCJkYXRhX2NyaWFjYW8iOiIxNS8wNy8yMDI0IDAwOjAwOjAwIiwiZGF0YV9hdHVhbGl6YWNhbyI6IjE5LzA3LzIwMjQgMTQ6MTI6MzgiLCJub21lX2FjYWRlbWlhIjoiU29hcmVzIEZJVCIsImlhdCI6MTcyMTY0ODczMywiZXhwIjoxNzIyMjUzNTMzfQ.YhGCMFSWF_TWgdgBf9jA_H-OInVOlDJlIV4N58Ma8tI"
+	},
+	"success": true
+}
+```
+</details>
+<hr>
+
+<details>
+  <summary>Endpoint Payment</summary>
+  <hr>
+
+| routes | description  
+|----------------------|-----------------------------------------------------
+| <kbd>POST /payment | realiza a criação para pagamento pix [post details](#post-tasks-user)
+| <kbd>GET /payment/:id_pagamento | retorna as informações do pagamento [get details](#get-tasks-user)
+
+
+<h3 id="post-login">REQUEST POST <kbd>/payment</kbd></h3>
+
+```json
+{
+	"id_aluno": 10,
+	"id_plano": 14
+}
+```
+
+**RESPONSE: <kbd>201 Ok</kbd>**
+
+```json
+{
+	"conteudoJson": {
+		"id_pagamento": 83291775685,
+		"copia_cola": "00020126580014br.gov.bcb.pix01360a683152-b9b8-400f-a281-63805b18a28152040000530398654040.015802BR5923WILKENIOPEREIRAGUITARRA6009Sao Paulo62240520mpqrinter832917756856304487E",
+		"status": "pending"
+	},
+	"success": true
+}
+```
+
+<h3 id="post-login">REQUEST GET <kbd>/payment/:id_pagamento</kbd></h3>
+
+**RESPONSE: <kbd>200 Ok</kbd>**
+
+```json
+{
+	"conteudoJson": {
+		"message": "Pagamento aprovado",
+		"status": "approved"
 	},
 	"success": true
 }

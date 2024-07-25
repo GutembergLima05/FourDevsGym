@@ -26,6 +26,15 @@ const validateTokenAndRole = (table, idField = 'id', requiredRole = null) => asy
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
         const userId = decodedToken[idField];
         const userRole = decodedToken.cargo;
+        
+        if (userRole === 'aluno') {
+            const id_aluno = decodedToken.id_aluno
+            const user = await knex('aluno').where({ id_aluno }).first();
+            if (!user) return msgJson(404, res, 'Usuário não encontrado.');
+
+            req.usuarioLogado = { ...user };
+            return next();
+        }
 
         const user = await knex(table).where({ [idField]: userId }).first();
 

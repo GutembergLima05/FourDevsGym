@@ -178,6 +178,14 @@ CREATE TABLE financas (
     valor_pago DECIMAL(10, 2) NOT NULL
 );
 
+CREATE TABLE pagamentos(
+    id_pagamento BIGINT PRIMARY KEY,
+    copia_cola TEXT,
+    id_aluno INTEGER REFERENCES aluno(id_aluno),
+    id_plano INTEGER REFERENCES plano(id_plano),
+    status TEXT
+);
+
 
 INSERT INTO periodo_semana (dia_semana, periodo) VALUES
 ('Segunda', 'Manhã'),
