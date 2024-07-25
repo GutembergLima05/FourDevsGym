@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
               
                 //console.log(result);
-                //window.location='../exerciciosView/exerciciosView.html'
+                window.location='../exerciciosView/exerciciosView.html'
                 // Redirecionar ou atualizar a página conforme necessário
             } else {
                 const errorData = await response.json();

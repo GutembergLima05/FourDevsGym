@@ -12,15 +12,15 @@ Inicialmente, estamos desenvolvendo o FourDevs GymManager como um projeto de por
 - **Controle Financeiro**: Gerencie receitas e despesas de forma eficiente.
 - **Gerenciamento de Treinos**: Crie e atribua planos de treino personalizados para os alunos.
 - **Pagamentos**: Processe e acompanhe pagamentos de planos.
-- **Relatórios Detalhados**: Gere relatórios administrativos para insights profundos.
 
 ### Aplicativo para Alunos
-- **Visualização de Treinos**: Acesse planos de treino personalizados a qualquer momento.
-- **Pagamentos Online**: Realize pagamentos de forma fácil e segura pelo app.
-- **Acompanhamento de Progresso**: Monitore o progresso pessoal e mantenha-se motivado.
+- **Visualização de Treinos**: Acesse o treino recomendado pela academia a qualquer momento.
+- **Pagamentos Online**: Realize pagamentos do plano de forma fácil e segura pelo app.
+- **Visualização das Avaliações**: Acompanhe sua evolução tendo acesso às suas avaliações físicas realizadas na academia.
+- - **Avisos da Academia**:Fique por dentro de todas as atualizações e avisos importantes da academia.
 
 ## ⭐ Diferenciais Implementados
-- **Dashboard Interativo**: Visualizações gráficas intuitivas para uma melhor tomada de decisão.
+- **Dashboard Interativo**:Visualização do total de alunos, incluindo aqueles sem planos, para uma melhor tomada de decisão.
 - **Responsividade**: Layout adaptado para todos os dispositivos, garantindo uma ótima experiência tanto no desktop quanto no mobile.
 
 ## 🚀 Tecnologias Utilizadas
@@ -30,11 +30,47 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - **NodeJs**: Ambiente de execução para construção do back-end.
 - **JWT (JSON Web Token)**: Implementação de autenticação segura.
 - **Git**: Controle de versão para gerenciar o código fonte.
-- **Vercel**: Plataforma de hospedagem para aplicações front-end.
+- **Vercel**: Plataforma de hospedagem para aplicações Back-end.
 
 ## 🗂️ Estrutura do Projeto
 <details>
-<summary>🗂️ Rotas API Backend</summary>
+<summary>🎨 Estrutura Front-End</summary>
+
+<pre>
+<code>
+frontend/
+├── pages/
+│   └── (páginas do site seguindo essa estrutura)/
+│       ├── js/
+│       │   └── script.js
+│       ├── style/
+│       │   └── style.css
+│       └── index.html
+├── public/
+│   ├── assets/
+│   │   └── (imagens, fontes, e outros arquivos estáticos)
+│   ├── headerMain/
+│   │   └── (arquivos relacionados ao cabeçalho principal da aplicação)
+│   ├── jsMain/
+│   │   └── (scripts JavaScript principais)
+│   └── styleMain/
+│       └── (arquivos CSS principais)
+├── src/
+    ├── components/
+    │   └── (componentes reutilizáveis e específicos da aplicação)
+    └── connectionAPI/
+        └── (módulos e funções para conexão com APIs)
+
+
+</code>
+</pre>
+
+</details>
+
+
+
+<details>
+<summary>⚙️ Rotas API Backend</summary>
 <br>
 
 **ATENÇÃO! Os endpoints deverão seguir a estrutura descrita logo abaixo.**
@@ -1998,10 +2034,10 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 Você pode acessar o FourDevs GymManager nos seguintes links:
 
 - **Painel Administrativo**:
-  [FourDevs GymManager - Painel Administrativo](https://fourdevs.com.br)
+  [FourDevsGymManager](https://gym.fourdevs.com.br)
 
 - **Baixar App**:
-  [FourDevs GymManager - Baixar App](https://fourdevs.com.br)
+  [FourDevsGymAPP - Baixar App](https://fourdevs.com.br/gym)
 
 
 
@@ -2014,9 +2050,7 @@ Você pode acessar o FourDevs GymManager nos seguintes links:
 
 ## 📱 Figma
 Acesse nossos protótipos no Figma: <br>
-[Protótipo do Painel Adm](https://www.figma.com)<br>
-[Protótipo do App aluno](https://www.figma.com)
+[Protótipo do Painel Adm](https://www.figma.com/proto/NSAejy0ekxBHwfaCw4Pd0w/FourDevGym?node-id=77-45&starting-point-node-id=77%3A45)<br>
+[Protótipo do App aluno](https://www.figma.com/proto/x3W7FHYZJkkC6Y7L12FWNf/AppFourDevsGym?node-id=92-2&t=Lsr5ZXSCbprfOZa9-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1)
 
-## 👏 Agradecimentos
-...
 
