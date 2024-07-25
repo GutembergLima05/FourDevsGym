@@ -4,6 +4,7 @@ let valor_plano = document.getElementById("valor-plano");
 let dias_plano = document.getElementById("dias-plano");
 let button = document.querySelector('.buttoes')
 let title = document.querySelector('.title-contain-main')
+let descricao = document.querySelector('#descricao')
 
 document.addEventListener("DOMContentLoaded", async () => {
 // Alterando testos do botão e do titulo
@@ -16,9 +17,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         tipo_plano.value = plan.tipo;
         valor_plano.value = plan.valor;
         dias_plano.value = plan.dias_validade;
-        button.innerHTML="Editar <i class='bi bi-check2'></i>"
-         title.innerHTML="Planos - Edição"
+        button.innerHTML="Editar <i class='bi bi-check2'></i>";
+        descricao.value=plan.descricao
+        title.innerHTML="Planos - Edição"
     }
+  
 })
 
 document.getElementById("return-arrow").addEventListener("click", () => {
@@ -39,7 +42,8 @@ form.addEventListener("submit", async (event) => {
         "tipo": tipo_plano.value,
         "valor": valor_plano.value,
         "dias_validade": dias_plano.value,
-        "id_academia": 1
+        "id_academia":  localStorage.getItem('id_academia'),
+        "descricao":descricao.value
     }
 
     if (sessionStorage.getItem("actionForm") === "add") {

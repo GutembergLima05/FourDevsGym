@@ -38,10 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Verifica a resposta da API
+            const result = await response.json();
+            console.log(result)
             if (response.ok) {
-                const result = await response.json();
+              
                 //console.log(result);
-                window.location='../exerciciosView/exerciciosView.html'
+                //window.location='../exerciciosView/exerciciosView.html'
                 // Redirecionar ou atualizar a página conforme necessário
             } else {
                 const errorData = await response.json();
