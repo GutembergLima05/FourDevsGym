@@ -36,7 +36,14 @@ form button {
     padding: 10px;
     transition: 0.5s ease-in-out;
 }
-
+textarea, input{
+    font-family:  'Inter', sans-serif;
+    outline: NONE;
+    border-radius: 3px;
+}
+textarea:focus, input:focus{
+    border: 1px solid var(--cor-1);
+}
 form button:hover {
     background-color: var(--cor-2);
     transition: 0.5s ease-in-out;
