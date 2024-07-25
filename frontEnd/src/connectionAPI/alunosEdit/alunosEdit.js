@@ -83,8 +83,11 @@ function calcularDiasRestantes(dataInicio, diasPlano) {
             .then(response => response.json())
             .then(planData => {
                 const diasRestantes = calcularDiasRestantes(dataInicioPlano, planData.conteudoJson.dias_validade);
+                if(diasRestantes){
                 msgVencimento.innerText=`${diasRestantes} dias para o vencimento.`;
-               
+                }else{
+                    msgVencimento.innerText=``;
+                }
                 let planoAtivoDiv = document.querySelector('.planoAtivo')
                 if (planData.success) {
                     const plano = planData.conteudoJson;
@@ -114,7 +117,9 @@ function calcularDiasRestantes(dataInicio, diasPlano) {
                     document.querySelector('.treinoRecomendado').textContent = `${plano.nome}`;
                 } else {
                     console.error('Erro ao buscar plano do aluno:', planData.message);
+                    document.querySelector('.treinoRecomendado').textContent = `Não Encontrado 😥`;
                 }
+
             })
             .catch(error => {
                 console.error('Erro na requisição do plano:', error);
