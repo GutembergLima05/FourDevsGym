@@ -2028,17 +2028,14 @@ frontend/
 </details>
 
 
-
 ## 🌐 Links do Deploy
 Você pode acessar o FourDevs GymManager nos seguintes links:
 
 - **Painel Administrativo**:
-  [FourDevsGymManager](https://gym.fourdevs.com.br)
+  [FourDevsGymManager](https://gym.fourdevs.com.br){:target="_blank"}
 
 - **Baixar App**:
-  [FourDevsGymAPP - Baixar App](https://fourdevs.com.br/gym)
-
-
+  [FourDevsGymAPP - Baixar App](https://fourdevs.com.br/gym){:target="_blank"}
 
 ## 👥 Equipe
 - [@wilkenio](https://github.com/wilkenio) - Wilkenio Pereira da Silva
@@ -2046,10 +2043,9 @@ Você pode acessar o FourDevs GymManager nos seguintes links:
 - [@Víctor](https://github.com/victortads) - Víctor Gabriel de Santana
 - [@Renan](https://github.com/RenanCampelo) - Renan Campêlo
 
-
 ## 📱 Figma
 Acesse nossos protótipos no Figma: <br>
-- [Protótipo do Painel Adm](https://www.figma.com/proto/NSAejy0ekxBHwfaCw4Pd0w/FourDevGym?node-id=77-45&starting-point-node-id=77%3A45)<br>
-- [Protótipo do App aluno](https://www.figma.com/proto/x3W7FHYZJkkC6Y7L12FWNf/AppFourDevsGym?node-id=92-2&t=Lsr5ZXSCbprfOZa9-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1)
+- [Protótipo do Painel Adm](https://www.figma.com/proto/NSAejy0ekxBHwfaCw4Pd0w/FourDevGym?node-id=77-45&starting-point-node-id=77%3A45){:target="_blank"}<br>
+- [Protótipo do App aluno](https://www.figma.com/proto/x3W7FHYZJkkC6Y7L12FWNf/AppFourDevsGym?node-id=92-2&t=Lsr5ZXSCbprfOZa9-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1){:target="_blank"}
 
 
