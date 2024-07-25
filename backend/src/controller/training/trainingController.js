@@ -21,6 +21,7 @@ const register = async (req, res) => {
                 return msgJson(404, res, `Exercício(s) não encontrado(s): ${idsExerciciosNaoEncontrados.join(', ')}`);
             }
 
+
             // Criação do treino
             const [trainingInfo] = await trx('treino').insert({ nome, descricao, id_administrador }).returning('*');
 
@@ -74,6 +75,7 @@ const update = async (req, res) => {
                 const idsExerciciosNaoEncontrados = id_exercicios.filter(id => !exercicios.some(ex => ex.id_exercicio === id));
                 return msgJson(404, res, `Exercício(s) não encontrado(s): ${idsExerciciosNaoEncontrados.join(', ')}`);
             }
+
 
             // Atualização do treino
             await trx('treino').where({ id_treino }).update({ nome, descricao, id_administrador });
