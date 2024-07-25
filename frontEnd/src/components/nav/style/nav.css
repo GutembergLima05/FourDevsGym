@@ -118,7 +118,6 @@ nav ul li:hover i {
 
 #menu-footer h4 {
    font-weight: 300;
-   margin-left: -7%;
    margin-right: 20%;
 }
 
@@ -216,6 +215,10 @@ nav ul li:hover i {
    z-index: 3;
 }
 
+#item-menu-baixar i{
+   background: none;
+   background: linear-gradient(90deg, rgb(230, 106, 35) 0%, rgba(245,106,24,1) 54%, rgb(233, 115, 47) 100%);
+}
 @media screen and (max-width: 800px) {
    nav {
       width: 100%;
