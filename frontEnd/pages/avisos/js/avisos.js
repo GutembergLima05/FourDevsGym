@@ -10,13 +10,26 @@ document.addEventListener('DOMContentLoaded', async function () {
             inputElement.type = "text";
             inputElement.value = text;
 
+            if(pElement.classList == "tituloAviso"){
+              inputElement.classList.add("tituloAviso")
+            }else{
+                inputElement.classList.add("descricaoAviso")
+            }
+
             pElement.replaceWith(inputElement);
             inputElement.focus();
 
             inputElement.addEventListener("blur", async () => {
+
                 const newText = inputElement.value;
                 const newPElement = document.createElement("p");
                 newPElement.textContent = newText;
+
+                if(inputElement.classList == "tituloAviso"){
+                    newPElement.classList.add("tituloAviso")
+                  }else{
+                    newPElement.classList.add("descricaoAviso")
+                  }
 
                 inputElement.replaceWith(newPElement);
                 let id_aviso = event.target.closest(".avisos-div").getAttribute("id_aviso");
@@ -34,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     "data_expiracao": dataFormatada,
                     "id_academia": 1
                 }
-                console.log(data)
+                //console.log(data)
 
                 await updateNotice(id_aviso, data)
             });

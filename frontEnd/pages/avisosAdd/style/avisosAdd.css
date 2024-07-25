@@ -58,7 +58,16 @@ button{
   display: flex;
   justify-content: end;
 }
-
+textarea, input{
+  font-family:  'Inter', sans-serif;
+  outline: none;
+  border-radius: 3px;
+ border: 1px solid var(--cor-12) !important;
+ font-size: 0.9rem;
+}
+textarea:focus, input:focus{
+  border: 1px solid var(--cor-1) !important;
+}
 @media screen and (max-width: 800px) {
 
       .title-contain-main{

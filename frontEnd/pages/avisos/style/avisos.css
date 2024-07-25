@@ -33,7 +33,11 @@
     justify-content: center;
     margin-top: 5%;
 }
-
+input:focus{
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid var(--cor-1);
+}
 .avisos-div {
     padding: 10px;
     display: flex;
@@ -45,6 +49,7 @@
     box-shadow: 0px 0px 17px -7px black;
     transition: transform 0.3s, box-shadow 0.3s;
     margin-top: 3%;
+    border-top: 5px solid var(--cor-1);
 }
 
 .avisos-div:hover {
@@ -102,7 +107,10 @@
 #file-notice {
     display: none;
 }
-
+.tituloAviso{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
 @media screen and (max-width: 800px) {
     .avisos-div {
         width: 90%;
@@ -115,5 +123,11 @@
         }
         .title-contain-main{
             margin-top: 1vw !important;
+        }
+        .contain-main{
+            justify-content: center !important;
+        }
+        #div-avisos-button{
+            margin-top: 25% !important;
         }
 }
