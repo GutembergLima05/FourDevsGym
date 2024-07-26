@@ -59,10 +59,12 @@ const update = async (req, res) => {
 
         if (dataUnique && dataUnique.field && dbInfo[0].email !== dataUnique.idObj.email) return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
 
-        if (id_treino !== null || id_plano ==! null) {
+        if (id_treino !== null) {
             const idTreino = await knex('treino').where({ id_treino }).returning('*');
             if (!idTreino || idTreino.length === 0) return msgJson(404, res, 'Treino não encontrado.')
+        }
 
+        if (id_plano !== null) {
             const idPlano = await knex('plano').where({ id_plano }).returning('*');
             if (!idPlano || idPlano.length === 0) return msgJson(404, res, 'Plano não encontrado.')
         }
