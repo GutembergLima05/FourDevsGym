@@ -1,4 +1,3 @@
-## 🚧 Em construção
 # FourDevs GymManager
 
 ## 💻 Visão Geral
@@ -17,7 +16,7 @@ Inicialmente, estamos desenvolvendo o FourDevs GymManager como um projeto de por
 - **Visualização de Treinos**: Acesse o treino recomendado pela academia a qualquer momento.
 - **Pagamentos Online**: Realize pagamentos do plano de forma fácil e segura pelo app.
 - **Visualização das Avaliações**: Acompanhe sua evolução tendo acesso às suas avaliações físicas realizadas na academia.
-- - **Avisos da Academia**:Fique por dentro de todas as atualizações e avisos importantes da academia.
+- **Avisos da Academia**:Fique por dentro de todas as atualizações e avisos importantes da academia.
 
 ## ⭐ Diferenciais Implementados
 - **Dashboard Interativo**:Visualização do total de alunos, incluindo aqueles sem planos, para uma melhor tomada de decisão.
@@ -2029,28 +2028,43 @@ frontend/
 </details>
 
 
-
 ## 🌐 Links do Deploy
 Você pode acessar o FourDevs GymManager nos seguintes links:
 
 - **Painel Administrativo**:
-  [FourDevsGymManager](https://gym.fourdevs.com.br)
+  <a href="https://gym.fourdevs.com.br" target="_blank">Aqui</a>
 
 - **Baixar App**:
-  [FourDevsGymAPP - Baixar App](https://fourdevs.com.br/gym)
-
-
+  <a href="https://fourdevs.com.br/gym" target="_blank">Aqui</a>
 
 ## 👥 Equipe
-- [@wilkenio](https://github.com/wilkenio) - Wilkenio Pereira da Silva
-- [@Gutemberg](https://github.com/GutembergLima05) - Gutemberg 
-- [@Víctor](https://github.com/victortads) - Víctor Gabriel de Santana
-- [@Renan](https://github.com/RenanCampelo) - Renan Campêlo
-
+- <a href="https://github.com/wilkenio" target="_blank">@wilkenio</a> - Wilkenio Pereira da Silva
+- <a href="https://github.com/GutembergLima05" target="_blank">@Gutemberg</a> - Gutemberg 
+- <a href="https://github.com/victortads" target="_blank">@Víctor</a> - Víctor Gabriel de Santana
+- <a href="https://github.com/RenanCampelo" target="_blank">@Renan</a> - Renan Campêlo
 
 ## 📱 Figma
 Acesse nossos protótipos no Figma: <br>
-[Protótipo do Painel Adm](https://www.figma.com/proto/NSAejy0ekxBHwfaCw4Pd0w/FourDevGym?node-id=77-45&starting-point-node-id=77%3A45)<br>
-[Protótipo do App aluno](https://www.figma.com/proto/x3W7FHYZJkkC6Y7L12FWNf/AppFourDevsGym?node-id=92-2&t=Lsr5ZXSCbprfOZa9-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1)
+- <a href="https://www.figma.com/proto/NSAejy0ekxBHwfaCw4Pd0w/FourDevGym?node-id=77-45&starting-point-node-id=77%3A45" target="_blank">Protótipo do Painel Adm</a><br>
+- <a href="https://www.figma.com/proto/x3W7FHYZJkkC6Y7L12FWNf/AppFourDevsGym?node-id=92-2&t=Lsr5ZXSCbprfOZa9-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1" target="_blank">Protótipo do App aluno</a>
 
+## 🔐 Tipos de Login
+No sistema web do FourDevs GymManager, há três tipos de login disponíveis:<br>
 
+1. **Administrador:** Acesso total às funcionalidades do sistema, incluindo controle financeiro, gerenciamento de treinos e processamento de pagamentos. 
+   - Email: dono@gmail.com
+   - Senha: adm12345
+
+2. **Recepcionista:** Acesso limitado para gerenciar o atendimento ao aluno, incluindo o registro de novos alunos,etc.
+   - Email: recepcionista@gmail.com
+   - Senha: adm12345
+
+3. **Personal Trainer:** Acesso para gerenciar e visualizar os treinos dos alunos, acompanhar o progresso e avaliar o desempenho dos alunos,etc.
+   - Email: personal@gmail.com
+   - Senha: adm12345
+
+### 📲 Login no Aplicativo
+
+Para acessar o aplicativo, é necessário pegar a **matrícula** e **data de nascimento** na página de **alunos**. Isso garante que cada aluno tenha um acesso personalizado e seguro às suas informações de treino e pagamento.
+
+- <a href="https://github.com/pedrohenrique1421/FourDevsGymAPP" target="_blank">Repositório do APP</a><br>

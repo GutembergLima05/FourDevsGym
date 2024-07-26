@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
 
             const data = await response.json();
-            console.log('Exercício atualizado:', data.success);
+            //console.log('Exercício atualizado:', data.success);
             if(data.success == true){
                 window.location="../exerciciosView/exerciciosView.html"
             }else{
