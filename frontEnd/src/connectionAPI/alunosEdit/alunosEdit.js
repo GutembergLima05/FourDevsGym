@@ -182,7 +182,7 @@ function calcularDiasRestantes(dataInicio, diasPlano) {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            //console.log(data);
             if (data.success) {
                 // Atualizar dados no localStorage
                 localStorage.setItem('alunoData', JSON.stringify({

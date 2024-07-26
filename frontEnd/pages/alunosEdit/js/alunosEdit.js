@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                     openPopup("Renove o plano do aluno:" + select.outerHTML, () => {
                         const selectedPlanId = document.getElementById('planos').value;
-                        console.log('ID do plano selecionado:', selectedPlanId);
+                        //console.log('ID do plano selecionado:', selectedPlanId);
                         // Dados a serem enviados na requisição PUT
                         const dadosAtualizados = {
                             nome: aluno.nome,
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         })
                             .then(response => response.json())
                             .then(data => {
-                                console.log(data);
+                                //console.log(data);
                                 if (data.success) {
                                     window.location.reload();
                                     console.log('Dados do aluno atualizados com sucesso:', data);
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 openPopup("Recomende um dos treinos:" + select.outerHTML, () => {
                     const selectedTreinoId = document.getElementById('treinos').value;
                     //console.log('ID do Treino selecionado:', selectedTreinoId);
-                    
+                  //console.log(aluno.id_plano)
                       // Dados a serem enviados na requisição PUT
                       const dadosAtualizados = {
                         nome: aluno.nome,
