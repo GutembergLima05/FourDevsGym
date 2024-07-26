@@ -2032,10 +2032,10 @@ frontend/
 Você pode acessar o FourDevs GymManager nos seguintes links:
 
 - **Painel Administrativo**:
-  <a href="https://gym.fourdevs.com.br" target="_blank">FourDevsGymManager</a>
+  <a href="https://gym.fourdevs.com.br" target="_blank">Aqui</a>
 
 - **Baixar App**:
-  <a href="https://fourdevs.com.br/gym" target="_blank">FourDevsGymAPP - Baixar App</a>
+  <a href="https://fourdevs.com.br/gym" target="_blank">Aqui</a>
 
 ## 👥 Equipe
 - <a href="https://github.com/wilkenio" target="_blank">@wilkenio</a> - Wilkenio Pereira da Silva
@@ -2047,4 +2047,24 @@ Você pode acessar o FourDevs GymManager nos seguintes links:
 Acesse nossos protótipos no Figma: <br>
 - <a href="https://www.figma.com/proto/NSAejy0ekxBHwfaCw4Pd0w/FourDevGym?node-id=77-45&starting-point-node-id=77%3A45" target="_blank">Protótipo do Painel Adm</a><br>
 - <a href="https://www.figma.com/proto/x3W7FHYZJkkC6Y7L12FWNf/AppFourDevsGym?node-id=92-2&t=Lsr5ZXSCbprfOZa9-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1" target="_blank">Protótipo do App aluno</a>
+
+### 🔐 Tipos de Login
+
+No sistema web do FourDevs GymManager, há três tipos de login disponíveis:
+
+1. **Administrador:** Acesso total às funcionalidades do sistema, incluindo controle financeiro, gerenciamento de treinos e processamento de pagamentos. 
+   - Email: dono@gmail.com
+   - Senha: adm12345
+
+2. **Recepcionista:** Acesso limitado para gerenciar o atendimento ao aluno, incluindo o registro de novos alunos,etc.
+   - Email: recepcionista@gmail.com
+   - Senha: adm12345
+
+3. **Personal Trainer:** Acesso para gerenciar e visualizar os treinos dos alunos, acompanhar o progresso e avaliar o desempenho dos alunos,etc.
+   - Email: personal@gmail.com
+   - Senha: adm12345
+
+### 📲 Login no Aplicativo
+
+Para acessar o aplicativo, é necessário pegar a **matrícula** e **data de nascimento** na página de **alunos**. Isso garante que cada aluno tenha um acesso personalizado e seguro às suas informações de treino e pagamento.
 
