@@ -202,6 +202,9 @@ function calcularDiasRestantes(dataInicio, diasPlano) {
                 if(data.conteudoJson.message === "Informe um número válido no campo 'id_plano'."){
                   mostrarAlerta("Adicione um plano a esse aluno para poder editá-lo",5000)
                 }
+                if(data.conteudoJson.message === "Informe um número válido no campo 'id_treino'."){
+                    mostrarAlerta("Adicione um treino a esse aluno para poder editá-lo",5000)
+                  }
                 console.error('Erro ao atualizar dados:', data);
             }
         })

@@ -141,8 +141,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
                 openPopup("Recomende um dos treinos:" + select.outerHTML, () => {
                     const selectedTreinoId = document.getElementById('treinos').value;
-                    console.log('ID do Treino selecionado:', selectedTreinoId);
-                
+                    //console.log('ID do Treino selecionado:', selectedTreinoId);
                     
                       // Dados a serem enviados na requisição PUT
                       const dadosAtualizados = {
@@ -168,8 +167,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
+                            //console.log(data);
                             if (data.success) {
+
                                 window.location.reload();
                                 console.log('Dados do aluno atualizados com sucesso:', data);
                                 // Adicione aqui o que deseja fazer após o sucesso do envio
