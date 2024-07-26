@@ -2067,3 +2067,4 @@ No sistema web do FourDevs GymManager, há três tipos de login disponíveis:<br
 
 Para acessar o aplicativo, é necessário pegar a **matrícula** e **data de nascimento** na página de **alunos**. Isso garante que cada aluno tenha um acesso personalizado e seguro às suas informações de treino e pagamento.
 
+- <a href="https://github.com/pedrohenrique1421/FourDevsGymAPP" target="_blank">Repositório do APP</a><br>
