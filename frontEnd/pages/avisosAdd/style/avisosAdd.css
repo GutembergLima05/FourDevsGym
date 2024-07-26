@@ -68,6 +68,10 @@ textarea, input{
 textarea:focus, input:focus{
   border: 1px solid var(--cor-1) !important;
 }
+
+.div-input-number{
+  display: none;
+}
 @media screen and (max-width: 800px) {
 
       .title-contain-main{
