@@ -59,17 +59,23 @@ const update = async (req, res) => {
 
         if (dataUnique && dataUnique.field && dbInfo[0].email !== dataUnique.idObj.email) return msgJson(400, res, `O campo '${dataUnique.field}' já está em uso.`, false);
 
-        const idTreino = await knex('treino').where({ id_treino }).returning('*');
-        if (!idTreino || idTreino.length === 0) return msgJson(404, res, 'Treino não encontrado.')
+        if (id_treino !== null) {
+            const idTreino = await knex('treino').where({ id_treino }).returning('*');
+            if (!idTreino || idTreino.length === 0) return msgJson(404, res, 'Treino não encontrado.')
+        }
+
+        let idPlano = null;
+
+        if (id_plano !== null) {
+             idPlano = await knex('plano').where({ id_plano }).returning('*');
+            if (!idPlano || idPlano.length === 0) return msgJson(404, res, 'Plano não encontrado.')
+        }
 
         const idAcademia = await knex('academia').where({ id_academia }).returning('*');
         if (!idAcademia || idAcademia.length === 0) return msgJson(404, res, 'Academia não encontrada.')
 
-        const idPlano = await knex('plano').where({ id_plano }).returning('*');
-        if (!idPlano || idPlano.length === 0) return msgJson(404, res, 'Plano não encontrado.')
-
         const currentPlano = dbInfo[0].id_plano;
-        if (currentPlano !== id_plano) {
+        if (currentPlano !== id_plano && id_plano !== null) {
             // Plano alterado, atualizar data_inicio_plano e plano_ativo
             body.data_inicio_plano = new Date().toISOString().split('T')[0];
             body.plano_ativo = true;
