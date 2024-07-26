@@ -2048,9 +2048,8 @@ Acesse nossos protótipos no Figma: <br>
 - <a href="https://www.figma.com/proto/NSAejy0ekxBHwfaCw4Pd0w/FourDevGym?node-id=77-45&starting-point-node-id=77%3A45" target="_blank">Protótipo do Painel Adm</a><br>
 - <a href="https://www.figma.com/proto/x3W7FHYZJkkC6Y7L12FWNf/AppFourDevsGym?node-id=92-2&t=Lsr5ZXSCbprfOZa9-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1" target="_blank">Protótipo do App aluno</a>
 
-### 🔐 Tipos de Login
-
-No sistema web do FourDevs GymManager, há três tipos de login disponíveis:
+## 🔐 Tipos de Login
+No sistema web do FourDevs GymManager, há três tipos de login disponíveis:<br>
 
 1. **Administrador:** Acesso total às funcionalidades do sistema, incluindo controle financeiro, gerenciamento de treinos e processamento de pagamentos. 
    - Email: dono@gmail.com
